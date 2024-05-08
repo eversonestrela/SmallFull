@@ -1,0 +1,59 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="DefaultPage.master.cs" Inherits="MasterPage" %>
+
+<%@ Register Src="Menu.ascx" TagName="menu" TagPrefix="uc1" %>
+<%@ Register Src="Topo.ascx" TagName="topo" TagPrefix="uc2" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head runat="server">
+        <title>ALCASTOCK - Sistema de Gerenciamento de Estoque</title>
+        <link href="../Estilos/estilo_padrao.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript">
+            function scrollOk() {
+                try {
+                    document.getElementById('imgCarregando').style.display = 'none';
+                    document.getElementById('divCarregando').style.display = 'none';
+                } catch (e) {
+
+                }
+            }
+        </script>
+    </head>
+    <body scroll="no" style="overflow-x: hidden" onload="scrollOk();">
+        <div id="imgCarregando" style="width: 321px; height: 55px; position: absolute; z-index: 10001;
+            left: 50%; top: 50%; margin-left: -160px; margin-top: -28px;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login"
+                width="232">
+                <tr>
+                    <td background="Library/Images/topo_Modal.gif" height="36" style="color: #FFFFFF;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;Aguarde ...
+                    </td>
+                </tr>
+            </table>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login" width="232">
+                <tr>
+                    <td align="center" background="Library/Images/meio_login.gif">
+                        <table border="0" cellpadding="2" cellspacing="0" class="texto_menu" width="90%">
+                            <tr>
+                                <td height="40">
+                                    <img src="Library/Images/preload.gif" align="middle" alt="" /> Efetuando solicitação ...
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td background="Library/Images/baixo_login.gif" height="18"></td>
+                </tr>
+            </table>
+        </div>
+        <form id="form1" runat="server">
+            <asp:ScriptManager ID="scripmanager" runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true" AsyncPostBackTimeout="1720"></asp:ScriptManager>
+            <uc1:menu ID="Menu1" runat="server" />
+            <div id="topo">
+                <uc2:topo ID="Topo1" runat="server" />
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </form>
+    </body>
+</html>
