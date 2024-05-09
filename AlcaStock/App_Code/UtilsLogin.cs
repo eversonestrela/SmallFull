@@ -314,6 +314,48 @@ public class UtilsLogin
         }
     }
 
+    public static bool Logon(int id)
+    {
+        try
+        {
+            DataTable dt = Utilitarios.Pesquisar("SELECT * FROM VW_LOGIN WHERE USR_LOGIN_ID = " + id);
+
+            int CLIENTEID = 0;
+            int PESSOAID = 0;
+
+            // Verifica se existem registros na DataTable
+            if (dt.Rows.Count > 0 && dt.Rows[0]["LOGIN_PORTAL"].ToString() != "S")
+            {
+                if (dt.Rows[0]["CLIENTE_ID"].ToString() != string.Empty)
+                    CLIENTEID = Convert.ToInt32(dt.Rows[0]["CLIENTE_ID"]);
+
+                if (dt.Rows[0]["PESSOA_ID"].ToString() != string.Empty)
+                    PESSOAID = Convert.ToInt32(dt.Rows[0]["PESSOA_ID"]);
+
+                dt.Columns.Add("NOME");
+
+                if (dt.Rows[0]["NOME_PERITO"].ToString() != string.Empty)
+                    dt.Rows[0]["NOME"] = dt.Rows[0]["NOME_PERITO"].ToString();
+                else
+                    dt.Rows[0]["NOME"] = dt.Rows[0]["LOGIN"].ToString();
+
+                // Verificar se o usuário esta ativo
+                if (Convert.ToBoolean(dt.Rows[0]["ATIVO"]) == false)
+                    throw new Exception("Favor dirigir-se ao setor de informática para desbloquear sua digital.");
+
+                //Carrega dados na sessão
+                CarregarDadosSession(dt);
+
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     /// <summary>
     /// Método para retorna a Identidade Digital para Técnicos
     /// </summary>

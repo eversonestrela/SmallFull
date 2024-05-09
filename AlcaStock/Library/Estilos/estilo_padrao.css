@@ -1,0 +1,211 @@
+#topo
+{
+	background-image: url(../Images/fundo_logo.jpg);
+	padding: 0px;
+	height: 75px;
+	width: 100%;
+	margin: 0px;
+	position: relative;
+}
+.ajax__tab_tab span {
+    color:#000;
+}
+.texto_login
+{
+	font-family: tahoma;
+	font-size: 11px;
+	color: #666666;
+}
+body
+{
+	background-image: url(../Images/fundo_page.jpg);
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-family: tahoma;
+	font-size: 11px;
+}
+#rodape
+{
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+	height: 30px;
+	margin: 0px;
+}
+table#tableGrid
+{
+	height: 355px;
+}
+table#tableGrid tr td
+{
+	vertical-align: top;
+}
+
+#ctl00_ContentCampos_TabContainer1_body
+{
+	height: 100%;
+}
+
+#loginconectado
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 500px;
+	height: 250px;
+	margin-left: -250px;
+	margin-top: -110px;
+	border-right: #999999 1px solid;
+	border-top: #999999 1px solid;
+	border-left: #999999 1px solid;
+	border-bottom: #999999 1px solid;
+}
+
+#login
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 500px;
+	height: auto;
+	margin-left: -250px;
+	margin-top: -270px;
+	border: #999999 1px solid;
+}
+#loginNew
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 745px;
+	height: auto;
+	margin-left: -372px;
+	margin-top: -250px;	
+	background-image:url(../Images/FundoLogin.png);
+}
+#conteudo
+{
+	position: relative;
+	text-align: justify;
+	min-height: 100%;
+	height: 100%;
+	height: auto;
+	width: 100%;
+	font-family: tahoma;
+	font-size: 11px;
+	color: #666666;
+}
+#menu
+{
+	width: 100%;
+	height: 20px;
+	position: relative;
+	background-color: #E0DFE3;
+	z-index: 1000;
+}
+
+.texto_menu
+{
+	font-family: tahoma;
+	font-size: 11px;
+	color: #000000;
+}
+.texto_verdana
+{
+	font-family: verdana;
+	font-size: 11px;
+	color: #000000;
+}
+.campos
+{
+	font-family: tahoma;
+	font-size: 11px;
+	color: #000000;
+	border: 1px solid #999999;
+	background-attachment: fixed;
+	background-image: url(../Images/fundo_campos.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.botoes
+{
+	font-family: tahoma;
+	font-size: 11px;
+	color: #000000;
+}
+.titulos
+{
+	font-family: tahoma;
+	font-size: 11px;
+	color: #000000;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+#modalPage
+{
+	/*display: none;*/
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+}
+.modalBackground
+{
+	background-color: Gray;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+
+.modalPopup
+{
+	/*_margin-top: 300px;*/ /*display: none; margin: 10%;position:absolute;*/
+}
+
+.popupHover
+{
+	background-position: left top;
+	background-color: #F5F7F8;
+	padding: 3;
+}
+
+.popupHoverContent, .popupHoverContent a:link, .popupHoverContent a:active, .popupHoverContent a:visited
+{
+	color: #0451C5;
+	padding: 3;
+	text-decoration: none;
+}
+
+.popupHoverContent a:hover
+{
+	text-decoration: underline;
+}
+
+.popupMenu
+{
+	position: absolute;
+	visibility: hidden;
+	background-color: #F5F7F8;
+	padding: 3;
+	width: 220px;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #0451C5;
+}
+.fundo_logado
+{
+	background-image: url(../Images/fundo_logado.gif);
+}
+.direito_logado
+{
+	background-image: url(../Images/direito_logado.gif);
+	height: 50px;
+	width: 4px;
+}
+
+#sisrodape 
+{
+	background-color:#E1E0E5;
+}

@@ -1,0 +1,174 @@
+
+
+/* Navegação da seção */
+/* ========================================================================== */
+.maxWidth {
+    width: 100%;
+    margin: 0 auto;
+    margin-left:6px;
+}
+
+#navegacaoSecao {
+    overflow: hidden;
+    border-bottom: 1px solid #cfcfcb;
+    clear: left;
+    /*min-width: 930px;*/
+	font-family:tahoma;
+	font-size:11px;
+}
+#navegacaoSecao > ul {
+    padding: 3px 0;
+    overflow: hidden;
+    z-index: 100;
+}
+
+#navegacaoSecao ul li {
+    display: inline;
+    float: left;
+    white-space: nowrap;
+}
+#navegacaoSecao ul li ul li {
+    border-bottom: 1px solid #f4f4f4;
+}
+#navegacaoSecao ul li:last-child {
+    border-bottom: 0;
+}
+
+#navegacaoSecao ul li a {
+    display: block;
+    float: left;
+    padding: 3px 5px;
+    font-size: 8.5pt;
+    color: #555753;
+    margin-right: 3px;
+    height: 14px;
+    text-decoration: none;
+}
+
+
+#navegacaoSecao ul li a:hover, #navegacaoSecao ul li a.hover {
+    text-decoration: none;
+    background: #a4a5a1;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-border-radius-bottomleft: 0;
+    -moz-border-radius-bottomright: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+    color: #fff;
+}
+#navegacaoSecao a.ativo {
+    background: #a4a5a1;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+/* CSS Filhos */
+
+#navegacaoSecao ul li ul {
+    display: none;
+}
+#navegacaoSecao ul li:hover ul, #navegacaoSecao ul li.hover ul {
+    z-index: 101;
+    display: block;
+    background: #fff;
+    position: absolute;
+    -moz-box-shadow: 0 3px 10px #666;
+    -webkit-box-shadow: 0 3px 10px #666;
+    -o-box-shadow: 0 3px 10px #666;
+    box-shadow: 0 3px 10px #666;
+    margin-top: 20px;
+    padding: 2px;
+    min-width: 150px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-border-radius-topleft: 0;
+    -webkit-border-top-left-radius: 0;
+    border-top-left-radius: 0;
+    border: 1px solid #CCC;
+    #margin-top: -0px; !important;
+    #clear: left;
+    #padding-top: 0;
+	#margin-left:0px;
+}
+#navegacaoSecao ul li:last-child ul {
+    margin-left: -1px;
+    -moz-border-radius-topleft: 3px;
+    -webkit-border-top-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-border-radius-topright: 0;
+    -webkit-border-top-right-radius: 0;
+    border-top-right-radius: 0;
+}
+#navegacaoSecao ul li ul li {
+    display: block;
+    float: none;
+}
+#navegacaoSecao ul li ul li a {
+    float: none;
+    margin: 0;
+    padding: 4px 6px;
+    height: auto;
+}
+#navegacaoSecao ul li ul li.expandivel {
+    
+}
+#navegacaoSecao ul li ul li a:hover, #navegacaoSecao ul li ul li a.hover {
+    background: #9bdce8;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #2e3436;
+}
+#navegacaoSecao ul li:hover ul li ul {
+    display: none;
+}
+#navegacaoSecao ul li ul li:hover ul {
+    display: block;
+    margin: -24px 0 0 150px;
+}
+
+/* Seta */
+.Submenu
+{
+	background-image:url(../Images/Arrow.gif);
+    background-repeat:no-repeat;
+    background-position:right;
+}
+
+/* CSS Netos */
+
+#navegacaoSecao ul li ul li:hover ul li ul  {
+    display: none;
+}
+#navegacaoSecao ul li ul li ul li:hover ul {
+    display: block;
+    margin: -24px 0 0 150px;
+}
+
+/* CSS Bisneto */
+
+#navegacaoSecao ul li ul li ul li:hover ul li ul  {
+    display: none;
+}
+#navegacaoSecao ul li ul li ul li ul li:hover ul {
+    display: block;
+    margin: -24px 0 0 150px;
+}
+
+
+/* CSS Trineto */
+
+#navegacaoSecao ul li ul li ul li ul li:hover ul li ul  {
+    display: none;
+}
+#navegacaoSecao ul li ul li ul li ul li ul li:hover ul {
+    display: block;
+    margin: -24px 0 0 150px;
+}
+
+

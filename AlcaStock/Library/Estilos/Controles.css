@@ -1,0 +1,139 @@
+﻿textarea
+{
+    font-family: Tahoma;
+    font-size: 11px;
+}
+
+input
+{
+    font-family: Tahoma;
+    font-size: 11px;
+}
+
+select
+{
+    font-family: Tahoma;
+    font-size: 11px;
+}
+
+.rotuloObrigatorio{
+    font-family: Tahoma ;
+    font-size: 11px ;
+    color: #990000 ;    
+}
+
+.rotuloObrigatorio::after {    
+    color: #990000 !important;
+    content: "*" !important;
+}
+
+.rotulo
+{
+    font-family: Tahoma;
+    font-size: 11px;
+    color: #000000;
+}
+
+.caixaTextoCenter
+{
+    font-family: Tahoma;
+    font-size: 11px;
+    text-align: center;
+}
+
+.divPaginacao
+{
+    background-color: #E0DFE3;
+    border-bottom: #999999;
+    border-left: #999999;
+    border-right: #999999;
+    border-style: solid;
+    border-width: 1px;
+    border-top-style: none;
+    border-top-width: 0px;
+    padding-left: 7px;
+    height: 27px;
+}
+
+.divGrid
+{
+    border: 1px solid #999999;
+    overflow: auto;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.divGridDocumentos
+{
+    border: 1px solid #999999;
+    overflow: auto;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.divGrid div
+{ *width:98%;
+}
+
+.divGridDocumentos div
+{ *width:98%;
+}
+
+.divGrid_Paginacao
+{
+    border-bottom: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    overflow: auto;
+}
+
+.divGrid table
+{
+    border: solid 1px #CCCCCC;
+}
+
+.divGridPesquisa Table
+{
+    border: solid 1px #CCCCCC;
+}
+
+.divGridPesquisa
+{
+    border: 1px solid #999999;
+    scrollbar-face-color: #E0DFE3;
+    scrollbar-highlight-color: #ffffff;
+    scrollbar-shadow-color: #ffffff;
+    scrollbar-3dlight-color: #666666;
+    scrollbar-arrow-color: #666666;
+    scrollbar-darkshadow-color: #333333;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.PaddingBotoes
+{
+    float: left;
+    margin: 2px;
+    padding-top: 1px;
+    padding-top: 1px;
+}
+.PaddingDrop
+{
+    float: left;
+    margin: 2px;
+    padding-left: 3px;
+    padding-top: 0px;
+    font-size:9px;
+}
+.PaddingLabel
+{
+    float: left;
+    margin: 2px;
+    padding-right: 3px;
+}
+.label
+{
+    font-family: Tahoma;
+    font-size: 11px;
+}

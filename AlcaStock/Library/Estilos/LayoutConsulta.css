@@ -1,0 +1,12 @@
+﻿/* Div contendo os botões OK e Cancelar no rodapé da página.
+------------------------------------------------------------*/
+#divBotoesRodape
+{
+	background-color: #E9E9E9;
+	overflow:hidden;
+	padding-top:9px;
+	vertical-align: middle;
+	border: 1px solid #C7C7C7;
+	height:31px;
+	width:100%;
+}

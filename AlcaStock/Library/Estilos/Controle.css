@@ -1,0 +1,144 @@
+﻿textarea
+{
+    font-family: Tahoma;
+	font-size: 11px;
+}
+
+input
+{
+    font-family: Tahoma;
+	font-size: 11px;
+}
+
+select
+{
+    font-family: Tahoma;
+	font-size: 11px; 
+}
+
+.rotuloObrigatorio {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: #990000;
+}
+
+
+.rotuloObrigatorio::after {
+    color: #990000 !important;
+    content: "*" !important;
+}
+
+.rotulo {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: #000000;
+}
+
+.rotulo
+{
+    font-family: Tahoma;
+	font-size: 11px;
+	color: #000000;
+}
+
+.caixaTextoCenter
+{
+	font-family: Tahoma;
+	font-size: 11px;
+	text-align: center;
+}
+
+.divPaginacao
+{
+    background-color: #E0DFE3;
+    border-bottom: #999999;
+    border-left: #999999;
+    border-right: #999999;
+    border-style: solid;
+    border-width: 1px;
+    border-top-style: none;
+    border-top-width: 0px;
+    padding-left:7px;
+    height: 27px;
+}
+
+.divGrid
+{
+    border: 1px solid #CCCCCC;
+    SCROLLBAR-FACE-COLOR: #E0DFE3;
+    SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; 
+    SCROLLBAR-SHADOW-COLOR: #ffffff;
+    SCROLLBAR-3DLIGHT-COLOR: #666666; 
+    SCROLLBAR-ARROW-COLOR: #666666; 
+    SCROLLBAR-DARKSHADOW-COLOR: #333333;
+    OVERFLOW: auto; 
+    height: 100%;
+}
+
+.divGridDocumentos
+{
+    border: 1px solid #CCCCCC;
+    SCROLLBAR-FACE-COLOR: #E0DFE3;
+    SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; 
+    SCROLLBAR-SHADOW-COLOR: #ffffff;
+    SCROLLBAR-3DLIGHT-COLOR: #666666; 
+    SCROLLBAR-ARROW-COLOR: #666666; 
+    SCROLLBAR-DARKSHADOW-COLOR: #333333;
+    OVERFLOW: auto; 
+    height: 100%;
+}
+
+.divGridDocumentos Table 
+{
+    
+}
+
+.divGrid Table 
+{
+	border: solid 1px  #DDDDDD;
+}
+
+.divGridPesquisa Table 
+{
+	border: solid 1px  #DDDDDD;
+}
+
+.divGridPesquisa
+{
+    border: 1px solid #CCCCCC;
+    SCROLLBAR-FACE-COLOR: #E0DFE3;
+    SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; 
+    SCROLLBAR-SHADOW-COLOR: #ffffff;
+    SCROLLBAR-3DLIGHT-COLOR: #666666; 
+    SCROLLBAR-ARROW-COLOR: #666666; 
+    SCROLLBAR-DARKSHADOW-COLOR: #333333;
+    OVERFLOW: auto; 
+    height: 100%;
+    width: 100%;
+}
+
+.PaddingBotoes
+{
+    float: left;
+    margin: 2px;
+    padding-top: 1px;
+    padding-top: 1px;
+}
+.PaddingDrop
+{
+    float: left;
+    margin: 2px;
+    padding-left: 3px;
+    padding-top: 0px;
+}
+.PaddingLabel
+{
+    float: left;
+    margin: 2px;
+    padding-right: 3px;
+}
+.label
+{
+    font-family: Tahoma;
+    font-size: 11px;
+}

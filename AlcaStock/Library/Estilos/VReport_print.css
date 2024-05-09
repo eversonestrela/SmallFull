@@ -1,0 +1,40 @@
+#_VReportHeader
+{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+}
+#_VReportHeader img
+{
+    vertical-align: middle;
+}
+#_VReportFooter
+{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+#_VReportFooter img
+{
+    vertical-align: middle;
+}
+#_VReportContent
+{
+    margin: 0;
+    padding: 0;
+}
+#_VReportContentClient
+{
+    margin: 0;
+    padding: 0;
+}
+thead
+{
+    display: table-header-group;
+}
+tfoot
+{
+    display: table-footer-group;
+}

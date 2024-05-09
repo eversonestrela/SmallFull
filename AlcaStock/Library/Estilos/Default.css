@@ -1,0 +1,293 @@
+		#login form{
+			font-size: 12pt;
+			font-family: Verdana, Helvetica, sans-serif;
+
+        }
+        
+              
+        #login input{
+	        background:#b5b5b5;
+			border-top: 1px solid #ccc;
+	        border-left: 1px solid #ccc;
+	        border-bottom: 1px solid #ccc;
+	        border-right: 1px solid #ccc;
+	        font-size: 12px;
+	        margin-bottom: 10px;
+	        color: #0E0659;
+			
+        }
+        
+        #login span{
+	        color: #999999;
+	        font-size: 12px;
+	        font-family: Verdana, Helvetica, sans-serif;
+        }
+		
+		
+		#Cadastro span{
+	        color: #4682B4;
+	        font-size: 12px;
+	        font-family: Verdana, Helvetica, sans-serif;
+        }
+    
+        #Cadastro select{
+	        
+	        border: 1px solid #333;
+	        font-size: 12px;
+	        font-family: Verdana, Helvetica, sans-serif;
+	        margin-bottom: 2px;
+	        color: #0E0659;
+        }
+        
+        #Cadastro input{
+	  		
+	        font-size: 12px;
+	        margin-bottom: 2px;
+	        color: #0E0659;
+        }
+        #Cadastro textarea{
+	  		
+	        font-size: 12px;
+	        margin-bottom: 2px;
+	        color: #0E0659;
+        }
+        		
+.LinkBotao
+	{
+	font-family:verdana,arial,helvetica; 
+	font-size:11px; color:Black; 
+	font-weight:bold; 
+	text-decoration:none; 
+	background-color:#D2F1FB; 
+	text-align:center; 
+	border-style:solid; 
+	border-width:1px; 
+	border-color:#999999; 
+	padding-top:1px; 
+	height:18px; 
+	vertical-align:bottom;
+	width: 80px
+	
+	}
+	
+a:link.LinkBotao
+	{
+	font-family:verdana,arial,helvetica; 
+	font-size:11px;
+	color:Black; 
+	font-weight:bold; 
+	text-decoration:none; 
+	background-color:#D2F1FB; 
+	text-align:center; 
+	border-style:solid; 
+	border-width:1px; 
+	border-color:#999999; 
+	padding-top:1px; 
+	height:18px; 
+	vertical-align:bottom;
+	width: 80px
+	}
+a:visited.LinkBotao
+	{
+	border-right: #999999 1px solid;
+	border-top: #999999 1px solid;
+	font-weight: bold;
+	font-size: 11px;
+	vertical-align: bottom;
+	border-left: #999999 1px solid;
+	color: black;
+	padding-top: 1px;
+	border-bottom: #999999 1px solid;
+	font-family: verdana,arial,helvetica;
+	height: 18px;
+	background-color: #D2F1FB;
+	text-align: center;
+	text-decoration: none;
+	width: 80px
+	}
+a:hover.LinkBotao
+	{
+	font-family:verdana,arial,helvetica; 
+	font-size:11px;
+	color:Black; 
+	font-weight:bold; 
+	text-decoration:underline; 
+	background-color:#759FCA; 
+	text-align:center; 
+	border-style:solid; 
+	border-width:1px; 
+	border-color:#999999; 
+	padding-top:1px; 
+	height:18px;
+	width: 80px; 
+	vertical-align:bottom
+	}
+
+
+.txtNormalBlack
+{
+	font-size: 11px;
+	font-family: Verdana, Arial;
+	text-decoration: none;
+}
+.txtNormalRed
+{
+	font-size: 11px;
+	color: red;
+	font-family: Verdana, Arial;
+	text-decoration: none;
+}
+
+.txtNormalNavy
+{
+	font-size: 11px;
+	color: Navy;
+	font-family: Verdana, Arial;
+	text-decoration: none;
+}
+
+.txtNormalWhite
+{
+	font-size: 11px;
+	color: White;
+	font-family: Verdana, Arial;
+	text-decoration: none;
+}
+
+.txtBoldBlack
+{
+	
+	font-size: 11px;
+	font-family: Verdana, Arial;
+	text-decoration: none;
+}
+.txtBarraInfo
+{
+	
+	font-size: 09px;
+	font-family: Verdana, Arial;
+	text-decoration: none;
+	color: #4682B4;
+}
+.txtBoldRed
+{
+	font-weight: bold;
+	font-size: 11px;
+	color: red;
+	font-family: Verdana, Arial;
+	text-decoration: none;
+}
+
+.txtBoldNavy
+{
+	font-weight: bold;
+	font-size: 11px;
+	color: Navy;
+	font-family: Verdana, Arial;
+	text-decoration: none;
+}
+
+.txtBoldWhite
+{
+	font-weight: bold;
+	font-size: 11px;
+	color: White;
+	font-family: Verdana, Arial;
+	text-decoration: none;
+}
+
+.txtTitulo
+{
+	font-weight: bold;
+	font-size: 22px;
+	color: #0A246A;
+	font-family: Verdana, Arial;
+	text-decoration: none;
+}
+
+
+.botao
+{
+	border-right: #999999 1px solid;
+	border-top: #999999 1px solid;
+	border-bottom: #999999 1px solid;
+	border-left: #999999 1px solid;
+	font-family: verdana,arial,helvetica;
+	font-weight: bold;
+	font-size: 11px;
+	color: white;
+	vertical-align: bottom;
+	height: 18px;
+	width: 80px;
+	padding-top: 1px;	
+	background-color: navy;
+	text-align: center;
+	text-decoration: none;
+}
+
+.tblBorda
+{
+	border-right: #999999 1px solid;
+	border-top: #999999 1px solid;
+	border-left: #999999 1px solid;
+	border-bottom: #999999 1px solid;
+}
+
+.AbaAtiva
+{
+	border-right: 0px solid;
+	border-top: 0px solid;
+	font-weight: bold;
+	font-size: x-small;
+	border-left: 0px solid;
+	width: 150px;
+	color: white;
+	padding-top: 4px;
+	border-bottom: 0px solid;
+	font-family: Verdana;
+	height: 25px;
+	background-color: #759fca;
+	text-align: center;
+}
+.AbaInativa
+{
+	border-right: 0px solid;
+	border-top: 0px solid;
+	font-weight: normal;
+	font-size: x-small;
+	border-left: 0px solid;
+	width: 150px;
+	color: graytext;
+	padding-top: 4px;
+	border-bottom: 0px solid;
+	font-family: Verdana;
+	height: 25px;
+	background-color: inactiveborder;
+	text-align: center;
+}
+
+.pnlActive
+{
+	border-right: #759FCA 1px solid;
+	border-top: #759FCA 3px solid;
+	border-left: #759FCA 1px solid;
+	border-bottom: #759FCA 1px solid;
+}
+.TxtGrid
+	{
+	font-family:verdana, arial, helvetica;
+	font-size: 10px;
+	color: #000000; 
+	text-decoration:none;
+	}
+	
+.datagrid {
+	position: relative;
+	background-color: Window;
+	border: 0;
+	padding-top: 20px;
+	overflow: hidden;
+	font: verdana, arial, helvetica;
+	font-size: 12px;
+	color: #000000;
+}

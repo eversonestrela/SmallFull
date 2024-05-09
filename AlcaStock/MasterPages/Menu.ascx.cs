@@ -24,11 +24,6 @@ public partial class MasterPages_Menu : System.Web.UI.UserControl
         //
     }
 
-    protected void lnkAssLote_Click(object sender, EventArgs e)
-    {
-        //
-    }
-
     #endregion Eventos
 
     #region Metodos
