@@ -13,7 +13,6 @@ public partial class Login_Login : System.Web.UI.Page
         {
             // VERIFICA SE VEIO DO EXECUTAVEL DA ASSINATURA DIGITAL
             loginNew.Visible = true;
-            divBloqueado.Visible = false;
 
             HttpCookie cookie = Request.Cookies["sisprevlogin"];
             string path = AppDomain.CurrentDomain.BaseDirectory.ToString() + @"Library\";
@@ -21,9 +20,6 @@ public partial class Login_Login : System.Web.UI.Page
             string imgLogo = path + "Images\\" + UtilsLogin.Bast_Municipio + "_logo_sisprev_web.gif";
             string imgLadoDireito = path + "Images_Cliente\\" + UtilsLogin.Bast_Municipio + "_lado_direito_logo.gif";
             string imgLogoCliente = path + "Images_Cliente\\" + UtilsLogin.Bast_Municipio + "_logo.gif";
-
-            Logo.ImageUrl = File.Exists(imgLogo) ? ResolveClientUrl("~/Library/Images/" + UtilsLogin.Bast_Municipio + "_logo_sisprev_web.gif") : Logo.ImageUrl;
-            LogoCliente.ImageUrl = File.Exists(imgLogoCliente) ? ResolveClientUrl("~/Library/Images_Cliente/" + UtilsLogin.Bast_Municipio + "_logo.gif") : LogoCliente.ImageUrl;
 
             if (cookie != null)
             {
@@ -38,47 +34,9 @@ public partial class Login_Login : System.Web.UI.Page
             {
                 txtUSER.Focus();
             }
-
-            //dstCRUD dst = new dstCRUD();
-            //Utilitarios.CamposPesq cp = new Utilitarios.CamposPesq();
-            //Utilitarios.Pesquisar(dst, "PARAMETRO_SIS", cp, "PREFEITURA");
-            //if (dst.PARAMETRO_SIS.Rows.Count > 0)
-            //{
-            //    if (dst.PARAMETRO_SIS[0]["ENDERECO"] != DBNull.Value)
-            //        lbEndereco.Text = dst.PARAMETRO_SIS[0].ENDERECO.ToString().ToUpper();
-
-            //    if (dst.PARAMETRO_SIS[0]["NUMERO"] != DBNull.Value)
-            //        lbNumero.Text = dst.PARAMETRO_SIS[0].NUMERO.ToString().ToUpper();
-
-            //    if (dst.PARAMETRO_SIS[0]["BAIRRO"] != DBNull.Value)
-            //        lbBairro.Text = dst.PARAMETRO_SIS[0].BAIRRO.ToString().ToUpper();
-
-            //    if (dst.PARAMETRO_SIS[0]["FONE_FUNDO"] != DBNull.Value)
-            //        lbTelefone.Text = dst.PARAMETRO_SIS[0].FONE_FUNDO.ToString().ToUpper();
-
-            //    if (dst.PARAMETRO_SIS[0]["FAX_FUNDO"] != DBNull.Value)
-            //        lbFax.Text = dst.PARAMETRO_SIS[0].FAX_FUNDO.ToString().ToUpper();
-
-            //    if (dst.PARAMETRO_SIS[0]["CEP"] != DBNull.Value)
-            //        lbCEP.Text = dst.PARAMETRO_SIS[0].CEP.ToString().ToUpper();
-
-            //    if (dst.PARAMETRO_SIS[0]["CIDADE_ID"] != DBNull.Value)
-            //    {
-            //        DataTable CIDADE_UF = Utilitarios.Pesquisar("SELECT UF,NOME FROM CIDADES WHERE CIDADE_ID=" + dst.PARAMETRO_SIS[0].CIDADE_ID.ToString());
-            //        lbEstado.Text = CIDADE_UF.Rows[0]["UF"].ToString().ToUpper();
-            //        lbCidade.Text = CIDADE_UF.Rows[0]["NOME"].ToString().ToUpper();
-            //    }
-
-            //    lblSite.Text = dst.PARAMETRO_SIS[0]["SITE_FUNDO"].ToString();
-            //    lblSite.OnClientClick = "javascript:window.open('http://" + lblSite.Text.Replace("http://", "") + "', 'WebSite', '');";
-            //}
-            // FIM
         }
 
         this.Form.DefaultButton = btnLogin.UniqueID;
-        //string Titulo = Utilitarios.Exec_StringSql_Return("SELECT COALESCE(VALOR_PARAMETRO,'SISPREV WEB - Sistema de Gestão de Regime Próprio de " +
-        //                "Previdência Social') FROM PARAMETROS_SISPREVWEB WHERE DESCRICAO LIKE '%TituloSistema%'");
-        
         string Titulo = "";
 
         if (Titulo.Trim() == string.Empty)
@@ -176,7 +134,6 @@ public partial class Login_Login : System.Web.UI.Page
         {
             //UtilsLogin.GravaLogAcesso("LOGIN/FALHA", Request.UserHostAddress.ToString(), Utilitarios.Exec_StringSql_Return("SELECT SISTEMA + ' / BD: ' + BD FROM dbo.getVersaoSistema(0)"), txtUSER.Text, 0);
 
-            divBloqueado.Visible = false;
             loginNew.Visible = true;
             string msg = ex.Message.Replace("'", " ");
             txtPassWord.Focus();
@@ -199,7 +156,6 @@ public partial class Login_Login : System.Web.UI.Page
         LabelLogin.Visible = false;
         txtUSER.Text = "";
         txtUSER.Visible = true;
-        divBloqueado.Visible = false;
         loginNew.Visible = true;
     }
 

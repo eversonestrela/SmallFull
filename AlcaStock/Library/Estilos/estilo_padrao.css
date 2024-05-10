@@ -76,14 +76,8 @@ table#tableGrid tr td
 }
 #loginNew
 {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 745px;
-	height: auto;
-	margin-left: -372px;
-	margin-top: -250px;	
-	background-image:url(../Images/FundoLogin.png);
+	margin: 25% 25%;
+	
 }
 #conteudo
 {
