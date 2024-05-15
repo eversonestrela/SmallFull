@@ -4,7 +4,7 @@
 <table width="100%" height="94%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td style="width: 300px;">
-            <asp:Image ID="Logo" runat="server" ImageUrl="~/Library/Images/logo_sisprev_web.gif" />
+            
         </td>
         <td align="right">
             <table>

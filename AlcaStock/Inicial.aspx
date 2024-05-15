@@ -190,12 +190,11 @@
         <table width="100%" style="border-top: 1px solid #CCCCCC; padding-left: 10px;" border="0"
             align="center" cellpadding="0" cellspacing="0" class="texto_login">
             <tr>
-                <td valign="middle">Sistema desenvolvido por Agenda Assessoria. Todos os Direitos Reservados. 2009
+                <td valign="middle">
+
                 </td>
                 <td align="right">
-                    <a href="http://www.agendaassessoria.com.br" target="_blank">
-                        <img src="Library/Images/logo_agenda.gif" width="89" height="24" border="0" alt="" />
-                    </a>
+                    
                 </td>
             </tr>
         </table>

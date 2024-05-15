@@ -1,3 +1,4 @@
+using ALCASTOCK.Geral;
 using System;
 using System.Collections;
 using System.Configuration;
@@ -5,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Web;
+using System.Web.UI;
 
 public class Utilitarios
 {
@@ -915,5 +917,167 @@ public class Utilitarios
         return HttpContext.Current.Request.IsSecureConnection;
     }
 
+    public static string CaminhoWEB()
+    {
+        string CaminhoWEB = HttpContext.Current.Request.ApplicationPath;
+        if (CaminhoWEB.Equals("/") == false)
+        {
+            CaminhoWEB = HttpContext.Current.Request.ApplicationPath + "/";
+        }
+        return CaminhoWEB;
+    }
+
+    /// <summary>
+    /// Método responsável por converter valor do banco de dados S ou N para true ou false
+    /// </summary>
+    /// <param name="Valor">Valor S ou N</param>
+    /// <returns>True ou False</returns>
+    public static bool ConverteSimNaoParaBool(string Valor)
+    {
+        if (Valor.ToUpper() == "S")
+            return true;
+        else
+            return false;
+    }
+
+    public static int Exec_IntSql_Return(String SQL)
+    {
+        int retorno = 0;
+
+        //-> Cria o objeto de conexão
+        using (SqlConnection cnx = GetOpenConnection())
+        using (SqlCommand Comando = new SqlCommand("SET DATEFORMAT DMY " + SQL, cnx))
+        {
+            try
+            {
+                Comando.CommandType = CommandType.Text;
+                retorno = Convert.ToInt32(Comando.ExecuteScalar());
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        return retorno;
+    }
+
     #endregion Metodos
+
+    #region JavaScript
+    /// <summary>
+    /// Realiza a Atribuição das Funções Java Script existentes no 
+    /// arquivo Geral.js existente na pasta Scripts do Projeto
+    /// para os Objetos da página, de forma que estes tenham tratamentos
+    /// genéricos nas páginas do sistema
+    /// </summary>
+    /// <param name="Pagina">A Página Atual que terá seus compenentes de formulário tratados</param>
+    public static void AtribuirFuncoesJava(System.Web.UI.Page Pagina)
+    {
+        string scriptString;
+        scriptString = @"<script language=""" + @"javascript""" + @" src=""" + Pagina.ResolveClientUrl("~/Library/Scripts/Mascaras.js") + @""" type=""" + @"text/javascript""" + @"></script>";
+
+        //scriptString = PageUtility.GetClientScriptInclude("~/Library/Scripts/Mascaras.js");
+
+        if (!Pagina.IsClientScriptBlockRegistered("clientScript"))
+            ScriptManager.RegisterClientScriptBlock(Pagina, Pagina.GetType(), "clientScript", scriptString, false);
+        
+        Containers(Pagina);
+    }
+
+    private static void Containers(Control controle)
+    {
+        for (int cont = 0; cont < controle.Controls.Count; cont++)
+        {
+            if (controle.Controls[cont].HasControls() == true)
+            {
+                Containers(controle.Controls[cont]);
+            }
+            else
+            {
+                DescobreClasse(controle.Controls[cont]);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Descobre a classe do controle para realizar a chamada do método
+    /// específico para tratamento dos eventos destes componenentes
+    /// </summary>
+    /// <param name="controle">Controle o qual terá as funções java atribuídas aos seus eventos</param>
+    private static void DescobreClasse(Control controle)
+    {
+        if (controle.ToString() == "System.Web.UI.WebControls.TextBox" || controle.ToString() == "AGENDA.Controles.UI.FieldTextBox")
+        {
+            int a = ((System.Web.UI.WebControls.TextBox)controle).CssClass.ToUpper().LastIndexOf("UPPER");
+
+            if (((System.Web.UI.WebControls.TextBox)controle).CssClass.ToUpper() == "UPPER")
+            {
+                TratarEntradadeDados.Upper((System.Web.UI.WebControls.TextBox)controle);
+            }
+
+            else if (((System.Web.UI.WebControls.TextBox)controle).CssClass.ToUpper() == "CPF")
+            {
+                TratarEntradadeDados.CPF((System.Web.UI.WebControls.TextBox)controle);
+            }
+
+            else if (((System.Web.UI.WebControls.TextBox)controle).CssClass.ToUpper() == "CEP")
+            {
+                TratarEntradadeDados.CEP((System.Web.UI.WebControls.TextBox)controle);
+            }
+
+            else if (((System.Web.UI.WebControls.TextBox)controle).CssClass.ToUpper() == "CNPJ")
+            {
+                TratarEntradadeDados.CNPJ((System.Web.UI.WebControls.TextBox)controle);
+            }
+            else if (((System.Web.UI.WebControls.TextBox)controle).CssClass.ToUpper() == "MONEY")
+            {
+                TratarEntradadeDados.MONEY((System.Web.UI.WebControls.TextBox)controle);
+            }
+        }
+        else if (controle.ToString() == "System.Web.UI.WebControls.DropDownList")
+        {
+            if (((System.Web.UI.WebControls.DropDownList)controle).CssClass.ToUpper() == "POSTJAVA")
+            {
+                TratarEntradadeDados.SetFilterDropdownlist((System.Web.UI.WebControls.DropDownList)controle, true);
+            }
+            else
+            {
+                TratarEntradadeDados.SetFilterDropdownlist((System.Web.UI.WebControls.DropDownList)controle);
+            }
+        }
+        else if (controle.ToString() == "System.Web.UI.WebControls.Label")
+        {
+
+        }
+        else if (controle.ToString() == "System.Web.UI.WebControls.CheckBox")
+        {
+
+        }
+        else if (controle.ToString() == "System.Web.UI.WebControls.RadioButton")
+        {
+
+        }
+        else if (controle.ToString() == "System.Web.UI.WebControls.ListBox")
+        {
+
+        }
+        else if (controle.ToString() == "eWorld.UI.CalendarPopup")
+        {
+            TratarEntradadeDados.MascaraData((eWorld.UI.CalendarPopup)controle);
+        }
+        else if (controle.ToString() == "eWorld.UI.TimePicker")
+        {
+
+        }
+        else if (controle.ToString() == "System.Web.UI.WebControls.LinkButton")
+        {
+
+        }
+        else if (controle.ToString() == "System.WebUI.WebControls.ImageButton")
+        {
+
+        }
+    }
+    #endregion JavaScript
 }

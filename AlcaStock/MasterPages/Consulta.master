@@ -1,0 +1,212 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Consulta.master.cs" Inherits="MasterPages_Consulta" %>
+
+<%@ Register Src="menu.ascx" TagName="menu" TagPrefix="uc1" %>
+<%@ Register Src="topo.ascx" TagName="topo" TagPrefix="uc2" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head runat="server">
+        <meta http-equiv="Content-Type; X-UA-Compatible" content="text/html; charset=utf-8; IE=8,chrome=1"/>
+        <title>ALCASTOCK - Sistema de Gerenciamento de Estoque</title>
+        <script type="text/javascript">
+            function janela() {
+
+                var altura = 0;
+                if (self.innerHeight) { altura = self.innerHeight - 230; }
+                else if (document.documentElement && document.documentElement.clientHeight) { altura = document.documentElement.clientHeight - 230; }
+                else if (document.body) { altura = document.body.clientHeight - 230; }
+
+                if (document.getElementById('tdGrid') != null) {
+                    document.getElementById('tdGrid').style.height = String(altura - document.getElementById('tdFiltros').offsetHeight) + 'px';
+                }
+            }
+
+            function getHeader() {
+
+                if (document.getElementById('ctl00_ContentGrid_grdResultados') != null) {
+                    var indexGrid = document.body.innerHTML.indexOf("ctl00_ContentGrid_grdResultados", 0);
+                    var indexTrGrid = document.body.innerHTML.indexOf("tr", indexGrid);
+                    var indexTrFimGrid = document.body.innerHTML.indexOf("tr", indexTrGrid + 5);
+
+                    alert(document.body.innerHTML.substring(indexTrGrid - 25, indexTrFimGrid + 40));
+                }
+            }
+        </script>
+
+        <style type="text/css">
+            #modalPage2 {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0px;
+                left: 0px;
+            }
+
+            .divToolbarTop{
+                height  : auto !important;            
+                padding : 10px;
+            }
+
+            .modalBackground2 {
+                filter: Alpha(Opacity=40);
+                -moz-opacity: 0.4;
+                opacity: 0.4;
+                width: 100%;
+                height: 100%;
+                background-color: #999999;
+                position: absolute;
+                z-index: 500;
+                top: 0px;
+                left: 0px;
+            }
+
+            .modalContainer2 {
+                position: absolute;
+                width: 232px;
+                left: 50%;
+                top: 50%;
+                z-index: 750;
+            }
+
+            .modal2 {
+                position: relative;
+                top: -80px;
+                left: -116px;
+                z-index: 1000;
+                width: 232px;
+                height: 160px;
+                padding: 0px;
+            }
+        </style>
+    </head>
+    <body onload="janela(); document.getElementById('imgCarregando').style.display = 'none'; document.getElementById('divCarregando').style.display = 'none';" scroll="no" style="overflow-x: hidden">
+        <div id="divCarregando" style="margin: 0px; background-color: #333333; position: fixed; z-index: 10000; height: 100%; width: 100%; text-align: center; vertical-align: middle; filter: Alpha(Opacity=20); -moz-opacity: 0.2; opacity: 0.2;">
+        </div>
+        <div id="imgCarregando" style="width: 321px; height: 55px; position: absolute; z-index: 10001; left: 50%; top: 50%; margin-left: -160px; margin-top: -28px;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login"
+                width="232">
+                <tr>
+                    <td background='<%=ResolveClientUrl("~/Library/Images/topo_Modal.gif") %>' height="36" style="color: #FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;Aguarde ...
+                    </td>
+                </tr>
+            </table>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login"
+                width="232">
+                <tr>
+                    <td align="center" background='<%=ResolveClientUrl("~/Library/Images/meio_login.gif") %>'>
+                        <table border="0" cellpadding="2" cellspacing="0" class="texto_menu" width="90%">
+                            <tr>
+                                <td height="40">
+                                    <img src='<%=ResolveClientUrl("~/Library/Images/preload.gif") %>' align="absmiddle" />
+                                    Efetuando solicitação ...
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td background='<%=ResolveClientUrl("~/Library/Images/baixo_login.gif") %>' height="18"></td>
+                </tr>
+            </table>
+        </div>
+
+        <form id="form1" runat="server">
+            <asp:ScriptManager ID="ScriptM" runat="server" AsyncPostBackTimeout="19920" EnablePartialRendering="true" EnableScriptGlobalization="true"></asp:ScriptManager>
+
+            <div id="conteudo" style="width: 100%;">
+                <uc1:menu ID="Menu1" runat="server" />
+                <div id="topo">
+                    <uc2:topo ID="Topo1" runat="server" />
+                </div>
+                <div class="divTituloPagina">
+                    <img src="../Library/Images/SetaTitulo.png" align="top" />
+                    <asp:Label ID="lblTituloPagina" runat="server"></asp:Label>
+                </div>
+                <div style="padding: 10px">
+                    <div id="tdFiltros" class="divFiltros">
+                        <asp:ContentPlaceHolder ID="ContentFiltros" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <div style="padding: 10px" id="tdToolBar" class="divToolbarTop">
+                        <asp:ContentPlaceHolder ID="ContentToolBar" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <div id="divHeaderGrid">
+                    </div>
+                    <div id="tdGrid" style="background-color: #FFFFFF;">
+                        <div class="divGrid" id="tableGrid">
+                            <asp:ContentPlaceHolder ID="ContentGrid" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                    <div id="tdPaginacao" class="divPaginacao">
+                        <asp:ContentPlaceHolder ID="ContentPaginacao" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="erro" DisplayMode="BulletList"
+                    ShowMessageBox="True" ShowSummary="False"></asp:ValidationSummary>
+            </div>
+            <div style="position: absolute; bottom: 0px; width: 100%; z-index: -50" id="sisrodape">
+                <table width="100%" style="border-top: 1px solid #CCCCCC; padding-left: 10px;" border="0"
+                    align="center" cellpadding="0" cellspacing="0" class="texto_login">
+                    <tr>
+                        <td valign="middle">Sistema desenvolvido por Agenda Assessoria. Todos os Direitos Reservados. 2009
+                        </td>
+                        <td align="right">
+                            <a href="http://www.agendaassessoria.com.br" target="_blank">
+                                <img src="../Library/Images/logo_agenda.gif" width="89" height="24" border="0" />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <asp:UpdatePanel ID="updUpd" runat="server">
+                <ContentTemplate>
+                    <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+                        <ProgressTemplate>
+                            <div id="modalPage" style="z-index: 100001">
+                                <div class="modalBackground2">
+                                </div>
+                                <div class="modalContainer2" style="z-index: 99999">
+                                    <div class="modal2">
+                                        <div class="modalTop2">
+                                            <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login"
+                                                width="232">
+                                                <tr>
+                                                    <td background='<%=ResolveClientUrl("~/Library/Images/topo_Modal.gif") %>' height="36" style="color: #FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;Aguarde ...
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modalBody2">
+                                            <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login"
+                                                width="232">
+                                                <tr>
+                                                    <td align="center" background='<%=ResolveClientUrl("~/Library/Images/meio_login.gif") %>'>
+                                                        <table border="0" cellpadding="2" cellspacing="0" class="texto_menu" width="90%">
+                                                            <tr>
+                                                                <td height="26">
+                                                                    <img src='<%=ResolveClientUrl("~/Library/Images/preload.gif") %>' align="absmiddle" />
+                                                                    Efetuando solicitação ...
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td background='<%=ResolveClientUrl("~/Library/Images/baixo_login.gif") %>' height="18"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ProgressTemplate>
+                    </asp:UpdateProgress>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </form>
+    </body>
+</html>

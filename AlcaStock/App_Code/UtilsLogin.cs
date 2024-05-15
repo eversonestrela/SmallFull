@@ -5,6 +5,7 @@ using Models;
 using System.Collections;
 using System.Security.Cryptography;
 using System.Text;
+using System.Data.SqlClient;
 
 public class UtilsLogin
 {
@@ -837,6 +838,50 @@ public class UtilsLogin
             acao = true;
 
         return acao;
+    }
+
+    /// <summary>
+    /// Verifica se o usuário está logado. Caso esteja retorna true
+    /// </summary>
+    /// <returns>true se logado, false se não logado</returns>
+    public static bool VerificarSeUsuarioLogado()
+    {
+        bool retorno = false;
+
+        if (DadosUsuarioLogado.LOGIN != null)
+            retorno = true;
+
+        if ((UtilsLogin.MsSql_Endereco != null) & (!UtilsLogin.MsSql_Endereco.Equals(""))) retorno = true;
+
+        return retorno;
+    }
+
+    public static void GravaLogAcesso(string DESCRICAO_MODULO, string IP, string VERSAO, string LOGIN, int USR_LOGIN_ID)
+    {
+        string sql = "INSERT INTO USR_ACESSO (USR_LOGIN_ID, USR_LOGIN, IP, VERSAO_SISTEMA, DESCRICAO_MODULO, DATA_HORA) " +
+                     "VALUES (@USR_LOGIN_ID, @LOGIN, @IP, @VERSAO, @DESCRICAO_MODULO, GETDATE()); " +
+                     "IF NOT EXISTS (SELECT * FROM CHAT_LOGIN WHERE USR_LOGIN_ID = @USR_LOGIN_ID) " +
+                     "BEGIN " +
+                     "    INSERT INTO CHAT_LOGIN (USR_LOGIN_ID) VALUES (@USR_LOGIN_ID); " +
+                     "END " +
+                     "ELSE " +
+                     "BEGIN " +
+                     "    UPDATE CHAT_LOGIN SET DATA = GETDATE() WHERE USR_LOGIN_ID = @USR_LOGIN_ID; " +
+                     "END;";
+
+        using (SqlConnection cnx = Utilitarios.GetOpenConnection())
+        {
+            using (SqlCommand cmd = new SqlCommand(sql, cnx))
+            {
+                cmd.Parameters.Add("@USR_LOGIN_ID", SqlDbType.Int).Value = USR_LOGIN_ID;
+                cmd.Parameters.Add("@LOGIN", SqlDbType.VarChar).Value = LOGIN;
+                cmd.Parameters.Add("@IP", SqlDbType.VarChar).Value = IP;
+                cmd.Parameters.Add("@VERSAO", SqlDbType.VarChar).Value = VERSAO;
+                cmd.Parameters.Add("@DESCRICAO_MODULO", SqlDbType.VarChar).Value = DESCRICAO_MODULO;
+
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 
     #endregion
