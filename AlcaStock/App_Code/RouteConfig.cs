@@ -13,6 +13,9 @@ namespace AlcaStock
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);
+
+            // Adicionar rotas personalizadas
+            routes.MapPageRoute("PessoaRoute", "Pessoa/ConPessoa", "~/Paginas/Pessoa/ConPessoa.aspx");
         }
     }
 }
