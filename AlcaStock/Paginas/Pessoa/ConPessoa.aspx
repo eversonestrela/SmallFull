@@ -9,22 +9,6 @@
 
     <script src="../Library/JQuery/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
     <script src="../Library/Scripts/jquery.meiomask.js" type="text/javascript"></script>
-    
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            BindControlEvents();
-        });
-
-        var prm = Sys.WebForms.PageRequestManager.getInstance();
-        prm.add_endRequest(function () { BindControlEvents(); });
-
-        function BindControlEvents() {
-            $("#<%=txtPeriodoInicial.ClientID%>,#<%=txtPeriodoFinal.ClientID%>").setMask('date');
-            $("#<%=txtPeriodoInicial.ClientID%>,#<%=txtPeriodoFinal.ClientID%>").datepicker({ showOn: "button", buttonImage: "../Library/Images/icones/Calendario.gif", buttonImageOnly: true });
-        }
-
-    </script>
 
     <script type="text/javascript">
 
@@ -57,14 +41,10 @@
             <table class="rotulo">
                 <tr>
                     <td>
-                        <cc1:FieldDropDown ID="ddlPSQ" runat="server" CssClass="dropDown" ValueField="Pesquisar por" Obrigatorio="false">
+                        <cc1:FieldDropDown ID="ddlPSQ" runat="server" CssClass="dropDown" ValueField="Pesquisar por" Obrigatorio="false" 
+                            OnSelectedIndexChanged="ddlPSQ_SelectedIndexChanged" AutoPostBack="true" Width="100px">
                             <asp:ListItem Value="0">Nome</asp:ListItem>
                             <asp:ListItem Value="1">CPF</asp:ListItem>
-                            <asp:ListItem Value="2">RG</asp:ListItem>
-                            <asp:ListItem Value="4">Data de Nascimento</asp:ListItem>
-                            <asp:ListItem Value="5">Nome do Pai</asp:ListItem>
-                            <asp:ListItem Value="6">Nome da Mãe</asp:ListItem>
-                            <asp:ListItem Value="3">Fon&#233;tica Similar</asp:ListItem>
                         </cc1:FieldDropDown>
                     </td>
                     <td>

@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 public class Utilitarios
 {
@@ -960,6 +961,21 @@ public class Utilitarios
         }
 
         return retorno;
+    }
+
+    /// <summary>
+    /// Método que remove os atributos de componentes
+    /// </summary>
+    /// <param name="controle">Controle que terá seus atributos removidos</param>
+    /// <param name="atributo">Atributo do controle que será removido</param>
+    public static void RemoverAtributo(Control controle, string atributo)
+    {
+        // Verifica se o controle é do tipo TextBox ou FieldTextBox
+        if (controle.ToString() == "System.Web.UI.WebControls.TextBox" || controle.ToString() == "AGENDA.Controles.UI.FieldTextBox")
+        {
+            TextBox txt = (TextBox)controle;
+            txt.Attributes.Remove(atributo);
+        }
     }
 
     #endregion Metodos
