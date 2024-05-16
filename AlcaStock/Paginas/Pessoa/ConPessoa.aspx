@@ -71,3 +71,18 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentToolBar" runat="server">
+    <asp:LinkButton ID="btnNovo" runat="server" CausesValidation="false" CssClass="btnProc"
+        Text="<img src='../Library/Images/icones/Novo.gif'> Novo"
+        ToolTip="Novo Registro" OnClick="btnNovo_Click" />
+    <asp:Image CssClass="SeparadorBtn" ImageUrl="~/Library/Images/Separador.gif"
+        runat="server" />
+    <asp:LinkButton ID="lnkExportaExcel" runat="server" CausesValidation="false" CssClass="btnProc"
+        Text="<img src='../Library/Images/icones/excel.gif' height='14'> Exportar Lista para Excel"
+        ToolTip="Exportar Lista para Excel" />
+    <asp:Image CssClass="SeparadorBtn" ImageUrl="~/Library/Images/Separador.gif"
+        runat="server" />
+    <asp:LinkButton ID="btnVoltar" runat="server" CausesValidation="false" CssClass="btnProc"
+        Text="<img src='../Library/Images/icones/voltar.gif'> Voltar"
+        ToolTip="Cancelar" />
+</asp:Content>

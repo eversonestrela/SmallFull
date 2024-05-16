@@ -1,0 +1,145 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Cadastro.master.cs" Inherits="MasterPages_Cadastro" %>
+
+<%@ Register Src="menu.ascx" TagName="menu" TagPrefix="uc1" %>
+<%@ Register Src="topo.ascx" TagName="topo" TagPrefix="uc2" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head id="Head1" runat="server">
+        <title>ALCASTOCK - Sistema de Gerenciamento de Estoque</title>
+
+        <script type="text/javascript">
+
+            function janela() {
+                var altura = 0;
+                if (document.getElementById('ctl00_ContentCampos_TabContainer1_body') != null) {
+                    if (self.innerHeight) {
+                        var str = window.location.href;
+                        if (!(str.match('Parametro/Parametro.aspx'))) {
+                            altura = self.innerHeight - 245;
+                        }
+                        else {
+                            var elems = document.getElementsByTagName('body');
+                            elems[0].style.overflow = 'auto';
+                        }
+                    }
+                    else if (document.documentElement && document.documentElement.clientHeight) { altura = document.documentElement.clientHeight - 245; }
+                    else if (document.body) { altura = document.body.clientHeight - 245; }
+
+                    if (document.getElementById('ctl00_ContentCampos_TabContainer1_body') != null) {
+                        var str = window.location.href;
+                        if (!(str.match('Parametro/Parametro.aspx'))) {
+                            document.getElementById('ctl00_ContentCampos_TabContainer1_body').style.height = String(altura) + 'px';
+                        }
+                        //alert(String(self.innerHeight-225) + 'px');
+                    }
+                }
+            }
+
+            function somente_nm(par_tecla) {
+                var var_tecla = par_tecla.keyCode ? par_tecla.keyCode : par_tecla.which;
+                //alert(var_tecla);
+                if (var_tecla == 8 || var_tecla == 9) { return true; }
+                if (var_tecla == 83 || var_tecla == 32) { return true; }
+                if (var_tecla == 46) { return true; }
+                /* Teclas 0-9 */
+                if (var_tecla > 47 && var_tecla < 58) { return true; }
+                if (var_tecla > 16 && var_tecla < 21) { return true; }
+                alert("Este campo permite apenas números.");
+                return false;
+            }
+
+            function SuperTrim(obj) {
+
+                var texto = obj.value.trim();
+                var textAux = '';
+                var caracter = ''
+
+                for (var i = 0; i < texto.length; i++) {
+                    caracter = texto.charAt(i);
+                    if (caracter == ' ' && texto.charAt(i + 1) == ' ') {
+                        continue;
+                    }
+                    textAux += caracter;
+                }
+
+                document.getElementById(obj.id).value = textAux.trim();
+            }
+
+        </script>
+
+    </head>
+    <body onload="janela();document.getElementById('imgCarregando').style.display = 'none';document.getElementById('divCarregando').style.display = 'none';"
+        onresize="janela();" scroll="no" style="overflow-x: hidden">
+        <div id="divCarregando" style="margin: 0px; background-color: #333333; position: fixed; z-index: 10000; height: 100%; width: 100%; text-align: center; vertical-align: middle; filter: Alpha(Opacity=20); -moz-opacity: 0.2; opacity: 0.2;">
+        </div>
+        <div id="imgCarregando" style="width: 321px; height: 55px; position: absolute; z-index: 10001; left: 50%; top: 50%; margin-left: -160px; margin-top: -28px;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login"
+                width="232">
+                <tr>
+                    <td background='<%=ResolveClientUrl("~/Library/Images/topo_Modal.gif") %>' height="36" style="color: #FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;Aguarde ...
+                    </td>
+                </tr>
+            </table>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login"
+                width="232">
+                <tr>
+                    <td align="center" background='<%=ResolveClientUrl("~/Library/Images/meio_login.gif") %>'>
+                        <table border="0" cellpadding="2" cellspacing="0" class="texto_menu" width="90%">
+                            <tr>
+                                <td height="40">
+                                    <img src='<%=ResolveClientUrl("~/Library/Images/preload.gif") %>' align="middle" alt="" />
+                                    Efetuando solicitação ...
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td background='<%=ResolveClientUrl("~/Library/Images/baixo_login.gif") %>' height="18"></td>
+                </tr>
+            </table>
+        </div>
+        <form id="form1" runat="server">
+            <div id="conteudo" style="width: 100%;">
+                <uc1:menu ID="Menu1" runat="server" />
+                <div id="topo">
+                    <uc2:topo ID="Topo1" runat="server" />
+                </div>
+                <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="true"
+                    EnableScriptLocalization="true" AsyncPostBackTimeout="19920" EnablePartialRendering="true">
+                </asp:ScriptManager>
+                <div id="tdNavegacao" style="padding-left: 10px;">
+                    <asp:ContentPlaceHolder ID="ContentNavegacao" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div class="divTituloPagina">
+                    <img src="../Library/Images/SetaTitulo.png" align="top" />
+                    <asp:Label ID="lblTituloPagina" runat="server"></asp:Label>
+                </div>
+                <div style="padding: 10px">
+                    <div id="tdConteudo">
+                        <div id="tdCampos">
+                            <asp:ContentPlaceHolder ID="ContentCampos" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                    <div class="divToolbarBottom">
+                        <asp:ContentPlaceHolder ID="ContentToolBar" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="erro" DisplayMode="BulletList"
+                        ShowMessageBox="True" ShowSummary="False"></asp:ValidationSummary>
+                </div>
+            </div>
+        </form>
+        <div style="position: absolute; width: 100%; z-index: -50px; bottom: -23px;" id="sisrodape">
+            <table width="100%" style="border-top: 1px solid #CCCCCC; padding-left: 10px;" border="0"
+                align="center" cellpadding="0" cellspacing="0" class="texto_login">
+                <tr>
+                    
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

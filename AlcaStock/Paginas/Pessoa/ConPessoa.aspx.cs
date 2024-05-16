@@ -51,4 +51,9 @@ public partial class Paginas_Pessoa_ConPessoa : AppBasePage
                 break;
         }
     }
+
+    protected void btnNovo_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CadPessoa?ACAO=Novo");
+    }
 }
