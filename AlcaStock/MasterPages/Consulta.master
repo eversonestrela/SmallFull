@@ -5,10 +5,16 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
     <head runat="server">
         <meta http-equiv="Content-Type; X-UA-Compatible" content="text/html; charset=utf-8; IE=8,chrome=1"/>
         <title>ALCASTOCK - Sistema de Gerenciamento de Estoque</title>
+
+        <link rel="stylesheet" href="../Library/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="../Library/lib/fontawesome-free/css/all.min.css" />
+        <link rel="stylesheet" href="../Library/css/sb-admin-2.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+
         <script type="text/javascript">
             function janela() {
 
@@ -80,8 +86,99 @@
             }
         </style>
     </head>
-    <body onload="janela(); document.getElementById('imgCarregando').style.display = 'none'; document.getElementById('divCarregando').style.display = 'none';" scroll="no" style="overflow-x: hidden">
-        <div id="divCarregando" style="margin: 0px; background-color: #333333; position: fixed; z-index: 10000; height: 100%; width: 100%; text-align: center; vertical-align: middle; filter: Alpha(Opacity=20); -moz-opacity: 0.2; opacity: 0.2;">
+    <body onload="janela(); document.getElementById('imgCarregando').style.display = 'none'; document.getElementById('divCarregando').style.display = 'none';" scroll="no" style="overflow-x: hidden" id="topo">
+        <div id="wrapper">
+            <uc1:menu ID="menu" runat="server" />
+
+            <div id="content-wrapper" class="d-flex flex-column">
+                <div class="content">
+                    <uc2:topo ID="Topo2" runat="server" />
+                    
+                    <div class="divTituloPagina">
+                        <img src="../Library/Images/SetaTitulo.png" align="top" />
+                        <asp:Label ID="lblTituloPagina" runat="server"></asp:Label>
+                    </div>
+
+                    <div class="container-fluid">
+                        <main role="main" class="pb-3">
+                            <form id="form1" runat="server">
+                                <asp:ScriptManager ID="scripmanager" runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true" AsyncPostBackTimeout="1720"></asp:ScriptManager>
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+
+                                <div style="padding: 10px">
+                                    <div id="tdFiltros" class="divFiltros">
+                                        <asp:ContentPlaceHolder ID="ContentFiltros" runat="server">
+                                        </asp:ContentPlaceHolder>
+                                    </div>
+                                    <div style="padding: 10px" id="tdToolBar" class="divToolbarTop">
+                                        <asp:ContentPlaceHolder ID="ContentToolBar" runat="server">
+                                        </asp:ContentPlaceHolder>
+                                    </div>
+                                    <div id="divHeaderGrid">
+                                    </div>
+                                    <div id="tdGrid" style="background-color: #FFFFFF;">
+                                        <div class="divGrid" id="tableGrid">
+                                            <asp:ContentPlaceHolder ID="ContentGrid" runat="server">
+                                            </asp:ContentPlaceHolder>
+                                        </div>
+                                    </div>
+                                    <div id="tdPaginacao" class="divPaginacao">
+                                        <asp:ContentPlaceHolder ID="ContentPaginacao" runat="server">
+                                        </asp:ContentPlaceHolder>
+                                    </div>
+                                </div>
+                                <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="erro" DisplayMode="BulletList"
+                                    ShowMessageBox="True" ShowSummary="False"></asp:ValidationSummary>
+                            </form>
+
+                            <div id="divCarregando" style="margin: 0px; background-color: #333333; position: fixed; z-index: 10000; height: 100%; width: 100%; text-align: center; vertical-align: middle; filter: Alpha(Opacity=20); -moz-opacity: 0.2; opacity: 0.2;">
+                            </div>
+                            <div id="imgCarregando" style="width: 321px; height: 55px; position: absolute; z-index: 10001;
+                                left: 50%; top: 50%; margin-left: -160px; margin-top: -28px;">
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login"
+                                    width="232">
+                                    <tr>
+                                        <td background="Library/Images/topo_Modal.gif" height="36" style="color: #FFFFFF;">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;Aguarde ...
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login" width="232">
+                                    <tr>
+                                        <td align="center" background="Library/Images/meio_login.gif">
+                                            <table border="0" cellpadding="2" cellspacing="0" class="texto_menu" width="90%">
+                                                <tr>
+                                                    <td height="40">
+                                                        <img src="Library/Images/preload.gif" align="middle" alt="" /> Efetuando solicitação ...
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td background="Library/Images/baixo_login.gif" height="18"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a class="scroll-to-top rounded" href="#topo" style="border-radius: 100% !important">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <script src="../Library/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="../Library/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="../Library/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+
+        <script src="../Library/js/jquery.easing.min.js" asp-append-version="true" type="text/javascript"></script>
+        <script src="../Library/js/sb-admin-2.min.js" asp-append-version="true" type="text/javascript"></script>  
+        <script src="../Library/js/site.js" asp-append-version="true" type="text/javascript"></script>
+
+        <%--<div id="divCarregando" style="margin: 0px; background-color: #333333; position: fixed; z-index: 10000; height: 100%; width: 100%; text-align: center; vertical-align: middle; filter: Alpha(Opacity=20); -moz-opacity: 0.2; opacity: 0.2;">
         </div>
         <div id="imgCarregando" style="width: 321px; height: 55px; position: absolute; z-index: 10001; left: 50%; top: 50%; margin-left: -160px; margin-top: -28px;">
             <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login"
@@ -205,6 +302,6 @@
                     </asp:UpdateProgress>
                 </ContentTemplate>
             </asp:UpdatePanel>
-        </form>
+        </form>--%>
     </body>
 </html>

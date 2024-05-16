@@ -7,7 +7,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
         <title>ALCASTOCK - Sistema de Gerenciamento de Estoque</title>
+        
         <link href="../Estilos/estilo_padrao.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="../Library/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="../Library/lib/fontawesome-free/css/all.min.css" />
+        <link rel="stylesheet" href="../Library/css/sb-admin-2.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+
         <script type="text/javascript">
             function scrollOk() {
                 try {
@@ -19,41 +25,72 @@
             }
         </script>
     </head>
-    <body scroll="no" style="overflow-x: hidden" onload="scrollOk();">
-        <div id="imgCarregando" style="width: 321px; height: 55px; position: absolute; z-index: 10001;
-            left: 50%; top: 50%; margin-left: -160px; margin-top: -28px;">
-            <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login"
-                width="232">
-                <tr>
-                    <td background="Library/Images/topo_Modal.gif" height="36" style="color: #FFFFFF;">
-                        &nbsp;&nbsp;&nbsp;&nbsp;Aguarde ...
-                    </td>
-                </tr>
-            </table>
-            <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login" width="232">
-                <tr>
-                    <td align="center" background="Library/Images/meio_login.gif">
-                        <table border="0" cellpadding="2" cellspacing="0" class="texto_menu" width="90%">
-                            <tr>
-                                <td height="40">
-                                    <img src="Library/Images/preload.gif" align="middle" alt="" /> Efetuando solicitação ...
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td background="Library/Images/baixo_login.gif" height="18"></td>
-                </tr>
-            </table>
+    <body scroll="no" style="overflow-x: hidden" onload="scrollOk();" id="topo">
+        <div id="wrapper">
+            <uc1:menu ID="menu" runat="server" />
+
+            <div id="content-wrapper" class="d-flex flex-column">
+                <div class="content">
+                    <uc2:topo ID="Topo2" runat="server" />
+
+                    <div class="container-fluid">
+                        <main role="main" class="pb-3">
+                            <form id="form1" runat="server">
+                                <asp:ScriptManager ID="scripmanager" runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true" AsyncPostBackTimeout="1720"></asp:ScriptManager>
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                            </form>
+
+                            <div id="imgCarregando" style="width: 321px; height: 55px; position: absolute; z-index: 10001;
+                                left: 50%; top: 50%; margin-left: -160px; margin-top: -28px;">
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login"
+                                    width="232">
+                                    <tr>
+                                        <td background="Library/Images/topo_Modal.gif" height="36" style="color: #FFFFFF;">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;Aguarde ...
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" class="texto_login" width="232">
+                                    <tr>
+                                        <td align="center" background="Library/Images/meio_login.gif">
+                                            <table border="0" cellpadding="2" cellspacing="0" class="texto_menu" width="90%">
+                                                <tr>
+                                                    <td height="40">
+                                                        <img src="Library/Images/preload.gif" align="middle" alt="" /> Efetuando solicitação ...
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td background="Library/Images/baixo_login.gif" height="18"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
         </div>
-        <form id="form1" runat="server">
+
+        <a class="scroll-to-top rounded" href="#topo" style="border-radius: 100% !important">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <script src="../Library/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="../Library/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="../Library/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+
+        <script src="../Library/js/jquery.easing.min.js" asp-append-version="true" type="text/javascript"></script>
+        <script src="../Library/js/sb-admin-2.min.js" asp-append-version="true" type="text/javascript"></script>  
+        <script src="../Library/js/site.js" asp-append-version="true" type="text/javascript"></script>
+        
+        <%--<form id="form1" runat="server">
             <asp:ScriptManager ID="scripmanager" runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true" AsyncPostBackTimeout="1720"></asp:ScriptManager>
-            <uc1:menu ID="Menu1" runat="server" />
             <div id="topo">
                 <uc2:topo ID="Topo1" runat="server" />
             </div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
-        </form>
+        </form>--%>
     </body>
 </html>

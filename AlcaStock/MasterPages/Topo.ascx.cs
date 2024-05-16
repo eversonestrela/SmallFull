@@ -36,7 +36,7 @@ public partial class MasterPages_Topo : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        Label1.Text = "<b>Logado(s):</b> " + Convert.ToString(Application["conta"]);
+        //Label1.Text = "<b>Logado(s):</b> " + Convert.ToString(Application["conta"]);
 
         // Seta os parametros para visualização do ícone
         string path = (Utilitarios.IsHttps() ? "https://" : "http://") + this.Request.ServerVariables["HTTP_HOST"].ToString() + this.Request.ApplicationPath + "/";
@@ -48,19 +48,19 @@ public partial class MasterPages_Topo : System.Web.UI.UserControl
 
             if (mostra_ico == "S")
             {
-                ico_cliente.Text = "<link href='" + ImgIcone + "' rel='shortcut icon'>";
+                //ico_cliente.Text = "<link href='" + ImgIcone + "' rel='shortcut icon'>";
             }
         }
 
-        Label1.Visible = (!UtilsLogin.EhBast());
+        //Label1.Visible = (!UtilsLogin.EhBast());
 
         //if (UtilsLogin.PessoaUsuarioLogado.NOME != null)
         //    lblNomeUsuario.Text = "<b>Usuário: </b> " + UtilsLogin.PessoaUsuarioLogado.NOME.ToString();
         //if (UtilsLogin.DadosUsuarioLogado.SETOR_ID != null)
         //    lbLotacao.Text = "<b>Lotação:</b> " + UtilsLogin.DadosUsuarioLogado.SETOR.ToString();
 
-        lblNomeUsuario.Text = "<b>Usuário: </b> Pedro Wenner";
-        lbLotacao.Text = "<b>Lotação: </b> TI";
+        //lblNomeUsuario.Text = "<b>Usuário: </b> Pedro Wenner";
+        //lbLotacao.Text = "<b>Lotação: </b> TI";
 
         if (!IsPostBack)
         {
