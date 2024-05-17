@@ -7,8 +7,10 @@
     </asp:LinkButton>
 </div>--%>
 
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="menuLateral">
-    <!-- Logo - Menu -->
+<%--<asp:Label ID="lblMenu" runat="server"></asp:Label>--%>
+
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="menuLateral" style="font-family:Nunito,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji">
+    
     <a class="sidebar-brand d-flex align-items-center justify-content-center">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-truck-loading"></i>
@@ -16,57 +18,37 @@
         <div class="sidebar-brand-text mx-3">alcastock <sup>1</sup></div>
     </a>
 
-    <!-- Divisória -->
     <hr class="sidebar-divider my-0">
 
-    <!-- Item Menu - Home -->
-    <li class="nav-item active">
-        <a class="nav-link" href="/">
-            <i class="fas fa-home"></i>
-            <span>Início</span>
-        </a>
-    </li>
+    <asp:Label ID="lblMenu" runat="server"></asp:Label>
 
-    <!-- Divisória -->
-    <hr class="sidebar-divider">
+    <%--<li class="nav-item">
+		<a class="nav-link" href="/Inicial.aspx">
+			<span>Início</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link collapsed" data-toggle="collapse" data-target="#menuCadastros" aria-expanded="true" aria-controls="menuCadastros" href="javascript:;">
+			<span>Cadastros</span>
+		</a>
+		<div id="menuCadastros" class="collapse" data-parent="#menuLateral">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<a class="collapse-item" href="/Pessoa/ConPessoa.aspx"> Pessoas</a>
+				<a class="collapse-item" data-toggle="collapse" data-target="#menuFornecedores" aria-expanded="true" aria-controls="menuFornecedores" href="javascript:;" style="display: flex; justify-content: space-between; align-items: center;">
+					<span>Fornecedores</span>
+					<i class="fas fa-angle-down coll"></i>
+				</a>
+				<div id="menuFornecedores" class="collapse" data-parent="#menuCadastros">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="#"> Público</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</li>--%>
 
-    <div class="sidebar-heading">
-        Cadastros
-    </div>
-
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menuPessoas"
-           aria-expanded="true" aria-controls="menuPessoas">
-            <i class="fas fa-fw fa-user-alt"></i>
-            <span>Pessoas</span>
-        </a>
-        <div id="menuPessoas" class="collapse" data-parent="#menuLateral">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <asp:Label ID="lblMenu" runat="server"></asp:Label>
-                <%--<a class="collapse-item" asp-controller="Pessoa" asp-action="Index"> Pessoas</a>
-                <a class="collapse-item" asp-controller="Cliente" asp-action="Index"> Clientes</a>
-                <a class="collapse-item" href="#"> Distribuidores</a>--%>
-            </div>
-        </div>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menuProdutos"
-           aria-expanded="true" aria-controls="menuProdutos">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Estoque</span>
-        </a>
-        <div id="menuProdutos" class="collapse" data-parent="#menuLateral">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" asp-controller="Produto" asp-action="Index"> Produtos</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Divisória final -->
     <hr class="sidebar-divider d-none d-md-block">
 
-    <!-- Toggler para esconder o menu -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle" title="Esconder o menu"></button>
     </div>

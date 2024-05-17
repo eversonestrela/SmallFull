@@ -347,3 +347,7 @@ input:disabled {
 .slide-transition {
     transition: transform 0.5s ease-in-out;
 }
+
+.rotuloObrigatorio {
+    margin-bottom: 0px !important;
+}

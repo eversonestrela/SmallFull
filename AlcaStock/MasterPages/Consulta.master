@@ -10,6 +10,7 @@
         <meta http-equiv="Content-Type; X-UA-Compatible" content="text/html; charset=utf-8; IE=8,chrome=1"/>
         <title>ALCASTOCK - Sistema de Gerenciamento de Estoque</title>
 
+        <%--<link href="../Estilos/estilo_padrao.css" type="text/css" rel="stylesheet" />--%>
         <link rel="stylesheet" href="../Library/css/site.css" asp-append-version="true" />
         <link rel="stylesheet" href="../Library/lib/fontawesome-free/css/all.min.css" />
         <link rel="stylesheet" href="../Library/css/sb-admin-2.min.css" />

@@ -60,49 +60,38 @@ public partial class MasterPages_Menu : System.Web.UI.UserControl
             cmd.Dispose();
         }
 
-        str.Append("<link href=\"" + ResolveUrl("~/Library/Estilos/Menu.css") + "\" rel=\"stylesheet\" type=\"text/css\"/>");
-        str.Append("<div id=\"navegacaoSecao\">");
-        str.Append("<ul class=\"maxWidth\">");
-
         string filhos = string.Empty;
         string menu = string.Empty;
 
+        /* nesse momento será criado os menus pai */
         for (int i = 0; i < dt.Rows.Count; i++)
         {
-            if (dt.Rows[i]["JSCRIPT_INI"] != DBNull.Value)
-            {
-                menu = "<a href=\"javascript:;\" onclick=\"" + dt.Rows[i]["JSCRIPT_INI"].ToString() +
-                           ResolveUrl(dt.Rows[i]["URL"].ToString()) + dt.Rows[i]["JSCRIPT_FIM"].ToString() + "\">";
-            }
+            if (dt.Rows[i]["URL"].ToString() == string.Empty)
+                menu = "<a class=\"nav-link collapsed\" data-toggle=\"collapse\" data-target=\"#menu" + dt.Rows[i]["TEXTO"].ToString().Replace("&nbsp;", "") + "\" aria-expanded=\"true\" aria-controls=\"menu" + dt.Rows[i]["TEXTO"].ToString().Replace("&nbsp;", "") + "\"" +
+                    " href=\"javascript:;\">";
             else
-            {
-                if (dt.Rows[i]["URL"].ToString() != string.Empty)
-                    menu = "<a href=\"" + ResolveUrl(dt.Rows[i]["URL"].ToString()) + "\">";
-                else
-                    menu = "<a href=\"javascript:;\">";
-            }
+                menu = "<a class=\"nav-link\" href=\"" + ResolveUrl(dt.Rows[i]["URL"].ToString()) + "\">";
+            
+            str.Append("<li class=\"nav-item\">");
+            str.Append(menu);
+            str.Append("<span>" + dt.Rows[i]["TEXTO"].ToString().Replace("&nbsp;", "") + "</span></a>");
 
-            str.Append("<li class=\"\">" + menu + dt.Rows[i]["TEXTO"].ToString().Replace("&nbsp;", "") + "</a>");
+            filhos = SubMenu(dt.Rows[i]["ID"].ToString(), dt.Rows[i]["TEXTO"].ToString().Replace("&nbsp;", ""));
 
-            filhos = SubMenu(dt.Rows[i]["ID"].ToString());
+            str.Append(filhos);
 
             if (filhos == string.Empty)
                 str.Append("</li>");
-            else
-                str.Append("<ul class=\"\">" + filhos + "</ul></li>");
         }
-
-        str.Append("</ul></div>");
 
         Session["MENU"] = str.ToString();
 
         lblMenu.Text = str.ToString();
     }
 
-    private string SubMenu(string ID)
+    private string SubMenu(string id, string parent)
     {
-        string TECNICO = Utilitarios.Exec_StringSql_Return("SELECT UPPER(COALESCE(TECNICO, 'N')) FROM USR_LOGIN WHERE USR_LOGIN_ID = " + 1);//UtilsLogin.DadosUsuarioLogado.USR_LOGIN_ID.ToString());
-
+        string TECNICO = Utilitarios.Exec_StringSql_Return("SELECT UPPER(COALESCE(TECNICO, 'N')) FROM USR_LOGIN WHERE USR_LOGIN_ID = 1"); //UtilsLogin.DadosUsuarioLogado.USR_LOGIN_ID.ToString());
         string GrupoTecnico = Utilitarios.Exec_StringSql_Return("SELECT MIN(USR_GRUPO_ID) FROM USR_LOGIN WHERE COALESCE(TECNICO, 'N') = 'S'");
 
         if (UtilsLogin.DadosUsuarioLogado.USR_GRUPO_ID.ToString() == GrupoTecnico)
@@ -113,49 +102,51 @@ public partial class MasterPages_Menu : System.Web.UI.UserControl
         string where = string.Empty;
         string filhos = string.Empty;
         string menu = string.Empty;
+        int temFilhos = 0;
 
-        if (ID != string.Empty)
+        if (id != string.Empty)
         {
-            where = " AND PARENT_ID = " + ID;
+            where = " AND PARENT_ID = " + id;
 
             DataTable dt = Utilitarios.Pesquisar("SELECT ID, PARENT_ID, URL, JSCRIPT_INI, JSCRIPT_FIM, TEXTO, BREAK_NEXT FROM VW_MENU_GRUPO " +
-                            "WHERE USR_GRUPO_ID = " + 1/*UtilsLogin.DadosUsuarioLogado.USR_GRUPO_ID.ToString() */ + " " + where + " AND INICIAR IS NULL ORDER BY ORDEM,ID");
+                "WHERE USR_GRUPO_ID = 1 " /*UtilsLogin.DadosUsuarioLogado.USR_GRUPO_ID.ToString() */ + where + " AND INICIAR IS NULL ORDER BY ORDEM, ID");
 
-            for (int i = 0; i < dt.Rows.Count; i++)
+            if (dt.Rows.Count > 0)
             {
-                if (TECNICO != "S" && (dt.Rows[i]["ID"].ToString() == "6042" || dt.Rows[i]["ID"].ToString() == "606"))
+                str.Append("<div id=\"menu" + parent + "\" class=\"collapse\" data-parent=\"#menuLateral\">");
+                str.Append("<div class=\"bg-white py-2 collapse-inner rounded\">");
+
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    dt.Rows[i]["URL"] = "";
-                    str.Append("<li class=\"\"><a href=\"javascript:;\"><font color='#CCCCCC'>" + dt.Rows[i]["TEXTO"].ToString().Replace("&nbsp;", "") + "</font></a></li>");
+                    //temFilhos = Utilitarios.Exec_IntSql_Return(string.Format("SELECT COUNT(*) FROM VW_MENU_GRUPO WHERE USR_GRUPO_ID = 1 AND PARENT_ID = {0} AND INICIAR IS NULL", dt.Rows[i]["ID"].ToString()));
+
+                    //if (temFilhos > 0)
+                    //{
+                    //    str.Append("<a class=\"collapse-item\" data-toggle=\"collapse\" data-target=\"#menu" + dt.Rows[i]["TEXTO"].ToString() + 
+                    //        "\" aria-expanded=\"true\" aria-controls=\"menu" + dt.Rows[i]["TEXTO"].ToString() + "\" href=\"javascript:;\" style=\"display: flex; justify-content: space-between; align-items: center;\">");
+                    //    str.Append("<span>" + dt.Rows[i]["TEXTO"].ToString() + "</span>");
+                    //    str.Append("<i class=\"fas fa-angle-down coll\"></i>");
+                    //    str.Append("</a>");
+                    //    str.Append("<div id=\"menu" + dt.Rows[i]["TEXTO"].ToString() + "\" class=\"collapse\" data-parent=\"#menu" + parent + "\">");
+
+                    //    filhos = SubMenu(dt.Rows[i]["ID"].ToString(), dt.Rows[i]["TEXTO"].ToString());
+
+                    //    str.Append(filhos);
+                    //    str.Append("</div></div>");
+                    //}
+                    //else
+                    //{
+                    //    menu += "<a class=\"collapse-item\" href=\"" + ResolveUrl(dt.Rows[i]["URL"].ToString()) + "\"> " + dt.Rows[i]["TEXTO"].ToString().Replace("&nbsp;", "") + "</a>";
+                    //}
+
+                    menu += "<a class=\"collapse-item\" href=\"" + ResolveUrl(dt.Rows[i]["URL"].ToString()) + "\"> " + dt.Rows[i]["TEXTO"].ToString().Replace("&nbsp;", "") + "</a>";
                 }
-                else
-                {
-                    if (dt.Rows[i]["JSCRIPT_INI"] != DBNull.Value)
-                    {
-                        menu = "<a href=\"javascript:;\" onclick=\"" + dt.Rows[i]["JSCRIPT_INI"].ToString() +
-                                   ResolveUrl(dt.Rows[i]["URL"].ToString()) + dt.Rows[i]["JSCRIPT_FIM"].ToString() + "\">";
-                    }
-                    else
-                    {
-                        if (dt.Rows[i]["URL"].ToString() != string.Empty)
-                            menu = "<a href=\"" + ResolveUrl(dt.Rows[i]["URL"].ToString()) + "\">";
-                        else
-                            menu = "<a class=\"Submenu\" href=\"javascript:;\">";
-                    }
 
-                    str.Append("<li class=\"\">" + menu + dt.Rows[i]["TEXTO"].ToString().Replace("&nbsp;", "") + "</a>");
+                str.Append(menu);
+                str.Append("</div>");
+                str.Append("</div>");
 
-                    filhos = SubMenu(dt.Rows[i]["ID"].ToString());
-
-                    if (filhos == string.Empty)
-                    {
-                        str.Append("</li>");
-                    }
-                    else
-                    {
-                        str.Append("<ul class=\"\">" + filhos + "</ul></li>");
-                    }
-                }
+                str.Append("</li>");
             }
         }
 

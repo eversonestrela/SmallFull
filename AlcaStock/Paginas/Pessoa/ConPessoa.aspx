@@ -38,16 +38,16 @@
     </script>
     <asp:UpdatePanel ID="pnlFiltro" runat="server">
         <ContentTemplate>
-            <table class="rotulo">
+            <table>
                 <tr>
-                    <td>
+                    <td valign="bottom">
                         <cc1:FieldDropDown ID="ddlPSQ" runat="server" CssClass="dropDown" ValueField="Pesquisar por" Obrigatorio="false" 
-                            OnSelectedIndexChanged="ddlPSQ_SelectedIndexChanged" AutoPostBack="true" Width="100px">
+                            OnSelectedIndexChanged="ddlPSQ_SelectedIndexChanged" AutoPostBack="true" Width="100px" style="padding: 4px;">
                             <asp:ListItem Value="0">Nome</asp:ListItem>
                             <asp:ListItem Value="1">CPF</asp:ListItem>
                         </cc1:FieldDropDown>
                     </td>
-                    <td>
+                    <td valign="bottom">
                         <cc1:FieldTextBox ID="txtPesquisa" runat="server" CssClass="caixaTexto" ValueField="Descrição"
                             Obrigatorio="True" Width="250px"></cc1:FieldTextBox>
                         <cc3:MaskedEditExtender ID="mskCPF" runat="server" TargetControlID="txtPesquisa"
@@ -84,5 +84,5 @@
         runat="server" />
     <asp:LinkButton ID="btnVoltar" runat="server" CausesValidation="false" CssClass="btnProc"
         Text="<img src='../Library/Images/icones/voltar.gif'> Voltar"
-        ToolTip="Cancelar" />
+        ToolTip="Cancelar" OnClick="btnVoltar_Click" />
 </asp:Content>

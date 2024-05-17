@@ -56,4 +56,9 @@ public partial class Paginas_Pessoa_ConPessoa : AppBasePage
     {
         Response.Redirect("CadPessoa?ACAO=Novo");
     }
+
+    protected void btnVoltar_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("../Inicio");
+    }
 }
