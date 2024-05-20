@@ -351,3 +351,7 @@ input:disabled {
 .rotuloObrigatorio {
     margin-bottom: 0px !important;
 }
+
+.pdr-10 {
+    padding-right: 10px !important;
+}

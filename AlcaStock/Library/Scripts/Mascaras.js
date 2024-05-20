@@ -775,11 +775,22 @@ function maskKeyPress(objEvent) {
         if (iKeyCode >= 48 && iKeyCode <= 57) return true;
         return false;
     }
-
-
 }
 
+function formatPhoneNumber(phoneNumber) {
+    // Remove todos os caracteres que não são dígitos
+    const cleaned = ('' + phoneNumber).replace(/\D/g, '');
 
+    // Verifica se o número de telefone tem 11 dígitos
+    if (cleaned.length !== 11) {
+        return 'Número inválido'; // ou você pode retornar uma string vazia ou lançar um erro
+    }
+
+    // Aplica a formatação (99) 9 9999-9999
+    const formatted = cleaned.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4');
+
+    return formatted;
+}
 
 /**
 * Generic

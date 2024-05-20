@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dstCRUD" targetNamespace="http://tempuri.org/dstLogin.xsd" xmlns:mstns="http://tempuri.org/dstLogin.xsd" xmlns="http://tempuri.org/dstLogin.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="13" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="SISPREV_CUIABAPREVConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="SISPREV_CUIABAPREVConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.SISPREV_CUIABAPREVConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsPropertyName="SISPREV_AMPREVConnectionString" ConnectionStringObject="Data Source=10.0.0.132;Initial Catalog=SISPREV_AMPREV;User ID=SA;Password=sqlsaadmin5" IsAppSettingsProperty="false" Modifier="Assembly" Name="SISPREV_AMPREVConnectionString" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsPropertyName="CUIABA_PREVConnectionString" ConnectionStringObject="Data Source=DES12\SQLEXPRESS08;Initial Catalog=CUIABA_PREV;Persist Security Info=True;User ID=sa;Password=sqlsaadmin5" IsAppSettingsProperty="false" Modifier="Assembly" Name="CUIABA_PREVConnectionString" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="CUIABAPREV_LOCALConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="CUIABAPREV_LOCALConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.CUIABAPREV_LOCALConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsPropertyName="SISPREV_MASTERConnectionString" ConnectionStringObject="Data Source=AGSISWEB;Initial Catalog=SISPREV_MASTER;Persist Security Info=True;User ID=sa;Password=sqlsaadmin5" IsAppSettingsProperty="false" Modifier="Assembly" Name="SISPREV_MASTERConnectionString" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="CUIABA_PREVConnectionString2" IsAppSettingsProperty="true" Modifier="Assembly" Name="CUIABA_PREVConnectionString2 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.CUIABA_PREVConnectionString2.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="SISPREV_SERGIPEConnectionString1" IsAppSettingsProperty="true" Modifier="Assembly" Name="SISPREV_SERGIPEConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.SISPREV_SERGIPEConnectionString1.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="CUIABA_PREVConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="CUIABA_PREVConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.CUIABA_PREVConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="SISPREVCConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="SISPREVCConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.SISPREVCConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsPropertyName="SISPREV_IMPROConnectionString" ConnectionStringObject="Data Source=DES04\SQLEXPRESS08;Initial Catalog=SISPREV_IMPRO;Integrated Security=True" IsAppSettingsProperty="false" Modifier="Assembly" Name="SISPREV_IMPROConnectionString" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="SISPREV_MASTERConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="SISPREV_MASTERConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.SISPREV_MASTERConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="SISPREV_CARIACICAConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="SISPREV_CARIACICAConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.SISPREV_CARIACICAConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ALCASTOCKConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ALCASTOCKConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ALCASTOCKConnectionString1.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dstCRUD" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dstCRUD" msprop:Generator_DataSetName="dstCRUD">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PESSOAS" msprop:Generator_RowEvHandlerName="PESSOASRowChangeEventHandler" msprop:Generator_RowDeletedName="PESSOASRowDeleted" msprop:Generator_RowDeletingName="PESSOASRowDeleting" msprop:Generator_RowEvArgName="PESSOASRowChangeEvent" msprop:Generator_TablePropName="PESSOAS" msprop:Generator_RowChangedName="PESSOASRowChanged" msprop:Generator_RowChangingName="PESSOASRowChanging" msprop:Generator_TableClassName="PESSOASDataTable" msprop:Generator_RowClassName="PESSOASRow" msprop:Generator_TableVarName="tablePESSOAS" msprop:Generator_UserTableName="PESSOAS">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PESSOA_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="PESSOA_ID" msprop:Generator_ColumnPropNameInTable="PESSOA_IDColumn" msprop:Generator_ColumnVarNameInTable="columnPESSOA_ID" msprop:Generator_UserColumnName="PESSOA_ID" type="xs:int" />
+              <xs:element name="NOME" msprop:Generator_ColumnPropNameInRow="NOME" msprop:Generator_ColumnPropNameInTable="NOMEColumn" msprop:Generator_ColumnVarNameInTable="columnNOME" msprop:Generator_UserColumnName="NOME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CPF_CNPJ" msprop:Generator_ColumnPropNameInRow="CPF_CNPJ" msprop:Generator_ColumnPropNameInTable="CPF_CNPJColumn" msprop:Generator_ColumnVarNameInTable="columnCPF_CNPJ" msprop:Generator_UserColumnName="CPF_CNPJ">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATA_NASC" msprop:Generator_ColumnPropNameInRow="DATA_NASC" msprop:Generator_ColumnPropNameInTable="DATA_NASCColumn" msprop:Generator_ColumnVarNameInTable="columnDATA_NASC" msprop:Generator_UserColumnName="DATA_NASC" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SEXO" msprop:Generator_ColumnPropNameInRow="SEXO" msprop:Generator_ColumnPropNameInTable="SEXOColumn" msprop:Generator_ColumnVarNameInTable="columnSEXO" msprop:Generator_UserColumnName="SEXO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NOME_MAE" msprop:Generator_ColumnPropNameInRow="NOME_MAE" msprop:Generator_ColumnPropNameInTable="NOME_MAEColumn" msprop:Generator_ColumnVarNameInTable="columnNOME_MAE" msprop:Generator_UserColumnName="NOME_MAE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CPF_MAE" msprop:Generator_ColumnPropNameInRow="CPF_MAE" msprop:Generator_ColumnPropNameInTable="CPF_MAEColumn" msprop:Generator_ColumnVarNameInTable="columnCPF_MAE" msprop:Generator_UserColumnName="CPF_MAE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NOME_PAI" msprop:Generator_ColumnPropNameInRow="NOME_PAI" msprop:Generator_ColumnPropNameInTable="NOME_PAIColumn" msprop:Generator_ColumnVarNameInTable="columnNOME_PAI" msprop:Generator_UserColumnName="NOME_PAI" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CPF_PAI" msprop:Generator_ColumnPropNameInRow="CPF_PAI" msprop:Generator_ColumnPropNameInTable="CPF_PAIColumn" msprop:Generator_ColumnVarNameInTable="columnCPF_PAI" msprop:Generator_UserColumnName="CPF_PAI" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TELEFONE_RESIDENCIAL" msprop:Generator_ColumnPropNameInRow="TELEFONE_RESIDENCIAL" msprop:Generator_ColumnPropNameInTable="TELEFONE_RESIDENCIALColumn" msprop:Generator_ColumnVarNameInTable="columnTELEFONE_RESIDENCIAL" msprop:Generator_UserColumnName="TELEFONE_RESIDENCIAL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TELEFONE_CELULAR" msprop:Generator_ColumnPropNameInRow="TELEFONE_CELULAR" msprop:Generator_ColumnPropNameInTable="TELEFONE_CELULARColumn" msprop:Generator_ColumnVarNameInTable="columnTELEFONE_CELULAR" msprop:Generator_UserColumnName="TELEFONE_CELULAR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMAIL" msprop:Generator_ColumnPropNameInRow="EMAIL" msprop:Generator_ColumnPropNameInTable="EMAILColumn" msprop:Generator_ColumnVarNameInTable="columnEMAIL" msprop:Generator_UserColumnName="EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SIS_USUARIO_INSERT" msprop:Generator_ColumnPropNameInRow="SIS_USUARIO_INSERT" msprop:Generator_ColumnPropNameInTable="SIS_USUARIO_INSERTColumn" msprop:Generator_ColumnVarNameInTable="columnSIS_USUARIO_INSERT" msprop:Generator_UserColumnName="SIS_USUARIO_INSERT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SIS_DATA_INSERT" msprop:Generator_ColumnPropNameInRow="SIS_DATA_INSERT" msprop:Generator_ColumnPropNameInTable="SIS_DATA_INSERTColumn" msprop:Generator_ColumnVarNameInTable="columnSIS_DATA_INSERT" msprop:Generator_UserColumnName="SIS_DATA_INSERT" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SIS_USUARIO_UPDATE" msprop:Generator_ColumnPropNameInRow="SIS_USUARIO_UPDATE" msprop:Generator_ColumnPropNameInTable="SIS_USUARIO_UPDATEColumn" msprop:Generator_ColumnVarNameInTable="columnSIS_USUARIO_UPDATE" msprop:Generator_UserColumnName="SIS_USUARIO_UPDATE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SIS_DATA_UPDATE" msprop:Generator_ColumnPropNameInRow="SIS_DATA_UPDATE" msprop:Generator_ColumnPropNameInTable="SIS_DATA_UPDATEColumn" msprop:Generator_ColumnVarNameInTable="columnSIS_DATA_UPDATE" msprop:Generator_UserColumnName="SIS_DATA_UPDATE" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:PESSOAS" />
+      <xs:field xpath="mstns:PESSOA_ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -70,11 +70,19 @@ namespace ALCASTOCK.Geral
 
         #endregion
 
+        #region Tratamento de Telefone
+        public static void MascaraCelular(TextBox txt1)
+        {
+            txt1.Attributes.Add("onkeypress", "javascript:formatPhoneNumber(this);");
+            txt1.Attributes.Add("MaxLength", "11");
+        }
+        #endregion
+
         #region Tratamento de Data
 
         public static void MascaraData(TextBox txt1)
         {
-            //
+            txt1.Attributes.Add("onkeydown", "javascript:mascara_Data();");
         }
         public static void MascaraData(eWorld.UI.CalendarPopup txt1)
         {

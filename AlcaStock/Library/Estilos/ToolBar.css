@@ -221,12 +221,12 @@ textarea:focus
 .divToolbarBottom
 {
     background: #F0F0F0;
-    border-bottom: #999999;
-    border-left: #999999;
-    border-right: #999999;
+    border-bottom: #dddddd;
+    border-left: #dddddd;
+    border-right: #dddddd;
     border-style: solid;
     border-width: 1px;
-    border-top: 1PX SOLID #DDDDDD;
+    border-top: 1PX SOLID #dddddd;
     border-radius: 0px 0px 5px 5px; /* Implementação W3C */
     background: linear-gradient(#FFFFFF, #DDDDDD 100%); /* Implementação W3C */
     background: -moz-linear-gradient(#FFFFFF, #DDDDDD 100%); /* Implementação Mozilla */

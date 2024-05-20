@@ -993,8 +993,6 @@ public class Utilitarios
         string scriptString;
         scriptString = @"<script language=""" + @"javascript""" + @" src=""" + Pagina.ResolveClientUrl("~/Library/Scripts/Mascaras.js") + @""" type=""" + @"text/javascript""" + @"></script>";
 
-        //scriptString = PageUtility.GetClientScriptInclude("~/Library/Scripts/Mascaras.js");
-
         if (!Pagina.IsClientScriptBlockRegistered("clientScript"))
             ScriptManager.RegisterClientScriptBlock(Pagina, Pagina.GetType(), "clientScript", scriptString, false);
         
@@ -1031,17 +1029,14 @@ public class Utilitarios
             {
                 TratarEntradadeDados.Upper((System.Web.UI.WebControls.TextBox)controle);
             }
-
             else if (((System.Web.UI.WebControls.TextBox)controle).CssClass.ToUpper() == "CPF")
             {
                 TratarEntradadeDados.CPF((System.Web.UI.WebControls.TextBox)controle);
             }
-
             else if (((System.Web.UI.WebControls.TextBox)controle).CssClass.ToUpper() == "CEP")
             {
                 TratarEntradadeDados.CEP((System.Web.UI.WebControls.TextBox)controle);
             }
-
             else if (((System.Web.UI.WebControls.TextBox)controle).CssClass.ToUpper() == "CNPJ")
             {
                 TratarEntradadeDados.CNPJ((System.Web.UI.WebControls.TextBox)controle);
@@ -1049,6 +1044,14 @@ public class Utilitarios
             else if (((System.Web.UI.WebControls.TextBox)controle).CssClass.ToUpper() == "MONEY")
             {
                 TratarEntradadeDados.MONEY((System.Web.UI.WebControls.TextBox)controle);
+            }
+            else if (((System.Web.UI.WebControls.TextBox)controle).CssClass.ToUpper() == "DATE")
+            {
+                TratarEntradadeDados.MascaraData((System.Web.UI.WebControls.TextBox)controle);
+            }
+            else if (((System.Web.UI.WebControls.TextBox)controle).CssClass.ToUpper() == "CELULAR")
+            {
+                TratarEntradadeDados.MascaraCelular((System.Web.UI.WebControls.TextBox)controle);
             }
         }
         else if (controle.ToString() == "System.Web.UI.WebControls.DropDownList")

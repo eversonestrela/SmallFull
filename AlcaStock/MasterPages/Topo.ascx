@@ -51,7 +51,7 @@
 
 <div id="content">
     <!-- Topbar master -->
-    <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
+    <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow" style="font-family:Nunito,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji; font-size: 1em;">
         <!-- Toggle do menu lateral (responsivo) -->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
