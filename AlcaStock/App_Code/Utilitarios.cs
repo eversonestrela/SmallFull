@@ -239,6 +239,27 @@ public class Utilitarios
     #region Metodos
 
     /// <summary>
+    /// Método responsável por verificar se a data é valida
+    /// SqlDateTime. Deve estar entre 1/1/1753 12:00:00 AM e 31/12/9999 11:59:59 PM.
+    /// </summary>
+    /// <param name="data">Valor da Data</param>
+    /// <returns>Verdadeiro ou falo</returns>
+    public static bool VerificaDataValida(string data)
+    {
+        DateTime result;
+
+        if (DateTime.TryParse(data, out result))
+        {
+            if (result.Year >= 1753 && result.Year <= 2099)
+                return true;
+            else
+                return false;
+        }
+        else
+            return false;
+    }
+
+    /// <summary>
     /// Método que monta o camando select conforme os parametros informados na classe CamposPesq e realiza a pesquisa no banco de dados.
     /// </summary>
     /// <param name="dsPesq">DataSet não Tipado que irá receber o resultado da consulta</param>

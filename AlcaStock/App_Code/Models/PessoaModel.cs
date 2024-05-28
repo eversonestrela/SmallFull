@@ -1,11 +1,17 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
     public class PessoaModel
     {
         private int? _PESSOA_ID;
+        
+        [Required]
+        [StringLength(400)]
         private string _NOME;
+        [Required]
+        [StringLength(20)]
         private string _CPF_CNPJ;
         private DateTime? _DATA_NASC;
         private string _SEXO;

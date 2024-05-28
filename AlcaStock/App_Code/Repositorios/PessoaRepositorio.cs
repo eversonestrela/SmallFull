@@ -12,17 +12,31 @@ namespace Alcastock.Repositorios
 
         public PessoaRepositorio()
         {
-            _connectionString = ConfigurationSettings.AppSettings["ALCASTOCKConnectionString"];
+            _connectionString = Utilitarios.conStr;
+        }
+
+        public bool CpfUnique(string cpf)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT COUNT(*) FROM PESSOAS WHERE CPF = @CPF";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@CPF", cpf);
+
+                connection.Open();
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0;
+            }
         }
 
         public void Salvar(PessoaModel pessoa)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = @"INSERT INTO PESSOAS (NOME, CPF, DATA_NASC, SEXO, NOME_MAE, CPF_MAE, NOME_PAI, CPF_PAI
-                                , TELEFONE_RESIDENCIAL, TELEFONE_CELULAR, EMAIL, SIS_USUARIO_INSERT, SIS_DATA_INSERT) " +
-                               "VALUES (@NOME, @CPF, @SEXO, @DATA_NASC, @NOME_MAE, @CPF_MAE, @NOME_PAI, @CPF_PAI, " +
-                               "@TELEFONE_RESIDENCIAL, @TELEFONE_CELULAR, @EMAIL, @SIS_USUARIO_INSERT, @SIS_DATA_INSERT)";
+                string query = @"SET DATEFORMAT DMY; INSERT INTO PESSOAS (NOME, CPF, DATA_NASC, SEXO, NOME_MAE, CPF_MAE, NOME_PAI, CPF_PAI
+                                , TELEFONE_RESIDENCIAL, TELEFONE_CELULAR, EMAIL, SIS_USUARIO_INSERT, SIS_DATA_INSERT)
+                                VALUES (@NOME, @CPF, @DATA_NASC, @SEXO, @NOME_MAE, @CPF_MAE, @NOME_PAI, @CPF_PAI,
+                                @TELEFONE_RESIDENCIAL, @TELEFONE_CELULAR, @EMAIL, @SIS_USUARIO_INSERT, @SIS_DATA_INSERT)";
 
                 SqlCommand cmd = new SqlCommand(query, connection);
                 SqlParameter[] parms = GetSqlParameterArray(pessoa);
@@ -34,7 +48,7 @@ namespace Alcastock.Repositorios
                 string sqlDebug = query;
                 foreach (SqlParameter param in cmd.Parameters)
                 {
-                    sqlDebug = sqlDebug.Replace(param.ParameterName, param.Value is DateTime ? ((DateTime)param.Value).ToString("yyyy-MM-dd HH:mm:ss") : param.Value.ToString());
+                    sqlDebug = sqlDebug.Replace(param.ParameterName, param.Value.ToString());
                 }
 
                 // Registrar ou exibir a string SQL final para depuração

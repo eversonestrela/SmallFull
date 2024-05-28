@@ -7,7 +7,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCampos" runat="server">
     <link href="../Library/JQuery/css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet"
     type="text/css" />
-    <script src="../Library/JQuery/jquery-1.6.2.min.js" type="text/javascript"></script>
     <script src="../Library/JQuery/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
     <script src="../Library/Scripts/jquery.meiomask.js" type="text/javascript"></script>
 
@@ -19,9 +18,36 @@
         .espaco-table td {
             padding-right: 10px;
         }
+
+        #btnClose {
+            float:right;
+            width: 25px;
+            height: 25px;
+            border: none;
+            position: relative;
+            z-index: 100;
+            margin-right: -23px;
+            margin-top: -23px;
+            border-radius: 25em;
+            font-weight: bolder;
+        }
+
+        #divErros {
+            overflow: hidden; /* Para evitar que o conteúdo "escape" do container */
+        }
     </style>
 
     <asp:HiddenField ID="txtPESSOA_ID" runat="server" />
+
+
+    <div class="d-flex justify-content-center">
+        <div class="p-3 mb-2 bg-danger text-white w-50" runat="server" id="divErros" visible="false">
+            <button type="button" id="btnClose" data-element="<%= divErros.ClientID %>">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <asp:Label runat="server" ID="lblErros" />
+        </div>
+    </div>
 
     <div style="display: flex; align-content: center;justify-content: center; margin: 0;">
         <div style="height: 500px;">
@@ -36,7 +62,7 @@
                                 </td>
                                 <td class="pdr-10">
                                     <cc3:FieldTextBox ID="txt_PESSOAS_NOME" runat="server" ValueField="Nome Completo" Width="300px" onkeyup="convertToUppercase(event);" 
-                                        CssClass="input-cadastro" Obrigatorio="true" />
+                                        CssClass="input-cadastro" Obrigatorio="true" MaxLength="400" />
                                 </td>
                                 <td class="pdr-10">
                                     <cc3:FieldDropDown ID="ddl_PESSOAS_SEXO" runat="server" ValueField="Sexo" style="padding: 4px;" Width="150px" CssClass="input-cadastro">
@@ -63,7 +89,7 @@
                             <tr>
                                 <td class="pdr-10">
                                     <cc3:FieldTextBox ID="txt_PESSOAS_NOME_MAE" runat="server" ValueField="Nome Mãe" Width="300px" onkeyup="convertToUppercase(event);" 
-                                        CssClass="input-cadastro" Obrigatorio="true" />
+                                        CssClass="input-cadastro" Obrigatorio="true" MaxLength="400" />
                                 </td>
                                 <td class="pdr-10">
                                     <cc3:FieldTextBox ID="txt_PESSOAS_CPF_MAE" runat="server" ValueField="CPF Mãe" Width="300px" Style="padding: 5px;" CssClass="CPF" Obrigatorio="true" />
@@ -77,7 +103,7 @@
                         <table>
                             <tr>
                                 <td class="pdr-10">
-                                    <cc3:FieldTextBox ID="txt_PESSOAS_NOME_PAI" runat="server" ValueField="Nome Pai" Width="300px" onkeyup="convertToUppercase(event);" CssClass="input-cadastro" />
+                                    <cc3:FieldTextBox ID="txt_PESSOAS_NOME_PAI" runat="server" ValueField="Nome Pai" Width="300px" onkeyup="convertToUppercase(event);" CssClass="input-cadastro" MaxLength="400" />
                                 </td>
                                 <td class="pdr-10">
                                     <cc3:FieldTextBox ID="txt_PESSOAS_CPF_PAI" runat="server" ValueField="CPF Pai" Width="300px" Style="padding: 5px;" CssClass="CPF" />
@@ -107,15 +133,10 @@
                         <table>
                             <tr>
                                 <td class="pdr-10">
-                                    <cc3:FieldTextBox ID="txt_PESSOAS_EMAIL" runat="server" ValueField="E-mail" Width="300px" CssClass="input-cadastro" />
+                                    <cc3:FieldTextBox ID="txt_PESSOAS_EMAIL" runat="server" ValueField="E-mail" Width="300px" CssClass="input-cadastro" MaxLength="400" />
                                 </td>                            
                             </tr>
                         </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalConfirmacao">Mostrar Modal</button>
                     </td>
                 </tr>
              </table>
