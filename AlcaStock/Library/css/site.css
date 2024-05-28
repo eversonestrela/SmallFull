@@ -125,11 +125,7 @@
     border: 1px solid #203a87;
 }
 .input-cadastro {
-    border-radius: 0 !important;
-    border: 1px solid #01154f!important;
-    height: 30px!important;
-    font-size: 12px!important;
-    color: #000!important;
+    padding: 5px!important;
 }
 .form-pesquisa {
     border: 1px solid #01154f !important;
@@ -354,4 +350,5 @@ input:disabled {
 
 .pdr-10 {
     padding-right: 10px !important;
+    padding-bottom: 10px !important;
 }

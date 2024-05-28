@@ -104,15 +104,27 @@
                                         </asp:ContentPlaceHolder>
                                     </div>
                                 </div>
-                                <div class="divToolbarBottom" style="height: 30px;">
-                                    <asp:ContentPlaceHolder ID="ContentToolBar" runat="server">
-                                    </asp:ContentPlaceHolder>
-                                </div>
                                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="erro" DisplayMode="BulletList"
                                     ShowMessageBox="True" ShowSummary="False"></asp:ValidationSummary>
                             </div>
+                            <div class="divToolbarBottom" style="height: 30px;">
+                                <asp:ContentPlaceHolder ID="ContentToolBar" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
                         </div>
                     </form>
+
+                    <div class="modal fade" id="modalConfirmacao" aria-hidden="true" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered" style="width: 300px;">
+                            <div class="modal-content">
+                                <div class="modal-body text-center d-flex flex-column align-items-center justify-content-center" style="height: 200px;">
+                                    <img src="../Library/Images/icones/confirmacao.gif" alt="Confirmação" id="imagemConfirmacao" style="max-height: 100%; max-width: 100%;" />
+                                    <p id="mensagemConfirmacao" class="rotulo" style="font-size: 14px; margin-top: 20px;">Sucesso!</p>
+                                    <button class="btn btn-sm btn-secondary" data-bs-dismiss="modal" style="margin-top: 10px;" id="fecharModalBtn">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div id="divCarregando" style="margin: 0px; background-color: #333333; position: fixed; z-index: 10000; height: 100%; width: 100%; text-align: center; vertical-align: middle; filter: Alpha(Opacity=20); -moz-opacity: 0.2; opacity: 0.2;">
                     </div>

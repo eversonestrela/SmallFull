@@ -7,7 +7,7 @@ namespace Models
         private int? _PESSOA_ID;
         private string _NOME;
         private string _CPF_CNPJ;
-        private DateTime _DATA_NASC;
+        private DateTime? _DATA_NASC;
         private string _SEXO;
         private string _NOME_MAE;
         private string _CPF_MAE;
@@ -37,7 +37,7 @@ namespace Models
             get { return _CPF_CNPJ; }
             set { _CPF_CNPJ = value; }
         }
-        public DateTime DATA_NASC
+        public DateTime? DATA_NASC
         {
             get { return _DATA_NASC; }
             set { _DATA_NASC = value; }

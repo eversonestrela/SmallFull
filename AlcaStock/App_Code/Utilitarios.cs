@@ -1,4 +1,5 @@
 using ALCASTOCK.Geral;
+using eWorld.UI;
 using System;
 using System.Collections;
 using System.Configuration;
@@ -975,6 +976,171 @@ public class Utilitarios
         {
             TextBox txt = (TextBox)controle;
             txt.Attributes.Remove(atributo);
+        }
+    }
+
+    /// <summary>
+    /// -> Metodo que prepara a execução das stored procedures
+    /// </summary>
+    /// <param name="Pagina"> Página onde será realizada a pesquisa de componentes</param>
+    /// <param name="NomTabela"> Nome da Tabela onde será realizada a gravação das informações</param>
+    /// <param name="ACAO"> Ação que será realizada dentro da procedure</param>
+    public static void Gravar(System.Web.UI.Page Pagina, string NomTabela, string ACAO, DataSet ds2)
+    {
+        //-> Cria um datarow a partir do dataset
+        DataRow Linha = ds2.Tables[NomTabela].NewRow();
+        //
+        int NumCampos = ds2.Tables[NomTabela].Columns.Count;
+        //-> Alimenta a Linha com os valores preenchidos nos componentes
+        for (int i = 0; i < NumCampos; i++)
+        {
+            if ((ds2.Tables[NomTabela].Columns[i].DataType == typeof(System.String)) || (ds2.Tables[NomTabela].Columns[i].DataType == typeof(System.Char)))
+            {
+                if (Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
+                {
+                    if (((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Text != string.Empty)
+                        Linha[i] = ((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Text;
+                    else if ((ACAO == "I") && (((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).ReadOnly == true))
+                        Linha[i] = "0";
+                }
+                else if (Pagina.FindControl("ddl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
+                {
+                    ListItem li = new ListItem();
+                    li = ((DropDownList)Pagina.FindControl("ddl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedItem;
+                    if (li != null)
+                    {
+                        if (((DropDownList)Pagina.FindControl("ddl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedItem.Value != string.Empty)
+                            Linha[i] = ((DropDownList)Pagina.FindControl("ddl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedItem.Value;
+                    }
+                }
+                else if (Pagina.FindControl("rdbl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
+                {
+                    if (((RadioButtonList)Pagina.FindControl("rdbl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedValue != string.Empty)
+                        Linha[i] = ((RadioButtonList)Pagina.FindControl("rdbl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedValue;
+                }
+            }
+            else if ((ds2.Tables[NomTabela].Columns[i].DataType == typeof(System.Int16)) || (ds2.Tables[NomTabela].Columns[i].DataType == typeof(System.Int32)) || (ds2.Tables[NomTabela].Columns[i].DataType == typeof(System.Int64)))
+            {
+                if (Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
+                {
+                    if (((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Text != string.Empty)
+                        Linha[i] = int.Parse(((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Text);
+                    else if ((ACAO == "I") && (((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).ReadOnly == true))
+                        Linha[i] = 0;
+                }
+                else if (Pagina.FindControl("ddl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
+                {
+                    ListItem li = new ListItem();
+                    li = ((DropDownList)Pagina.FindControl("ddl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedItem;
+                    if (li != null)
+                    {
+                        if (((DropDownList)Pagina.FindControl("ddl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedItem.Value != string.Empty)
+                            Linha[i] = int.Parse(((DropDownList)Pagina.FindControl("ddl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedItem.Value);
+                    }
+                }
+            }
+            else if (ds2.Tables[NomTabela].Columns[i].DataType == typeof(System.Decimal))
+            {
+                if (Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
+                    if (((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Text != string.Empty)
+                        Linha[i] = Convert.ToDecimal(((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Text);
+            }
+            else if (ds2.Tables[NomTabela].Columns[i].DataType == typeof(System.Double))
+            {
+                if (Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
+                    if (((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Text != string.Empty)
+                        Linha[i] = Convert.ToDouble(((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Text);
+            }
+            else if (ds2.Tables[NomTabela].Columns[i].DataType == typeof(System.DateTime))
+            {
+                if (Pagina.FindControl("clp_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
+                {
+                    if (Convert.ToString(((CalendarPopup)Pagina.FindControl("clp_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedDate) != string.Empty)
+                    {
+                        if (((CalendarPopup)Pagina.FindControl("clp_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedDate.ToString().Substring(0, 8) != "1/1/0001")
+                            Linha[i] = ((CalendarPopup)Pagina.FindControl("clp_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedDate;
+                    }
+                }
+                else if (Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
+                    if (Convert.ToString(((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Text) != string.Empty)
+                    {
+                        if (((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Text != "1/1/0001")
+                            Linha[i] = Convert.ToDateTime(((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Text);
+                    }
+            }
+            else if (ds2.Tables[NomTabela].Columns[i].DataType == typeof(System.Boolean))
+            {
+                if (Pagina.FindControl("chk_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
+                {
+                    if (((CheckBox)Pagina.FindControl("chk_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Checked)
+                        Linha[i] = 1;
+                    else
+                        Linha[i] = 0;
+                }
+                else if (Pagina.FindControl("ddl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
+                {
+                    if (((DropDownList)Pagina.FindControl("ddl_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedValue == "1")
+                        Linha[i] = 1;
+                    else
+                        Linha[i] = 0;
+                }
+                else if (Pagina.FindControl("rdbl" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
+                {
+                    if (((RadioButtonList)Pagina.FindControl("rdbl" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedValue == "1")
+                        Linha[i] = 1;
+                    else
+                        Linha[i] = 0;
+                }
+            }
+        }
+        ds2.Tables[NomTabela].Rows.Add(Linha);
+        //-> Invoca o método de execução de Stored Procedure para a gravação dos dados 
+        Utilitarios.Exec_sp(ds2, NomTabela, ACAO, Pagina);
+    }
+
+    /// <summary>
+    /// //-> Metodo que abre a conexão, executa a stored procedure e fechar a connexão
+    /// </summary>
+    /// <param name="ds"> DataSet que contém a table que será manipulada</param>
+    /// <param name="NomTabela"> Nome da Tabela onde será realizado o registro</param>
+    /// <param name="ACAO"> Ação que será realizada dentro da procedure</param>
+    /// <param name="Pagina"> Página onde serão pesquisados os componentes</param>
+    public static void Exec_sp(DataSet ds, string NomTabela, string DML, System.Web.UI.Page Pagina)
+    {
+        //-> Cria o objeto de conexão
+        SqlConnection cnx = GetOpenConnection();
+        //-> Cria o objeto CommandText
+        SqlCommand exec = new SqlCommand();
+        //-> Aponta a propriedade TypeCommand do CommandText
+        exec.CommandType = CommandType.StoredProcedure;
+        //-> Aponta o nome da procedure para a propriedade CommandText
+        exec.CommandText = "dbo.spMnt" + NomTabela;
+        //-> Aponta o objeto de connexão para a propriedade 
+        exec.Connection = cnx;
+        try
+        {
+            //
+            int NumCampos = ds.Tables[NomTabela].Columns.Count;
+            //-> Adiciona e alimenta os parametros conforme a estrutura do dataset 
+            exec.Parameters.Clear();
+            //-> Passa como parametros na procedure os campos do dataset	
+            exec.Parameters.Add("@ACAO", SqlDbType.Char);
+            exec.Parameters[0].Value = DML;
+            for (int i = 1; i <= NumCampos; i++)
+            {
+                //-> Cria o parametro
+                exec.Parameters.Add("@" + ds.Tables[NomTabela].Columns[i - 1].ColumnName, ds.Tables[NomTabela].Columns[i - 1].DataType);
+                //-> Alimenta o parametro
+                exec.Parameters[i].Value = ds.Tables[NomTabela].Rows[0][i - 1];
+            }
+
+            exec.ExecuteNonQuery();
+
+        }
+        finally
+        {
+            CloseConnection(cnx);
+            exec.Dispose();
         }
     }
 
