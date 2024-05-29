@@ -10,61 +10,42 @@
     <script src="../Library/JQuery/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
     <script src="../Library/Scripts/jquery.meiomask.js" type="text/javascript"></script>
 
-    <script type="text/javascript">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var dropdownButton = document.getElementById("dropdownButton");
+            var dropdownItems = document.querySelectorAll(".dropdown-item");
 
-        function Mascara(campo, tipo) {
-            var aplicamask = campo.value;
-            var tam_campo;
-            switch (tipo) {
-                case 1:  // Aplica máscara de CPF
-                    tam_campo = 14
-                    aplicamask = aplicamask.replace(/\D/g, "");
-                    aplicamask = aplicamask.replace(/(\d{3})/, "$1.");
-                    aplicamask = aplicamask.replace(/([.]\d{3})/, "$1.");
-                    aplicamask = aplicamask.replace(/(\d{3}[.]\d{3}[.]\d{3})/, "$1-");
-                    aplicamask = aplicamask.length > tam_campo ? aplicamask.substring(0, tam_campo) : aplicamask;
-                    break;
-            }
-            campo.value = aplicamask;
-        }
+            dropdownItems.forEach(function (item) {
+                item.addEventListener("click", function () {
+                    var value = this.getAttribute("data-value");
+                    var text = this.textContent;
 
-        var tipo = document.getElementById("<%=ddlPSQ.ClientID%>").value;
-        $(document).ready(function () {
-            if (tipo == 1) {
-                $("#<%=txtPesquisa.ClientID%>").mask("999.999.999-99");
-            }
+                    dropdownButton.textContent = text;
+                    dropdownButton.setAttribute("data-selected-value", value);
+                });
+            });
         });
-
     </script>
+
     <asp:UpdatePanel ID="pnlFiltro" runat="server">
         <ContentTemplate>
             <table>
                 <tr>
                     <td valign="bottom">
-                        <cc1:FieldDropDown ID="ddlPSQ" runat="server" CssClass="dropDown" ValueField="Pesquisar por" Obrigatorio="false" 
-                            OnSelectedIndexChanged="ddlPSQ_SelectedIndexChanged" AutoPostBack="true" Width="100px" style="padding: 4px;">
+                        <cc1:FieldDropDown ID="ddlPSQ" runat="server" CssClass="btn btn-sm btn-secondary btn-pesquisar" ValueField="Pesquisar por">
                             <asp:ListItem Value="0">Nome</asp:ListItem>
                             <asp:ListItem Value="1">CPF</asp:ListItem>
                         </cc1:FieldDropDown>
                     </td>
                     <td valign="bottom">
-                        <cc1:FieldTextBox ID="txtPesquisa" runat="server" CssClass="caixaTexto" ValueField="Descrição"
-                            Obrigatorio="True" Width="250px"></cc1:FieldTextBox>
-                        <cc3:MaskedEditExtender ID="mskCPF" runat="server" TargetControlID="txtPesquisa"
-                            Mask="999\.999\.999-99" MessageValidatorTip="true" OnFocusCssClass="MaskedEditFocus"
-                            OnInvalidCssClass="MaskedEditError" Enabled="false" ClearMaskOnLostFocus="false" />
-                        <asp:RequiredFieldValidator ID="rvlPesquisa" runat="server" ErrorMessage="Informe um texto para pesquisa!"
-                            Display="None" ControlToValidate="txtPesquisa" SetFocusOnError="true">*</asp:RequiredFieldValidator>
-                        <div style="float: left;">
-                            <cc1:FieldTextBox ID="txtPeriodoInicial" ValueField="Nascidos em:" runat="server"
-                                Style="width: 70px;" Visible="false" />
+                        <label class="rotuloCaixaPesquisar">Descrição</label>
+                        <div class="input-group input-group-sm">
+                            <cc1:FieldTextBox ID="txtPesquisa" runat="server" CssClass="form-control form-control-pesquisar" Width="250px" />
                         </div>
-                        <div style="float: left; padding-left: 5px;">
-                            <cc1:FieldTextBox ID="txtPeriodoFinal" runat="server" Style="width: 70px;" Visible="false" />
-                        </div>
+                        
                     </td>
                     <td valign="bottom">
-                        <asp:Button ID="btnConsultar" Text="Consultar" runat="server" CssClass="button" CausesValidation="true" />
+                        <asp:Button ID="btnConsultar" Text="Consultar" runat="server" CssClass="btn btn-sm btn-outline-dark" CausesValidation="true" />
                     </td>
                 </tr>
             </table>
@@ -72,17 +53,25 @@
     </asp:UpdatePanel>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentToolBar" runat="server">
-    <asp:LinkButton ID="btnNovo" runat="server" CausesValidation="false" CssClass="btnProc"
-        Text="<img src='../Library/Images/icones/Novo.gif'> Novo"
+    <asp:LinkButton ID="btnNovo" runat="server" CausesValidation="false" CssClass="btn btn-sm btn-primary btn-novo"
+        Text="<i class='fas fa-plus'></i> Novo Cadastro"
         ToolTip="Novo Registro" OnClick="btnNovo_Click" />
-    <asp:Image CssClass="SeparadorBtn" ImageUrl="~/Library/Images/Separador.gif"
-        runat="server" />
-    <asp:LinkButton ID="lnkExportaExcel" runat="server" CausesValidation="false" CssClass="btnProc"
-        Text="<img src='../Library/Images/icones/excel.gif' height='14'> Exportar Lista para Excel"
-        ToolTip="Exportar Lista para Excel" />
-    <asp:Image CssClass="SeparadorBtn" ImageUrl="~/Library/Images/Separador.gif"
-        runat="server" />
-    <asp:LinkButton ID="btnVoltar" runat="server" CausesValidation="false" CssClass="btnProc"
-        Text="<img src='../Library/Images/icones/voltar.gif'> Voltar"
-        ToolTip="Cancelar" OnClick="btnVoltar_Click" />
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentGrid" runat="server">
+    <asp:GridView ID="gvPessoas" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless custom-gridview"
+        OnRowCreated="gvPessoas_RowCreated" OnRowDataBound="gvPessoas_RowDataBound">
+        <Columns>
+            <asp:BoundField DataField="NOME" HeaderText="Nome" />
+            <asp:BoundField DataField="CPF" HeaderText="CPF" />
+            <asp:BoundField DataField="DATA_NASC" HeaderText="Data de Nascimento" DataFormatString="{0:dd/MM/yyyy}" />
+            <asp:BoundField DataField="SEXO" HeaderText="Sexo" />
+            <asp:BoundField DataField="NOME_MAE" HeaderText="Nome da Mãe" />
+            <asp:BoundField DataField="CPF_MAE" HeaderText="CPF da Mãe" />
+            <asp:BoundField DataField="NOME_PAI" HeaderText="Nome do Pai" />
+            <asp:BoundField DataField="CPF_PAI" HeaderText="CPF do Pai" />
+            <asp:BoundField DataField="TELEFONE_RESIDENCIAL" HeaderText="Telefone Residencial" />
+            <asp:BoundField DataField="TELEFONE_CELULAR" HeaderText="Telefone Celular" />
+            <asp:BoundField DataField="EMAIL" HeaderText="E-mail" />
+        </Columns>
+    </asp:GridView>
 </asp:Content>

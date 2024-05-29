@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -15,6 +16,11 @@ namespace Alcastock.Repositorios
             _connectionString = Utilitarios.conStr;
         }
 
+        /// <summary>
+        /// Método que verifica se o CPF é único
+        /// </summary>
+        /// <param name="cpf"></param>
+        /// <returns></returns>
         public bool CpfUnique(string cpf)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -29,6 +35,47 @@ namespace Alcastock.Repositorios
             }
         }
 
+        public List<PessoaModel> ConsultarPessoas()
+        {
+            List<PessoaModel> pessoas = new List<PessoaModel>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"SELECT CASE WHEN SEXO = 'M' THEN UPPER('Masculino') ELSE UPPER('Feminino') END AS SEXO, * FROM PESSOAS";
+
+                SqlCommand cmd = new SqlCommand(query, connection);
+
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    PessoaModel pessoa = new PessoaModel
+                    {
+                        NOME = reader["NOME"].ToString(),
+                        CPF = reader["CPF"].ToString(),
+                        DATA_NASC = Convert.ToDateTime(reader["DATA_NASC"]),
+                        SEXO = reader["SEXO"].ToString(),
+                        NOME_MAE = reader["NOME_MAE"].ToString(),
+                        CPF_MAE = reader["CPF_MAE"].ToString(),
+                        NOME_PAI = reader["NOME_PAI"].ToString(),
+                        CPF_PAI = reader["CPF_PAI"].ToString(),
+                        TELEFONE_RESIDENCIAL = reader["TELEFONE_RESIDENCIAL"].ToString(),
+                        TELEFONE_CELULAR = reader["TELEFONE_CELULAR"].ToString(),
+                        EMAIL = reader["EMAIL"].ToString()
+                    };
+
+                    pessoas.Add(pessoa);
+                }
+            }
+
+            return pessoas;
+        }
+
+        /// <summary>
+        /// Método para salvar a pessoa
+        /// </summary>
+        /// <param name="pessoa">Model PESSOAS</param>
         public void Salvar(PessoaModel pessoa)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -45,14 +92,14 @@ namespace Alcastock.Repositorios
                     cmd.Parameters.Add(parms[i]);
                 }
 
-                string sqlDebug = query;
-                foreach (SqlParameter param in cmd.Parameters)
-                {
-                    sqlDebug = sqlDebug.Replace(param.ParameterName, param.Value.ToString());
-                }
+                //string sqlDebug = query;
+                //foreach (SqlParameter param in cmd.Parameters)
+                //{
+                //    sqlDebug = sqlDebug.Replace(param.ParameterName, param.Value.ToString());
+                //}
 
-                // Registrar ou exibir a string SQL final para depuração
-                System.Diagnostics.Debug.WriteLine(sqlDebug);
+                //// Registrar ou exibir a string SQL final para depuração
+                //System.Diagnostics.Debug.WriteLine(sqlDebug);
 
                 connection.Open();
                 cmd.ExecuteScalar();

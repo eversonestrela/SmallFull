@@ -42,7 +42,8 @@ input:focus[type=text]
 
 input[type=submit]
 {
-    border-radius: 5px;
+    font-size: 12px;
+    /*border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     cursor: pointer;
@@ -53,16 +54,17 @@ input[type=submit]
     background: -webkit-gradient(linear,0% 0%,0% 100%,from(rgba(255,255,255,1)),to(rgba(185,185,185,1)));
     background: -moz-linear-gradient(top,rgba(255,255,255,1),rgba(185,185,185,1));
     padding: 2px 5px 2px 5px;
-    border: 1px solid #999999;
+    border: 1px solid #999999;*/
 }
 
+/*
 input:hover[type=submit]
 {
     background: #EEEEEE;
     box-shadow: 0px 0px 2px rgba(0,0,0,0.4);
     -moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.4);
     -webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.4);
-}
+}*/
 
 input[type=button]
 {
@@ -165,21 +167,23 @@ textarea:focus
     margin-top: 0px;
 }
 
-.divTituloPagina
-{
+.divTituloPagina {
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #000000;
+    color: white;
     padding: 7px;
-    border-bottom: 1px solid #cccccc;
-    background: #E0E0E0;
-    background: linear-gradient(#FFFFFF, #DDDDDD 100%); /* Implementação W3C */
-    background: -moz-linear-gradient(#FFFFFF, #DDDDDD 100%); /* Implementação Mozilla */
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#DDDDDD)); /* Implementação para browsers que renderizam via webkit */
-    -pie-background: linear-gradient(#FFFFFF, #DDDDDD 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#FFFFFF', EndColorStr='#DDDDDD'); /* IE6,IE7 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#FFFFFF', EndColorStr='#DDDDDD')"; /* IE8 */
+    border-bottom: 1px solid #224bc1;
+    background: #3760d9;
+    background: linear-gradient(#3760d9, #466ad3 100%); /* Implementação W3C */
+    background: -moz-linear-gradient(#3760d9, #466ad3 100%); /* Implementação Mozilla */
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#3760d9), to(#466ad3)); /* Implementação para browsers que renderizam via webkit */
+    -pie-background: linear-gradient(#3760d9, #466ad3 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#3760d9', EndColorStr='#466ad3'); /* IE6,IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#3760d9', EndColorStr='#466ad3')"; /* IE8 */
+    /*background-color: #4e73df;
+    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+    background-size: cover;*/
 }
 
 .divTituloPagina2

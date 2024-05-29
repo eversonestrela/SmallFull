@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Alcastock.Controllers;
+using Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class Paginas_Pessoa_ConPessoa : AppBasePage
@@ -14,41 +13,11 @@ public partial class Paginas_Pessoa_ConPessoa : AppBasePage
 
         if (!IsPostBack)
         {
+            PessoaController pessoaController = new PessoaController();
+            List<PessoaModel> pessoas = pessoaController.ConsultarPessoas();
 
-        }
-    }
-
-    protected void ddlPSQ_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        txtPesquisa.Text = string.Empty;
-
-        switch (ddlPSQ.SelectedValue)
-        {
-            case "1":
-                txtPeriodoInicial.Visible = txtPeriodoFinal.Visible = false;
-                txtPesquisa.Visible = true;
-                mskCPF.Enabled = false;
-                txtPesquisa.CssClass = "CPF";
-                Utilitarios.AtribuirFuncoesJava(this);
-                break;
-
-            case "4":
-                txtPeriodoInicial.Visible = txtPeriodoFinal.Visible = true;
-                txtPesquisa.Visible = false;
-                mskCPF.Enabled = false;
-                break;
-
-            default:
-                txtPeriodoInicial.Visible = txtPeriodoFinal.Visible = false;
-                txtPesquisa.Visible = true;
-                mskCPF.Enabled = false;
-
-
-                txtPesquisa.CssClass = "caixaTexto";
-                Utilitarios.RemoverAtributo(txtPesquisa, "onkeydown");
-                Utilitarios.RemoverAtributo(txtPesquisa, "onblur");
-                Utilitarios.RemoverAtributo(txtPesquisa, "MaxLength");
-                break;
+            gvPessoas.DataSource = pessoas;
+            gvPessoas.DataBind();
         }
     }
 
@@ -57,8 +26,19 @@ public partial class Paginas_Pessoa_ConPessoa : AppBasePage
         Response.Redirect("CadPessoa?ACAO=Novo");
     }
 
-    protected void btnVoltar_Click(object sender, EventArgs e)
+    protected void gvPessoas_RowCreated(object sender, GridViewRowEventArgs e)
     {
-        Response.Redirect("../Inicio");
+        if (e.Row.RowType == DataControlRowType.Header)
+        {
+            e.Row.CssClass = "gridview-header";
+        }
+    }
+
+    protected void gvPessoas_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            e.Row.CssClass = "data-row";
+        }
     }
 }

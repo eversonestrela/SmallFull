@@ -40,8 +40,21 @@
     border: 1px transparent !important;
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 5px;
+    margin-left: 0px;
     font-size: 0.8rem !important;
+}
+.btn-pesquisar {
+    border-radius: 3px!important;
+    margin-right: 5px;
+    font-size: 1em !important;
+    background-color: white!important;
+    color: #000!important;
+    width: 100px;
+    text-align: left!important;
+}
+.btn-pesquisar:hover {
+    background-color: #dddddd !important;
+    color: #000 !important;
 }
 .btn-consultar {
     /*background: rgb(130,130,231);
@@ -178,13 +191,13 @@ input[type='file'] {
     border-bottom-right-radius: 15px;
 }
 /*ALTERAÇÕES CLASSES BOOTSTRAP*/
-.input-group-text {
+/*.input-group-text {
     border-radius: 0 !important;
     cursor: pointer;
     border: 1px solid #01154f !important;
     border-left: none !important;
     height: 25px !important;
-}
+}*/
 .modal-header {
     padding: 0.5rem 0.5rem!important;
 }
@@ -351,4 +364,46 @@ input:disabled {
 .pdr-10 {
     padding-right: 10px !important;
     padding-bottom: 10px !important;
+}
+
+#wrapper #content-wrapper {
+    background-color: white!important;
+}
+
+.custom-gridview .data-row:hover {
+    background-color: #e5e4e4;
+}
+
+/* Estilo para o cabeçalho, se necessário */
+.gridview-header {
+    background-color: #4e73df;
+    background-image: linear-gradient(#3760d9, #466ad3 100%);
+    border: 1px solid #224bc1;
+    /*background-size: cover;
+    background: #3760d9;
+    background: linear-gradient(#3760d9, #466ad3 100%);*/ /* Implementação W3C */
+    /*background: -moz-linear-gradient(#3760d9, #466ad3 100%);*/ /* Implementação Mozilla */
+    /*background: -webkit-gradient(linear, 0 0, 0 100%, from(#3760d9), to(#466ad3));*/ /* Implementação para browsers que renderizam via webkit */
+    /*-pie-background: linear-gradient(#3760d9, #466ad3 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#3760d9', EndColorStr='#466ad3');*/ /* IE6,IE7 */
+    /*-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#3760d9', EndColorStr='#466ad3')";*/ /* IE8 */
+    color: white;
+}
+
+.custom-gridview {
+    border: none;
+}
+
+.rotuloCaixaPesquisar {
+    margin-bottom: 0px !important;
+    color: black;
+    font-weight: bold;
+}
+
+.form-control-pesquisar {
+    border-radius: 3px !important;
+    height: calc(1.0em + .6rem + 2px) !important;
+    margin-right: 5px;
+    font-size: 13px !important;
+    color: black !important;
 }
