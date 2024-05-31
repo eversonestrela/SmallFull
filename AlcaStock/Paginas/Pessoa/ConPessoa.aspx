@@ -10,29 +10,13 @@
     <script src="../Library/JQuery/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
     <script src="../Library/Scripts/jquery.meiomask.js" type="text/javascript"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var dropdownButton = document.getElementById("dropdownButton");
-            var dropdownItems = document.querySelectorAll(".dropdown-item");
-
-            dropdownItems.forEach(function (item) {
-                item.addEventListener("click", function () {
-                    var value = this.getAttribute("data-value");
-                    var text = this.textContent;
-
-                    dropdownButton.textContent = text;
-                    dropdownButton.setAttribute("data-selected-value", value);
-                });
-            });
-        });
-    </script>
-
     <asp:UpdatePanel ID="pnlFiltro" runat="server">
         <ContentTemplate>
             <table>
                 <tr>
                     <td valign="bottom">
-                        <cc1:FieldDropDown ID="ddlPSQ" runat="server" CssClass="btn btn-sm btn-secondary btn-pesquisar" ValueField="Pesquisar por">
+                        <cc1:FieldDropDown ID="ddlPSQ" runat="server" CssClass="btn btn-sm btn-secondary btn-pesquisar" ValueField="Pesquisar por"
+                            OnSelectedIndexChanged="ddlPSQ_SelectedIndexChanged" AutoPostBack="true">
                             <asp:ListItem Value="0">Nome</asp:ListItem>
                             <asp:ListItem Value="1">CPF</asp:ListItem>
                         </cc1:FieldDropDown>
@@ -40,12 +24,13 @@
                     <td valign="bottom">
                         <label class="rotuloCaixaPesquisar">Descrição</label>
                         <div class="input-group input-group-sm">
-                            <cc1:FieldTextBox ID="txtPesquisa" runat="server" CssClass="form-control form-control-pesquisar" Width="250px" />
+                            <cc1:FieldTextBox ID="txtPesquisa" runat="server" CssClass="form-control form-control-pesquisar" Width="250px" onkeyup="convertToUppercase(event);" />
                         </div>
                         
                     </td>
                     <td valign="bottom">
-                        <asp:Button ID="btnConsultar" Text="Consultar" runat="server" CssClass="btn btn-sm btn-outline-dark" CausesValidation="true" />
+                        <asp:Button ID="btnConsultar" Text="Consultar" runat="server" CssClass="btn btn-sm btn-outline-dark" CausesValidation="true"
+                            OnClick="btnConsultar_Click" />
                     </td>
                 </tr>
             </table>
@@ -58,20 +43,20 @@
         ToolTip="Novo Registro" OnClick="btnNovo_Click" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentGrid" runat="server">
-    <asp:GridView ID="gvPessoas" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless custom-gridview"
-        OnRowCreated="gvPessoas_RowCreated" OnRowDataBound="gvPessoas_RowDataBound">
+    <asp:DataGrid ID="gvPessoas" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless custom-gridview"
+        OnItemCreated="gvPessoas_ItemCreated" OnItemDataBound="gvPessoas_ItemDataBound">
         <Columns>
-            <asp:BoundField DataField="NOME" HeaderText="Nome" />
-            <asp:BoundField DataField="CPF" HeaderText="CPF" />
-            <asp:BoundField DataField="DATA_NASC" HeaderText="Data de Nascimento" DataFormatString="{0:dd/MM/yyyy}" />
-            <asp:BoundField DataField="SEXO" HeaderText="Sexo" />
-            <asp:BoundField DataField="NOME_MAE" HeaderText="Nome da Mãe" />
-            <asp:BoundField DataField="CPF_MAE" HeaderText="CPF da Mãe" />
-            <asp:BoundField DataField="NOME_PAI" HeaderText="Nome do Pai" />
-            <asp:BoundField DataField="CPF_PAI" HeaderText="CPF do Pai" />
-            <asp:BoundField DataField="TELEFONE_RESIDENCIAL" HeaderText="Telefone Residencial" />
-            <asp:BoundField DataField="TELEFONE_CELULAR" HeaderText="Telefone Celular" />
-            <asp:BoundField DataField="EMAIL" HeaderText="E-mail" />
+            <asp:BoundColumn DataField="NOME" HeaderText="Nome" />
+            <asp:BoundColumn DataField="CPF" HeaderText="CPF" />
+            <asp:BoundColumn DataField="DATA_NASC" HeaderText="Data de Nascimento" DataFormatString="{0:dd/MM/yyyy}" />
+            <asp:BoundColumn DataField="SEXO" HeaderText="Sexo" />
+            <asp:BoundColumn DataField="NOME_MAE" HeaderText="Nome da Mãe" />
+            <asp:BoundColumn DataField="CPF_MAE" HeaderText="CPF da Mãe" />
+            <asp:BoundColumn DataField="NOME_PAI" HeaderText="Nome do Pai" />
+            <asp:BoundColumn DataField="CPF_PAI" HeaderText="CPF do Pai" />
+            <asp:BoundColumn DataField="TELEFONE_RESIDENCIAL" HeaderText="Telefone Residencial" />
+            <asp:BoundColumn DataField="TELEFONE_CELULAR" HeaderText="Telefone Celular" />
+            <asp:BoundColumn DataField="EMAIL" HeaderText="E-mail" />
         </Columns>
-    </asp:GridView>
+    </asp:DataGrid>
 </asp:Content>

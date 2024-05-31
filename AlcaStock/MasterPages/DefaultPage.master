@@ -1,4 +1,4 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeFile="DefaultPage.master.cs" Inherits="MasterPage" %>
+ï»¿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="DefaultPage.master.cs" Inherits="MasterPage" %>
 
 <%@ Register Src="Menu.ascx" TagName="menu" TagPrefix="uc1" %>
 <%@ Register Src="Topo.ascx" TagName="topo" TagPrefix="uc2" %>
@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
+        <meta http-equiv="Content-Type; X-UA-Compatible" content="text/html; charset=utf-8; IE=8,chrome=1"/>
         <title>ALCASTOCK - Sistema de Gerenciamento de Estoque</title>
         
         <link href="../Estilos/estilo_padrao.css" type="text/css" rel="stylesheet" />
@@ -56,7 +57,7 @@
                                             <table border="0" cellpadding="2" cellspacing="0" class="texto_menu" width="90%">
                                                 <tr>
                                                     <td height="40">
-                                                        <img src="Library/Images/preload.gif" align="middle" alt="" /> Efetuando solicitação ...
+                                                        <img src="Library/Images/preload.gif" align="middle" alt="" /> Efetuando solicitaï¿½ï¿½o ...
                                                     </td>
                                                 </tr>
                                             </table>

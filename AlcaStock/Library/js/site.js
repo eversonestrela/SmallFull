@@ -1,9 +1,4 @@
-﻿$(document).ready(function () {
-    var $seuCampoCpf = $("#txtCpf");
-    $seuCampoCpf.mask('000.000.000-00', { reverse: true });
-});
-
-function convertToUppercase(event) {
+﻿function convertToUppercase(event) {
     var input = event.target;
     input.value = input.value.toUpperCase();
 }
@@ -22,4 +17,15 @@ function maskPhone(event) {
     }
 
     input.value = value;
+}
+
+function formatarCPF(input) {
+    // Remove os caracteres não numéricos
+    let cpf = input.value.replace(/\D/g, '');
+
+    // Aplica a máscara
+    cpf = cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
+
+    // Atualiza o valor do campo
+    input.value = cpf;
 }

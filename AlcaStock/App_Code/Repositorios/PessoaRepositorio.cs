@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using Models;
 
 namespace Alcastock.Repositorios
@@ -35,15 +36,24 @@ namespace Alcastock.Repositorios
             }
         }
 
-        public List<PessoaModel> ConsultarPessoas()
+        public List<PessoaModel> ConsultarPessoas(string tipoConsulta, string descricao)
         {
             List<PessoaModel> pessoas = new List<PessoaModel>();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = @"SELECT CASE WHEN SEXO = 'M' THEN UPPER('Masculino') ELSE UPPER('Feminino') END AS SEXO, * FROM PESSOAS";
+                string query = @"
+                SELECT CASE WHEN SEXO = 'M' THEN UPPER('Masculino') ELSE UPPER('Feminino') END AS SEXO, * 
+                FROM PESSOAS
+                WHERE 1=1";
+
+                if (tipoConsulta == "0")
+                    query += " AND NOME LIKE @DESCRICAO";
+                else if (tipoConsulta == "1")
+                    query += " AND CPF LIKE @DESCRICAO";
 
                 SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@DESCRICAO", "%" + descricao + "%");
 
                 connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();

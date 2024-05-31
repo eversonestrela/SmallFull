@@ -13,9 +13,9 @@ namespace Alcastock.Controllers
             _repositorio = new PessoaRepositorio();
         }
 
-        public List<PessoaModel> ConsultarPessoas()
+        public List<PessoaModel> ConsultarPessoas(string tipoConsulta, string descricao)
         {
-            List<PessoaModel> pessoas = _repositorio.ConsultarPessoas();
+            List<PessoaModel> pessoas = _repositorio.ConsultarPessoas(tipoConsulta, descricao);
             return pessoas;
         }
 

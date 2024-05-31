@@ -56,36 +56,6 @@
                 }
             }
 
-            function somente_nm(par_tecla) {
-                var var_tecla = par_tecla.keyCode ? par_tecla.keyCode : par_tecla.which;
-                //alert(var_tecla);
-                if (var_tecla == 8 || var_tecla == 9) { return true; }
-                if (var_tecla == 83 || var_tecla == 32) { return true; }
-                if (var_tecla == 46) { return true; }
-                /* Teclas 0-9 */
-                if (var_tecla > 47 && var_tecla < 58) { return true; }
-                if (var_tecla > 16 && var_tecla < 21) { return true; }
-                alert("Este campo permite apenas números.");
-                return false;
-            }
-
-            function SuperTrim(obj) {
-
-                var texto = obj.value.trim();
-                var textAux = '';
-                var caracter = ''
-
-                for (var i = 0; i < texto.length; i++) {
-                    caracter = texto.charAt(i);
-                    if (caracter == ' ' && texto.charAt(i + 1) == ' ') {
-                        continue;
-                    }
-                    textAux += caracter;
-                }
-
-                document.getElementById(obj.id).value = textAux.trim();
-            }
-
         </script>
 
     </head>
@@ -121,7 +91,7 @@
                                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="erro" DisplayMode="BulletList"
                                     ShowMessageBox="True" ShowSummary="False"></asp:ValidationSummary>
                             </div>
-                            <div class="divToolbarBottom" style="height: 30px;">
+                            <div class="divToolbarBottom" style="height: 45px;">
                                 <asp:ContentPlaceHolder ID="ContentToolBar" runat="server">
                                 </asp:ContentPlaceHolder>
                             </div>

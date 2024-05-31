@@ -180,10 +180,8 @@
     </cc2:TabContainer>--%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentToolBar" runat="Server">
-    <cc1:ImageButtonHover ID="btnVoltar" runat="server" Imagem="../Library/Images/icones/voltar.gif"
-        CausesValidation="false" Texto="Voltar" ToolTip="Clique aqui para Voltar" OnClick="btnVoltar_Click"></cc1:ImageButtonHover>
-    <cc1:SeparadorToolBar ID="SeparadorToolBar7" Imagem="../Library/Images/Separador.gif"
-        runat="server"></cc1:SeparadorToolBar>
-    <cc1:ImageButtonHover ID="btnSalvar" runat="server" Imagem="../Library/Images/icones/Salvar.gif"
-        CausesValidation="true" Texto="Salvar" ToolTip="Clique aqui para salvar" OnClick="btnSalvar_Click"></cc1:ImageButtonHover>
+    <asp:LinkButton ID="btnVoltar" Text="<i class='fas fa-arrow-alt-circle-left'></i> Voltar" runat="server" CssClass="btn btn-sm btn-secondary" CausesValidation="true"
+        OnClick="btnVoltar_Click"/>
+    <asp:LinkButton ID="btnSalvar" Text="<i class='fas fa-save'></i> Salvar" runat="server" CssClass="btn btn-sm btn-primary" CausesValidation="true"
+        ToolTip="Clique aqui para salvar" OnClick="btnSalvar_Click" />
 </asp:Content>
