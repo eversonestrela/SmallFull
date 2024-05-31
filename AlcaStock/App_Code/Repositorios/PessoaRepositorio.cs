@@ -62,6 +62,49 @@ namespace Alcastock.Repositorios
                 {
                     PessoaModel pessoa = new PessoaModel
                     {
+                        PESSOA_ID = int.Parse(reader["PESSOA_ID"].ToString()),
+                        NOME = reader["NOME"].ToString(),
+                        CPF = reader["CPF"].ToString(),
+                        DATA_NASC = Convert.ToDateTime(reader["DATA_NASC"]),
+                        SEXO = reader["SEXO"].ToString(),
+                        NOME_MAE = reader["NOME_MAE"].ToString(),
+                        CPF_MAE = reader["CPF_MAE"].ToString(),
+                        NOME_PAI = reader["NOME_PAI"].ToString(),
+                        CPF_PAI = reader["CPF_PAI"].ToString(),
+                        TELEFONE_RESIDENCIAL = reader["TELEFONE_RESIDENCIAL"].ToString(),
+                        TELEFONE_CELULAR = reader["TELEFONE_CELULAR"].ToString(),
+                        EMAIL = reader["EMAIL"].ToString()
+                    };
+
+                    pessoas.Add(pessoa);
+                }
+            }
+
+            return pessoas;
+        }
+
+        public List<PessoaModel> ConsultarPessoaPorId(string pessoaId)
+        {
+            List<PessoaModel> pessoas = new List<PessoaModel>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"
+                SELECT CASE WHEN SEXO = 'M' THEN UPPER('Masculino') ELSE UPPER('Feminino') END AS SEXO, * 
+                FROM PESSOAS
+                WHERE PESSOA_ID = @PESSOA_ID";
+
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@PESSOA_ID", pessoaId);
+
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    PessoaModel pessoa = new PessoaModel
+                    {
+                        PESSOA_ID = int.Parse(reader["PESSOA_ID"].ToString()),
                         NOME = reader["NOME"].ToString(),
                         CPF = reader["CPF"].ToString(),
                         DATA_NASC = Convert.ToDateTime(reader["DATA_NASC"]),
@@ -112,7 +155,7 @@ namespace Alcastock.Repositorios
                 //System.Diagnostics.Debug.WriteLine(sqlDebug);
 
                 connection.Open();
-                cmd.ExecuteScalar();
+                cmd.ExecuteNonQuery();
             }
         }
 

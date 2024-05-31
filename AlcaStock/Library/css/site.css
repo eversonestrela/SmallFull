@@ -151,10 +151,6 @@
     border-bottom-right-radius: 5px !important;
 }
 
-input[type='file'] {
-    display: none;
-}
-
 #lbl_IMAGEM_PRODUTO {
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -406,4 +402,8 @@ input:disabled {
     margin-right: 5px;
     font-size: 13px !important;
     color: black !important;
+}
+
+.btn-pequeno {
+    font-size: 10px!important;
 }

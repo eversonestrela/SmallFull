@@ -7,10 +7,12 @@ namespace Alcastock.Controllers
     public class PessoaController
     {
         private readonly PessoaRepositorio _repositorio;
+        private readonly ArquivoPessoaRepositorio _repositorioArquivoPessoa;
 
         public PessoaController()
         {
             _repositorio = new PessoaRepositorio();
+            _repositorioArquivoPessoa = new ArquivoPessoaRepositorio();
         }
 
         public List<PessoaModel> ConsultarPessoas(string tipoConsulta, string descricao)
@@ -19,9 +21,32 @@ namespace Alcastock.Controllers
             return pessoas;
         }
 
+        public List<PessoaModel> ConsultarPessoaPorId(string pessoaId)
+        {
+            List<PessoaModel> pessoas = _repositorio.ConsultarPessoaPorId(pessoaId);
+            return pessoas;
+        }
+
         public void SalvarPessoa(PessoaModel pessoa)
         {
             _repositorio.Salvar(pessoa);
+        }
+
+        /* ARQUIVO PESSOAS */
+        public void SalvarImagem(ArquivoPessoaModel arquivoPessoa)
+        {
+            _repositorioArquivoPessoa.SalvarImagem(arquivoPessoa);
+        }
+
+        public List<ArquivoPessoaModel> ConsultarArquivoPessoasPorId(int? pessoaId)
+        {
+            List<ArquivoPessoaModel> arquivoPessoa = _repositorioArquivoPessoa.ConsultarArquivoPessoasPorId(pessoaId);
+            return arquivoPessoa;
+        }
+
+        public void DeletarImagem(int? pessoaId)
+        {
+            _repositorioArquivoPessoa.DeletarImagem(pessoaId);
         }
     }
 }

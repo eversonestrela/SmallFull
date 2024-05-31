@@ -43,20 +43,35 @@
         ToolTip="Novo Registro" OnClick="btnNovo_Click" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentGrid" runat="server">
-    <asp:DataGrid ID="gvPessoas" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless custom-gridview"
-        OnItemCreated="gvPessoas_ItemCreated" OnItemDataBound="gvPessoas_ItemDataBound">
-        <Columns>
-            <asp:BoundColumn DataField="NOME" HeaderText="Nome" />
-            <asp:BoundColumn DataField="CPF" HeaderText="CPF" />
-            <asp:BoundColumn DataField="DATA_NASC" HeaderText="Data de Nascimento" DataFormatString="{0:dd/MM/yyyy}" />
-            <asp:BoundColumn DataField="SEXO" HeaderText="Sexo" />
-            <asp:BoundColumn DataField="NOME_MAE" HeaderText="Nome da Mãe" />
-            <asp:BoundColumn DataField="CPF_MAE" HeaderText="CPF da Mãe" />
-            <asp:BoundColumn DataField="NOME_PAI" HeaderText="Nome do Pai" />
-            <asp:BoundColumn DataField="CPF_PAI" HeaderText="CPF do Pai" />
-            <asp:BoundColumn DataField="TELEFONE_RESIDENCIAL" HeaderText="Telefone Residencial" />
-            <asp:BoundColumn DataField="TELEFONE_CELULAR" HeaderText="Telefone Celular" />
-            <asp:BoundColumn DataField="EMAIL" HeaderText="E-mail" />
-        </Columns>
-    </asp:DataGrid>
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <asp:DataGrid ID="gvPessoas" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless custom-gridview"
+                OnItemCreated="gvPessoas_ItemCreated" OnItemDataBound="gvPessoas_ItemDataBound" OnItemCommand="gvPessoas_ItemCommand">
+                <Columns>
+                    <asp:TemplateColumn HeaderText="Editar">
+                        <HeaderStyle HorizontalAlign="Center" Width="30px"></HeaderStyle>
+                        <ItemStyle Wrap="False" HorizontalAlign="Center"></ItemStyle>
+                        <ItemTemplate>
+                            <asp:ImageButton ID="imgbtnEditar" CausesValidation="false" ImageUrl="~/Library/Images/icones/edit.PNG"
+                                runat="server" CommandName="editar" ToolTip="Clique aqui para Editar este registro">
+                            </asp:ImageButton>
+                        </ItemTemplate>
+                    </asp:TemplateColumn>
+                    <asp:BoundColumn DataField="PESSOA_ID" HeaderText="ID" Visible="false" />
+                    <asp:BoundColumn DataField="NOME" HeaderText="Nome" />
+                    <asp:BoundColumn DataField="CPF" HeaderText="CPF" />
+                    <asp:BoundColumn DataField="DATA_NASC" HeaderText="Data de Nascimento" DataFormatString="{0:dd/MM/yyyy}" />
+                    <asp:BoundColumn DataField="SEXO" HeaderText="Sexo" />
+                    <asp:BoundColumn DataField="NOME_MAE" HeaderText="Nome da Mãe" />
+                    <asp:BoundColumn DataField="CPF_MAE" HeaderText="CPF da Mãe" />
+                    <asp:BoundColumn DataField="NOME_PAI" HeaderText="Nome do Pai" />
+                    <asp:BoundColumn DataField="CPF_PAI" HeaderText="CPF do Pai" />
+                    <asp:BoundColumn DataField="TELEFONE_RESIDENCIAL" HeaderText="Telefone Residencial" />
+                    <asp:BoundColumn DataField="TELEFONE_CELULAR" HeaderText="Telefone Celular" />
+                    <asp:BoundColumn DataField="EMAIL" HeaderText="E-mail" />
+                </Columns>
+            </asp:DataGrid>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    
 </asp:Content>

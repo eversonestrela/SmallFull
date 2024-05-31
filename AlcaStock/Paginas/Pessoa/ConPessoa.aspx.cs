@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 
 public partial class Paginas_Pessoa_ConPessoa : AppBasePage
 {
+    #region Events
     protected void Page_Load(object sender, EventArgs e)
     {
         ((MasterPages_Consulta)Master).Titulo = "Consulta de Pessoas";
@@ -13,25 +14,13 @@ public partial class Paginas_Pessoa_ConPessoa : AppBasePage
 
         if (!IsPostBack)
         {
-            //Consultar("", "");
+            Consultar("", "");
         }
     }
 
     protected void btnNovo_Click(object sender, EventArgs e)
     {
         Response.Redirect("CadPessoa?ACAO=Novo");
-    }
-
-    private void Consultar(string tipoConsulta, string descricao)
-    {
-        PessoaController pessoaController = new PessoaController();
-        List<PessoaModel> pessoas = pessoaController.ConsultarPessoas(tipoConsulta, descricao);
-
-        if (pessoas.Count == 0)
-            pessoas = null;
-
-        gvPessoas.DataSource = pessoas;
-        gvPessoas.DataBind();
     }
 
     protected void btnConsultar_Click(object sender, EventArgs e)
@@ -57,6 +46,14 @@ public partial class Paginas_Pessoa_ConPessoa : AppBasePage
         }
     }
 
+    protected void gvPessoas_ItemCommand(object source, DataGridCommandEventArgs e)
+    {
+        if (e.CommandName == "editar")
+        {
+            Response.Redirect("CadPessoa?acao=Editar&id=" + e.Item.Cells[1].Text);
+        }
+    }
+
     protected void ddlPSQ_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlPSQ.SelectedValue == "1")
@@ -70,4 +67,29 @@ public partial class Paginas_Pessoa_ConPessoa : AppBasePage
             txtPesquisa.MaxLength = int.MaxValue;
         }
     }
+    #endregion Events
+
+    #region Metodos
+    private void Consultar(string tipoConsulta, string descricao)
+    {
+        PessoaController pessoaController = new PessoaController();
+        List<PessoaModel> pessoas = pessoaController.ConsultarPessoas(tipoConsulta, descricao);
+
+        if (pessoas == null || pessoas.Count == 0)
+        {
+            gvPessoas.Columns[0].Visible = false;
+            pessoas = new List<PessoaModel>
+            {
+                new PessoaModel { NOME = "Nenhum registro encontrado" }
+            };
+        }
+        else
+        {
+            gvPessoas.Columns[0].Visible = true;
+        }
+
+        gvPessoas.DataSource = pessoas;
+        gvPessoas.DataBind();
+    }
+    #endregion Metodos
 }
