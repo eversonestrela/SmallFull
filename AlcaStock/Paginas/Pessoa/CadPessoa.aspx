@@ -5,10 +5,14 @@
 <%@ Register Assembly="AGENDA.Controles" Namespace="AGENDA.Controles.UI" TagPrefix="cc3" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCampos" runat="server">
-    <link href="../Library/JQuery/css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet"
-    type="text/css" />
-    <script src="../Library/JQuery/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
-    <script src="../Library/Scripts/jquery.meiomask.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Aplica o datepicker ao controle de data
+            $('.datepicker').datepicker();
+        });
+    </script>
+
 
     <style type="text/css">
         .espaco-table {
@@ -84,16 +88,8 @@
                                             </cc3:FieldDropDown>                                
                                         </td>
                                         <td class="pdr-10">
-                                            <asp:UpdatePanel runat="server">
-                                                <ContentTemplate>
-                                                    <cc3:FieldTextBox ID="txt_PESSOAS_DATA_NASC" runat="server" ValueField="Data de Nasc."
-                                                        Style="width: 100px;" CssClass="date input-cadastro" MaxLength="10" Obrigatorio="true" />
-                                                    <asp:ImageButton runat="Server" ID="ImageButton1" ImageUrl="~/Library/Images/icones/Calendario.gif"
-                                                        AlternateText="Visualizar Calendário" CausesValidation="false" /><br />
-                                                    <cc2:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_PESSOAS_DATA_NASC"
-                                                        PopupButtonID="ImageButton1" Animated="true" Format="dd/MM/yyyy" />
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
+                                            <cc3:FieldTextBox ID="txt_PESSOAS_DATA_NASC" runat="server" ValueField="Data de Nasc."
+                                                Style="width: 100px;" CssClass="datepicker" MaxLength="10" Obrigatorio="true" />
                                         </td>
                                     </tr>
                                 </table>
@@ -182,7 +178,7 @@
                     </table>
                 </div>
                 <div class="tab-pane fade" id="endereco" role="tabpanel" aria-labelledby="enderecoTab">teste2</div>
-                <div class="tab-pane fade" id="arquivos" role="tabpanel" aria-labelledby="arquivosTab" runat="server" visible="false">
+                <div class="tab-pane fade" id="arquivos" role="tabpanel" aria-labelledby="arquivosTab">
                     <br />
                     <table width="100%">
                         <tr>

@@ -48,6 +48,15 @@
             <asp:DataGrid ID="gvPessoas" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless custom-gridview"
                 OnItemCreated="gvPessoas_ItemCreated" OnItemDataBound="gvPessoas_ItemDataBound" OnItemCommand="gvPessoas_ItemCommand">
                 <Columns>
+                    <asp:TemplateColumn HeaderText="Excluir">
+                        <HeaderStyle HorizontalAlign="Center" Width="30px"></HeaderStyle>
+                        <ItemStyle Wrap="False" HorizontalAlign="Center"></ItemStyle>
+                        <ItemTemplate>
+                            <asp:ImageButton ID="imgbtnExcluir" CausesValidation="false" ImageUrl="~/Library/Images/icones/close.png"
+                                runat="server" CommandName="excluir" ToolTip="Clique aqui para Excluir este registro">
+                            </asp:ImageButton>
+                        </ItemTemplate>
+                    </asp:TemplateColumn>
                     <asp:TemplateColumn HeaderText="Editar">
                         <HeaderStyle HorizontalAlign="Center" Width="30px"></HeaderStyle>
                         <ItemStyle Wrap="False" HorizontalAlign="Center"></ItemStyle>

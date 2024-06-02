@@ -63,6 +63,15 @@ namespace Alcastock.Repositorios
                     cmd.Parameters.Add(parms[i]);
                 }
 
+                string sqlDebug = query;
+                foreach (SqlParameter param in cmd.Parameters)
+                {
+                    sqlDebug = sqlDebug.Replace(param.ParameterName, param.Value.ToString());
+                }
+
+                // Registrar ou exibir a string SQL final para depuração
+                System.Diagnostics.Debug.WriteLine(sqlDebug);
+
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }
