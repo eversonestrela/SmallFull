@@ -159,6 +159,55 @@ namespace Alcastock.Repositorios
             }
         }
 
+        /// <summary>
+        /// Método para atualizar a pessoa
+        /// </summary>
+        /// <param name="pessoa">Model PESSOAS</param>
+        public void AtualizarPessoa(int pessoaId, PessoaModel pessoa)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"
+                    SET DATEFORMAT DMY;
+                    UPDATE PESSOAS
+                    SET NOME = @NOME, CPF = @CPF, DATA_NASC = @DATA_NASC, SEXO = @SEXO, NOME_MAE = @NOME_MAE,
+                    CPF_MAE = @CPF_MAE, NOME_PAI = @NOME_PAI, CPF_PAI = @CPF_PAI, TELEFONE_RESIDENCIAL = @TELEFONE_RESIDENCIAL,
+                    TELEFONE_CELULAR = @TELEFONE_CELULAR, EMAIL = @EMAIL, SIS_USUARIO_UPDATE = @SIS_USUARIO_UPDATE, SIS_DATA_UPDATE = @SIS_DATA_UPDATE
+                    WHERE PESSOA_ID = @PESSOA_ID";
+
+                SqlCommand cmd = new SqlCommand(query, connection);
+                SqlParameter[] parms = GetSqlParameterArray(pessoa);
+                for (int i = 0; i <= parms.Length - 1; i++)
+                {
+                    cmd.Parameters.Add(parms[i]);
+                }
+
+                cmd.Parameters.AddWithValue("@PESSOA_ID", pessoaId);
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Método para excluir a pessoa e suas dependencias
+        /// </summary>
+        /// <param name="pessoa">PESSOA_ID</param>
+        public void ExcluirPessoa(int pessoaId)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"
+                    DELETE ARQUIVOS_PESSOAS WHERE PESSOA_ID = @PESSOA_ID;
+                    DELETE PESSOAS WHERE PESSOA_ID = @PESSOA_ID;";
+
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@PESSOA_ID", pessoaId);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         #region Parameters
 
         public static SqlParameter[] GetSqlParameterArray()

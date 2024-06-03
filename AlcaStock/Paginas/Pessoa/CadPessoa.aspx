@@ -5,11 +5,9 @@
 <%@ Register Assembly="AGENDA.Controles" Namespace="AGENDA.Controles.UI" TagPrefix="cc3" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCampos" runat="server">
-    <link href="../Library/JQuery/css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet"
-    type="text/css" />
-    <script src="../Library/JQuery/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
-    <script src="../Library/Scripts/jquery.meiomask.js" type="text/javascript"></script>
 
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/redmond/jquery-ui.css">
+    
     <style type="text/css">
         .espaco-table {
             color: #000;
@@ -34,6 +32,11 @@
 
         #divErros {
             overflow: hidden; /* Para evitar que o conteúdo "escape" do container */
+        }
+
+        .ui-datepicker {
+            font-size: 8px; /* Ajuste o tamanho da fonte conforme necessário */
+            width: 20em!important;
         }
     </style>
 
@@ -84,16 +87,8 @@
                                             </cc3:FieldDropDown>                                
                                         </td>
                                         <td class="pdr-10">
-                                            <asp:UpdatePanel runat="server">
-                                                <ContentTemplate>
-                                                    <cc3:FieldTextBox ID="txt_PESSOAS_DATA_NASC" runat="server" ValueField="Data de Nasc."
-                                                        Style="width: 100px;" CssClass="date input-cadastro" MaxLength="10" Obrigatorio="true" />
-                                                    <asp:ImageButton runat="Server" ID="ImageButton1" ImageUrl="~/Library/Images/icones/Calendario.gif"
-                                                        AlternateText="Visualizar Calendário" CausesValidation="false" /><br />
-                                                    <cc2:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_PESSOAS_DATA_NASC"
-                                                        PopupButtonID="ImageButton1" Animated="true" Format="dd/MM/yyyy" />
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
+                                            <cc3:FieldTextBox ID="txt_PESSOAS_DATA_NASC" runat="server" ValueField="Data de Nasc."
+                                                Style="width: 100px;" CssClass="date input-cadastro" MaxLength="10" Obrigatorio="true" />
                                         </td>
                                     </tr>
                                 </table>

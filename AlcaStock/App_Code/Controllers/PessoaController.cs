@@ -32,6 +32,16 @@ namespace Alcastock.Controllers
             _repositorio.Salvar(pessoa);
         }
 
+        public void AtualizarPessoa(int pessoaId, PessoaModel pessoa)
+        {
+            _repositorio.AtualizarPessoa(pessoaId, pessoa);
+        }
+
+        public void ExcluirPessoa(int pessoaId)
+        {
+            _repositorio.ExcluirPessoa(pessoaId);
+        }
+
         /* ARQUIVO PESSOAS */
         public void SalvarImagem(ArquivoPessoaModel arquivoPessoa)
         {
