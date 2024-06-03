@@ -5,10 +5,7 @@
 <%@ Register Assembly="AGENDA.Controles" Namespace="AGENDA.Controles.UI" TagPrefix="cc3" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCampos" runat="server">
-    <link href="../Library/JQuery/css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet"
-    type="text/css" />
-    <script src="../Library/JQuery/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
-    <script src="../Library/Scripts/jquery.meiomask.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/redmond/jquery-ui.css">
 
     <style type="text/css">
         .espaco-table {
@@ -34,6 +31,11 @@
 
         #divErros {
             overflow: hidden; /* Para evitar que o conteúdo "escape" do container */
+        }
+
+        .ui-datepicker {
+            font-size: 8px; /* Ajuste o tamanho da fonte conforme necessário */
+            width: 20em!important;
         }
     </style>
 
