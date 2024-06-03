@@ -50,7 +50,7 @@ public partial class Paginas_Pessoa_ConPessoa : AppBasePage
     {
         if (e.CommandName == "editar")
         {
-            Response.Redirect("CadPessoa?acao=Editar&id=" + e.Item.Cells[2].Text);
+            Response.Redirect("CadPessoa?acao=Editar&id=" + e.Item.Cells[1].Text);
         }
     }
 
@@ -78,7 +78,6 @@ public partial class Paginas_Pessoa_ConPessoa : AppBasePage
         if (pessoas == null || pessoas.Count == 0)
         {
             gvPessoas.Columns[0].Visible = false;
-            gvPessoas.Columns[1].Visible = false;
             pessoas = new List<PessoaModel>
             {
                 new PessoaModel { NOME = "Nenhum registro encontrado" }
@@ -87,7 +86,6 @@ public partial class Paginas_Pessoa_ConPessoa : AppBasePage
         else
         {
             gvPessoas.Columns[0].Visible = true;
-            gvPessoas.Columns[1].Visible = true;
         }
 
         gvPessoas.DataSource = pessoas;

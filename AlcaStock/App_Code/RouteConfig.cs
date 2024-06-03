@@ -15,7 +15,6 @@ namespace AlcaStock
             routes.EnableFriendlyUrls(settings);
 
             // Adicionar rotas personalizadas
-            routes.RouteExistingFiles = true;
             routes.MapPageRoute("Inicio", "Inicio", "~/Inicial.aspx");
             routes.MapPageRoute("ConPessoaRoute", "Pessoa/ConPessoa", "~/Paginas/Pessoa/ConPessoa.aspx");
             routes.MapPageRoute("CadPessoaRoute", "Pessoa/CadPessoa", "~/Paginas/Pessoa/CadPessoa.aspx");

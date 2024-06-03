@@ -163,6 +163,7 @@ public partial class Paginas_Pessoa_CadPessoa : AppBasePage
             trImagem.Visible = true;
             tdImagem.Visible = true;
             arquivosTab.Visible = true;
+            arquivos.Visible = true;
             PreencheCampos();
         }
     }
