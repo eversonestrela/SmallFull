@@ -30,11 +30,6 @@ public partial class Paginas_Pessoa_CadPessoa : AppBasePage
         if (Request.QueryString["id"] != null)
             _ID = Request.QueryString["id"].ToString();
 
-        if (_ACAO == "Excluir")
-        {
-            ExcluirPessoa();
-        }
-
         if (!IsPostBack)
         {
             ConfiguraTela();
@@ -63,64 +58,39 @@ public partial class Paginas_Pessoa_CadPessoa : AppBasePage
 
         if (string.IsNullOrWhiteSpace(erro))
         {
-            PessoaController p = new PessoaController();
             string cpf = txt_PESSOAS_CPF_CNPJ.Text;
 
-            if (_ACAO == "Novo")
+            PessoaRepositorio pessoaRepositorio = new PessoaRepositorio();
+            if (pessoaRepositorio.CpfUnique(cpf))
             {
-                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio();
-                if (pessoaRepositorio.CpfUnique(cpf))
-                {
-                    divErros.Visible = true;
-                    lblErros.Text = "Este CPF já está cadastrado.";
-                    return;
-                }
-
-                PessoaModel pessoaModel = new PessoaModel
-                {
-                    NOME = txt_PESSOAS_NOME.Text,
-                    CPF = txt_PESSOAS_CPF_CNPJ.Text,
-                    SEXO = ddl_PESSOAS_SEXO.SelectedValue,
-                    DATA_NASC = Convert.ToDateTime(txt_PESSOAS_DATA_NASC.Text),
-                    NOME_MAE = txt_PESSOAS_NOME_MAE.Text,
-                    CPF_MAE = txt_PESSOAS_CPF_MAE.Text,
-                    NOME_PAI = txt_PESSOAS_NOME_PAI.Text,
-                    CPF_PAI = txt_PESSOAS_CPF_PAI.Text,
-                    TELEFONE_RESIDENCIAL = txt_PESSOAS_TELEFONE_RESIDENCIAL.Text,
-                    TELEFONE_CELULAR = txt_PESSOAS_TELEFONE_CELULAR.Text,
-                    EMAIL = txt_PESSOAS_EMAIL.Text,
-                    SIS_USUARIO_INSERT = "Pedro Wenner",
-                    SIS_DATA_INSERT = DateTime.Now
-                };
-
-                p.SalvarPessoa(pessoaModel);
-                Response.Cookies["MsgSucesso"].Value = "Pessoa adicionada com sucesso!";
+                divErros.Visible = true;
+                lblErros.Text = "Este CPF já está cadastrado.";
+                return;
             }
-            else if (_ACAO == "Editar")
+
+            PessoaModel pessoaModel = new PessoaModel
             {
-                PessoaModel pessoaModel = new PessoaModel
-                {
-                    NOME = txt_PESSOAS_NOME.Text,
-                    CPF = txt_PESSOAS_CPF_CNPJ.Text,
-                    SEXO = ddl_PESSOAS_SEXO.SelectedValue,
-                    DATA_NASC = Convert.ToDateTime(txt_PESSOAS_DATA_NASC.Text),
-                    NOME_MAE = txt_PESSOAS_NOME_MAE.Text,
-                    CPF_MAE = txt_PESSOAS_CPF_MAE.Text,
-                    NOME_PAI = txt_PESSOAS_NOME_PAI.Text,
-                    CPF_PAI = txt_PESSOAS_CPF_PAI.Text,
-                    TELEFONE_RESIDENCIAL = txt_PESSOAS_TELEFONE_RESIDENCIAL.Text,
-                    TELEFONE_CELULAR = txt_PESSOAS_TELEFONE_CELULAR.Text,
-                    EMAIL = txt_PESSOAS_EMAIL.Text,
-                    SIS_USUARIO_UPDATE = "Pedro Wenner",
-                    SIS_DATA_UPDATE = DateTime.Now
-                };
+                NOME = txt_PESSOAS_NOME.Text,
+                CPF = txt_PESSOAS_CPF_CNPJ.Text,
+                SEXO = ddl_PESSOAS_SEXO.SelectedValue,
+                DATA_NASC = Convert.ToDateTime(txt_PESSOAS_DATA_NASC.Text),
+                NOME_MAE = txt_PESSOAS_NOME_MAE.Text,
+                CPF_MAE = txt_PESSOAS_CPF_MAE.Text,
+                NOME_PAI = txt_PESSOAS_NOME_PAI.Text,
+                CPF_PAI = txt_PESSOAS_CPF_PAI.Text,
+                TELEFONE_RESIDENCIAL = txt_PESSOAS_TELEFONE_RESIDENCIAL.Text,
+                TELEFONE_CELULAR = txt_PESSOAS_TELEFONE_CELULAR.Text,
+                EMAIL = txt_PESSOAS_EMAIL.Text,
+                SIS_USUARIO_INSERT = "Pedro Wenner",
+                SIS_DATA_INSERT = DateTime.Now
+            };
 
-                p.AtualizarPessoa(int.Parse(_ID), pessoaModel);
-                Response.Cookies["MsgSucesso"].Value = "Pessoa atualizada com sucesso!";
-            }
+            PessoaController p = new PessoaController();
+            p.SalvarPessoa(pessoaModel);
 
             // Após o salvamento bem-sucedido, define um cookie para indicar que o modal deve ser exibido
             Response.Cookies["Sucesso"].Value = "true";
+            Response.Cookies["MsgSucesso"].Value = "Pessoa adicionada com sucesso!";
             Response.Cookies["Sucesso"].Expires = DateTime.Now.AddSeconds(1); // Define o tempo de expiração do cookie
             Response.Cookies["MsgSucesso"].Expires = DateTime.Now.AddSeconds(1); // Define o tempo de expiração do cookie
 
@@ -185,15 +155,6 @@ public partial class Paginas_Pessoa_CadPessoa : AppBasePage
         }
     }
 
-    protected void btnDeletaFoto_Click(object sender, EventArgs e)
-    {
-        PessoaController pessoaController = new PessoaController();
-        PessoaModel pessoa = ConsultaPessoa();
-        pessoaController.DeletarImagem(pessoa.PESSOA_ID);
-
-        ConsultaFoto();
-    }
-
     #region Metodos
     private void ConfiguraTela()
     {
@@ -203,9 +164,6 @@ public partial class Paginas_Pessoa_CadPessoa : AppBasePage
             tdImagem.Visible = true;
             arquivosTab.Visible = true;
             arquivos.Visible = true;
-            txt_PESSOAS_CPF_CNPJ.Enabled = false;
-            txt_PESSOAS_CPF_CNPJ.ToolTip = "Não é permitido a edição do CPF.";
-            btnSalvar.Text = "<i class='fas fa-save'></i> Atualizar";
             PreencheCampos();
         }
     }
@@ -296,20 +254,14 @@ public partial class Paginas_Pessoa_CadPessoa : AppBasePage
         ConsultaFoto();
     }
 
-    private void ExcluirPessoa()
-    {
-        PessoaController p = new PessoaController();
-
-        p.ExcluirPessoa(int.Parse(_ID));
-        Response.Cookies["Sucesso"].Value = "true";
-        Response.Cookies["Sucesso"].Expires = DateTime.Now.AddSeconds(1); // Define o tempo de expiração do cookie
-        Response.Cookies["MsgSucesso"].Value = "Pessoa deletada com sucesso!";
-        Response.Cookies["MsgSucesso"].Expires = DateTime.Now.AddSeconds(1); // Define o tempo de expiração do cookie
-
-        // Redireciona para a página de destino
-        Response.Redirect("/Pessoa/ConPessoa");
-    }
-
     #endregion Metodos
 
+    protected void btnDeletaFoto_Click(object sender, EventArgs e)
+    {
+        PessoaController pessoaController = new PessoaController();
+        PessoaModel pessoa = ConsultaPessoa();
+        pessoaController.DeletarImagem(pessoa.PESSOA_ID);
+
+        ConsultaFoto();
+    }
 }
