@@ -1,4 +1,6 @@
 using Alcastock.Repositorios;
+using Models;
+using System.Collections.Generic;
 
 namespace Alcastock.Controllers
 {
@@ -8,6 +10,12 @@ namespace Alcastock.Controllers
         public ProdutoController()
         {
             _repositorio = new ProdutoRepositorio();
+        }
+
+        public List<ProdutoModel> ConsultarProdutos(string tipoConsulta, string descricao)
+        {
+            List<ProdutoModel> produtos = _repositorio.Consultar(tipoConsulta, descricao);
+            return produtos;
         }
     }
 }

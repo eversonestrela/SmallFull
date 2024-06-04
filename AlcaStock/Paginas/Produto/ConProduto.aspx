@@ -11,10 +11,8 @@
             <table>
                 <tr>
                     <td valign="bottom">
-                        <cc1:FieldDropDown ID="ddlPSQ" runat="server" CssClass="btn btn-sm btn-secondary btn-pesquisar" ValueField="Pesquisar por"
-                            OnSelectedIndexChanged="ddlPSQ_SelectedIndexChanged" AutoPostBack="true">
+                        <cc1:FieldDropDown ID="ddlPSQ" runat="server" CssClass="btn btn-sm btn-secondary btn-pesquisar" ValueField="Pesquisar por">
                             <asp:ListItem Value="0">Nome</asp:ListItem>
-                            <asp:ListItem Value="1">CPF</asp:ListItem>
                         </cc1:FieldDropDown>
                     </td>
                     <td valign="bottom">
@@ -62,18 +60,14 @@
                             </asp:ImageButton>
                         </ItemTemplate>
                     </asp:TemplateColumn>
-                    <asp:BoundColumn DataField="PESSOA_ID" HeaderText="ID" Visible="false" />
-                    <asp:BoundColumn DataField="NOME" HeaderText="Nome" />
-                    <asp:BoundColumn DataField="CPF" HeaderText="CPF" />
-                    <asp:BoundColumn DataField="DATA_NASC" HeaderText="Data de Nascimento" DataFormatString="{0:dd/MM/yyyy}" />
-                    <asp:BoundColumn DataField="SEXO" HeaderText="Sexo" />
-                    <asp:BoundColumn DataField="NOME_MAE" HeaderText="Nome da Mãe" />
-                    <asp:BoundColumn DataField="CPF_MAE" HeaderText="CPF da Mãe" />
-                    <asp:BoundColumn DataField="NOME_PAI" HeaderText="Nome do Pai" />
-                    <asp:BoundColumn DataField="CPF_PAI" HeaderText="CPF do Pai" />
-                    <asp:BoundColumn DataField="TELEFONE_RESIDENCIAL" HeaderText="Telefone Residencial" />
-                    <asp:BoundColumn DataField="TELEFONE_CELULAR" HeaderText="Telefone Celular" />
-                    <asp:BoundColumn DataField="EMAIL" HeaderText="E-mail" />
+                    <asp:BoundColumn DataField="PRODUTO_ID" HeaderText="ID" Visible="false" />
+                    <asp:BoundColumn DataField="CODIGO" HeaderText="Código" />
+                    <asp:BoundColumn DataField="TIPO" HeaderText="Tipo" />
+                    <asp:BoundColumn DataField="NOME" HeaderText="Descrição" />
+                    <asp:BoundColumn DataField="MARCA" HeaderText="Marca" />
+                    <asp:BoundColumn DataField="ESTOQUE_ATUAL" HeaderText="Estoque atual" />
+                    <asp:BoundColumn DataField="STATUS" HeaderText="Status" />
+                    <asp:BoundColumn DataField="SIS_DATA_INSERT" HeaderText="Data Cadastro" DataFormatString="{0:dd/MM/yyyy}" />
                 </Columns>
             </asp:DataGrid>
         </ContentTemplate>

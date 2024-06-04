@@ -58,34 +58,21 @@ public partial class Paginas_Pessoa_ConProduto : AppBasePage
         }
     }
 
-    protected void ddlPSQ_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlPSQ.SelectedValue == "1")
-        {
-            txtPesquisa.Attributes.Add("oninput", "formatarCPF(this)");
-            txtPesquisa.MaxLength = 11;
-        }
-        else
-        {
-            txtPesquisa.Attributes.Remove("oninput");
-            txtPesquisa.MaxLength = int.MaxValue;
-        }
-    }
     #endregion Events
 
     #region Metodos
     private void Consultar(string tipoConsulta, string descricao)
     {
-        PessoaController pessoaController = new PessoaController();
-        List<PessoaModel> pessoas = pessoaController.ConsultarPessoas(tipoConsulta, descricao);
+        ProdutoController produtoController = new ProdutoController();
+        List<ProdutoModel> produtos = produtoController.ConsultarProdutos(tipoConsulta, descricao);
 
-        if (pessoas == null || pessoas.Count == 0)
+        if (produtos == null || produtos.Count == 0)
         {
             gvProdutos.Columns[0].Visible = false;
             gvProdutos.Columns[1].Visible = false;
-            pessoas = new List<PessoaModel>
+            produtos = new List<ProdutoModel>
             {
-                new PessoaModel { NOME = "Nenhum registro encontrado" }
+                new ProdutoModel { CODIGO = "Nenhum registro encontrado" }
             };
         }
         else
@@ -94,7 +81,7 @@ public partial class Paginas_Pessoa_ConProduto : AppBasePage
             gvProdutos.Columns[1].Visible = true;
         }
 
-        gvProdutos.DataSource = pessoas;
+        gvProdutos.DataSource = produtos;
         gvProdutos.DataBind();
     }
     #endregion Metodos
