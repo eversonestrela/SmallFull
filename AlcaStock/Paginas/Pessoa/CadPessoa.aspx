@@ -5,42 +5,8 @@
 <%@ Register Assembly="AGENDA.Controles" Namespace="AGENDA.Controles.UI" TagPrefix="cc3" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCampos" runat="server">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/redmond/jquery-ui.css">
-
-    <style type="text/css">
-        .espaco-table {
-            color: #000;
-        }
-
-        .espaco-table td {
-            padding-right: 10px;
-        }
-
-        #btnClose {
-            float:right;
-            width: 25px;
-            height: 25px;
-            border: none;
-            position: relative;
-            z-index: 100;
-            margin-right: -23px;
-            margin-top: -23px;
-            border-radius: 25em;
-            font-weight: bolder;
-        }
-
-        #divErros {
-            overflow: hidden; /* Para evitar que o conteúdo "escape" do container */
-        }
-
-        .ui-datepicker {
-            font-size: 8px; /* Ajuste o tamanho da fonte conforme necessário */
-            width: 20em!important;
-        }
-    </style>
-
+    
     <asp:HiddenField ID="txtPESSOA_ID" runat="server" />
-
 
     <div class="d-flex justify-content-center">
         <div class="p-3 mb-2 bg-danger text-white w-50" runat="server" id="divErros" visible="false">
@@ -86,16 +52,18 @@
                                             </cc3:FieldDropDown>                                
                                         </td>
                                         <td class="pdr-10">
-                                            <asp:UpdatePanel runat="server">
-                                                <ContentTemplate>
-                                                    <cc3:FieldTextBox ID="txt_PESSOAS_DATA_NASC" runat="server" ValueField="Data de Nasc."
-                                                        Style="width: 100px;" CssClass="date input-cadastro" MaxLength="10" Obrigatorio="true" />
-                                                    <asp:ImageButton runat="Server" ID="ImageButton1" ImageUrl="~/Library/Images/icones/Calendario.gif"
-                                                        AlternateText="Visualizar Calendário" CausesValidation="false" /><br />
-                                                    <cc2:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_PESSOAS_DATA_NASC"
-                                                        PopupButtonID="ImageButton1" Animated="true" Format="dd/MM/yyyy" />
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
+                                            <asp:Label runat="server" Font-Bold="true" CssClass="rotuloObrigatorio">Data Nasc.</asp:Label>
+                                            <div class="input-group">
+                                                <cc3:FieldTextBox ID="txt_PESSOAS_DATA_NASC" runat="server"
+                                                    Style="width: 100px;" CssClass="date input-cadastro" MaxLength="10" />
+                                                <cc2:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_PESSOAS_DATA_NASC"
+                                                    PopupButtonID="ImageButton1" Animated="true" Format="dd/MM/yyyy" />
+                                                <div class="input-group-append">
+                                                    <button type="button" class="iconeDate" style="border: none; background: none;" >
+                                                        <i class="fas fa-calendar-alt fa-lg"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 </table>

@@ -24,6 +24,7 @@ public partial class Paginas_Pessoa_CadPessoa : AppBasePage
     protected void Page_Load(object sender, EventArgs e)
     {
         ((MasterPages_Cadastro)Master).Titulo = "Cadastro de Pessoas";
+        divErros.Visible = false;
 
         if (Request.QueryString["acao"] != null)
             _ACAO = Request.QueryString["acao"].ToString();
@@ -180,7 +181,8 @@ public partial class Paginas_Pessoa_CadPessoa : AppBasePage
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "MSG", "<script>alert('Favor informar a imagem que será anexada.');</script>", false);
+                divErros.Visible = true;
+                lblErros.Text = "Favor informar a imagem que será anexada.";
             }
         }
     }
