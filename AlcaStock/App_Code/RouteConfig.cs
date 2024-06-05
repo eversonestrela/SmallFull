@@ -18,7 +18,8 @@ namespace AlcaStock
             routes.MapPageRoute("Inicio", "Inicio", "~/Inicial.aspx");
             routes.MapPageRoute("ConPessoaRoute", "Pessoa/ConPessoa", "~/Paginas/Pessoa/ConPessoa.aspx");
             routes.MapPageRoute("CadPessoaRoute", "Pessoa/CadPessoa", "~/Paginas/Pessoa/CadPessoa.aspx");
-            routes.MapPageRoute("CadProdutoRoute", "Produto/ConProduto", "~/Paginas/Produto/ConProduto.aspx");
+            routes.MapPageRoute("ConProdutoRoute", "Produto/ConProduto", "~/Paginas/Produto/ConProduto.aspx");
+            routes.MapPageRoute("CadProdutoRoute", "Produto/CadProduto", "~/Paginas/Produto/CadProduto.aspx");
         }
     }
 }
