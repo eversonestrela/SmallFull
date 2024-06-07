@@ -17,5 +17,10 @@ namespace Alcastock.Controllers
             List<ProdutoModel> produtos = _repositorio.Consultar(tipoConsulta, descricao);
             return produtos;
         }
+
+        public void SalvarProduto(ProdutoModel produto)
+        {
+            _repositorio.Salvar(produto);
+        }
     }
 }

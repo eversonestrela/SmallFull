@@ -33,7 +33,7 @@ public partial class Paginas_Pessoa_CadProduto : AppBasePage
 
         if (_ACAO == "Excluir")
         {
-            ExcluirPessoa();
+            ExcluirProduto();
         }
 
         if (!IsPostBack)
@@ -50,7 +50,7 @@ public partial class Paginas_Pessoa_CadProduto : AppBasePage
     /// <param name="e"></param>
     protected void btnVoltar_Click(object sender, EventArgs e)
     {
-        Response.Redirect("../Pessoa/ConPessoa");
+        Response.Redirect("../Produto/ConProduto");
     }
 
     /// <summary>
@@ -66,7 +66,22 @@ public partial class Paginas_Pessoa_CadProduto : AppBasePage
         {
             if (_ACAO == "Novo")
             {
-               
+                ProdutoController produtoController = new ProdutoController();
+
+                ProdutoModel produto = new ProdutoModel
+                {
+                    CODIGO = txtCodigo.Text,
+                    TIPO = ddlTipo.SelectedValue,
+                    NOME = txtNome.Text,
+                    GRUPO = ddlGrupo.SelectedValue,
+                    MARCA = ddlMarca.SelectedValue,
+                    UNIDADE_MEDIDA = txtUnidadeMedida.Text,
+                    CUSTO = Utilitarios.FormataValorDecimal(txtCusto.Text),
+                    LUCRO_ESPERADO = Utilitarios.FormataValorDecimal(txtLucroEsperado.Text),
+                    PERC_LUCRO = Utilitarios.FormataValorDecimal(txtPercLucro.Text),
+                    PRECO_VENDA = Utilitarios.FormataValorDecimal(txtPrecoVenda.Text)
+                };
+
                 Response.Cookies["MsgSucesso"].Value = "Produto adicionada com sucesso!";
             }
             else if (_ACAO == "Editar")
@@ -145,7 +160,7 @@ public partial class Paginas_Pessoa_CadProduto : AppBasePage
     protected void btnDeletaFoto_Click(object sender, EventArgs e)
     {
         PessoaController pessoaController = new PessoaController();
-        PessoaModel pessoa = ConsultaPessoa();
+        PessoaModel pessoa = ConsultaProduto();
         pessoaController.DeletarImagem(pessoa.PESSOA_ID);
 
         ConsultaFoto();
@@ -169,13 +184,28 @@ public partial class Paginas_Pessoa_CadProduto : AppBasePage
     {
         string er = string.Empty;
 
+        if (string.IsNullOrWhiteSpace(txtCodigo.Text))
+            er += "<li>Campo código não pode ser vazio!</li>";
+        if (string.IsNullOrWhiteSpace(txtNome.Text))
+            er += "<li>Campo nome não pode ser vazio!</li>";
+        if (ddlGrupo.SelectedIndex == 0)
+            er += "<li>Grupo deve ser preenchido</li>";
+        if (ddlMarca.SelectedIndex == 0)
+            er += "<li>Grupo deve ser preenchido</li>";
+        if (string.IsNullOrWhiteSpace(txtCusto.Text))
+            er += "<li>Custo deve ser preenchido!</li>";
+        if (string.IsNullOrWhiteSpace(txtLucroEsperado.Text))
+            er += "<li>Lucro esperado deve ser preenchido!</li>";
+        if (string.IsNullOrWhiteSpace(txtEstoqueMinimo.Text))
+            er += "<li>Estoque mínimo deve ser preenchido!</li>";
+
         return er;
     }
 
     private void PreencheCampos()
     {
         PessoaController pessoaController = new PessoaController();
-        PessoaModel pessoa = ConsultaPessoa();
+        PessoaModel pessoa = ConsultaProduto();
 
         if (pessoa != null)
         {
@@ -184,7 +214,7 @@ public partial class Paginas_Pessoa_CadProduto : AppBasePage
         }
     }
 
-    private PessoaModel ConsultaPessoa()
+    private PessoaModel ConsultaProduto()
     {
         PessoaController pessoaController = new PessoaController();
         List<PessoaModel> pessoas = pessoaController.ConsultarPessoaPorId(_ID);
@@ -196,7 +226,7 @@ public partial class Paginas_Pessoa_CadProduto : AppBasePage
     private void ConsultaFoto()
     {
         PessoaController pessoaController = new PessoaController();
-        PessoaModel pessoa = ConsultaPessoa();
+        PessoaModel pessoa = ConsultaProduto();
         List<ArquivoPessoaModel> arquivoPessoa = pessoaController.ConsultarArquivoPessoasPorId(pessoa.PESSOA_ID);
 
         if (arquivoPessoa.Count > 0)
@@ -225,7 +255,7 @@ public partial class Paginas_Pessoa_CadProduto : AppBasePage
         ConsultaFoto();
     }
 
-    private void ExcluirPessoa()
+    private void ExcluirProduto()
     {
         PessoaController p = new PessoaController();
 

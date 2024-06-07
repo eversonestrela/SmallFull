@@ -1,20 +1,23 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPages/Cadastro.master" AutoEventWireup="true" CodeFile="CadProduto.aspx.cs" Inherits="Paginas_Pessoa_CadProduto" Title="Cadastro de Produto" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPages/Cadastro.master" AutoEventWireup="true" CodeFile="CadProduto.aspx.cs" 
+    Inherits="Paginas_Pessoa_CadProduto" Title="Cadastro de Produto" EnableEventValidation="false" %>
 
 <%@ Register Assembly="AGENDA.Controles" Namespace="AGENDA.Controles.UI.ButtonToolBar" TagPrefix="cc1" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc2" %>
 <%@ Register Assembly="AGENDA.Controles" Namespace="AGENDA.Controles.UI" TagPrefix="cc3" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCampos" runat="server">
-    
-    <asp:HiddenField ID="txtPESSOA_ID" runat="server" />
 
-    <div class="d-flex justify-content-center">
-        <div class="p-3 mb-2 bg-danger text-white w-50" runat="server" id="divErros" visible="false">
-            <button type="button" id="btnClose" data-element="<%= divErros.ClientID %>">
-                <span aria-hidden="true">&times;</span>
-            </button>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" runat="server" id="divErros" visible="false">
+        <%--<button type="button" id="btnClose" data-element="<%= divErros.ClientID %>">
+            <span aria-hidden="true">&times;</span>
+        </button>--%>
+        <strong>Atenção!</strong>
+        <ul>
             <asp:Label runat="server" ID="lblErros" />
-        </div>
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 
     <div style="display: flex; align-content: center; justify-content: left; margin: 0;">
@@ -69,7 +72,7 @@
                                         </td>
                                         <td class="pdr-10">
                                             <cc3:FieldDropDown ID="ddlMarca" runat="server" ValueField="Marca" style="padding: 4px;" Width="295px" CssClass="input-cadastro">
-                                                <asp:ListItem Text="Marca..." Value="0" Selected="True" />
+                                                <asp:ListItem Text="Selecione" Value="0" Selected="True" />
                                             </cc3:FieldDropDown>
                                         </td>
                                         <td class="pdr-10">
@@ -113,17 +116,43 @@
                                                 <button type="button" class="btn btn-sm btn-danger">Não</button>
                                             </div>
                                         </td>
+                                        <td class="pdr-10">
+                                            <cc3:FieldTextBox ID="txtEstoqueMinimo" runat="server" ValueField="Estoque Mínimo" Width="150px" CssClass="input-cadastro" Enabled="false" />
+                                        </td>
+                                        <td class="pdr-10">
+                                            <cc3:FieldTextBox ID="txtEstoqueAtual" runat="server" ValueField="Estoque Atual" Width="150px" CssClass="input-cadastro" Enabled="false" />
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <table>
+                                <table width="50%">
                                     <tr>
                                         <td class="pdr-10">
-                                            <cc3:FieldTextBox ID="txt_PESSOAS_EMAIL" runat="server" ValueField="E-mail" Width="300px" CssClass="input-cadastro" MaxLength="400" />
-                                        </td>                            
+                                            <label class="rotulo">Status</label><br />
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-sm btn-success">Ativo</button>
+                                                <button type="button" class="btn btn-sm btn-light">Inativo</button>
+                                            </div>
+                                        </td>
+                                        <td class="pdr-10">
+                                            <asp:Label runat="server" Font-Bold="true" CssClass="rotulo">Data Cadastro</asp:Label>
+                                            <div class="input-group">
+                                                <cc3:FieldTextBox ID="txtDataCadastro" runat="server"
+                                                    Style="width: 100px;" CssClass="date input-cadastro" MaxLength="10" Enabled="false" />
+                                                <cc2:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDataCadastro"
+                                                    Animated="true" Format="dd/MM/yyyy" />
+                                            </div>
+                                        </td>
+                                        <td class="pdr-10">
+                                            <asp:Label runat="server" Font-Bold="true" CssClass="rotulo">Data Atualização</asp:Label>
+                                            <div class="input-group">
+                                                <cc3:FieldTextBox ID="txtDataAtualizacao" runat="server"
+                                                    Style="width: 100px;" CssClass="date input-cadastro" MaxLength="10" Enabled="false" />
+                                            </div>
+                                        </td>
                                     </tr>
                                 </table>
                             </td>

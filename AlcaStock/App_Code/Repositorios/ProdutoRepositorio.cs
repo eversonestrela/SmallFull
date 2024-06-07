@@ -116,10 +116,10 @@ namespace Alcastock.Repositorios
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = @"SET DATEFORMAT DMY; INSERT INTO PESSOAS (NOME, CPF, DATA_NASC, SEXO, NOME_MAE, CPF_MAE, NOME_PAI, CPF_PAI
-                                , TELEFONE_RESIDENCIAL, TELEFONE_CELULAR, EMAIL, SIS_USUARIO_INSERT, SIS_DATA_INSERT)
-                                VALUES (@NOME, @CPF, @DATA_NASC, @SEXO, @NOME_MAE, @CPF_MAE, @NOME_PAI, @CPF_PAI,
-                                @TELEFONE_RESIDENCIAL, @TELEFONE_CELULAR, @EMAIL, @SIS_USUARIO_INSERT, @SIS_DATA_INSERT)";
+                string query = @"SET DATEFORMAT DMY; INSERT INTO PRODUTOS (CODIGO, TIPO, NOME, GRUPO, MARCA, UNIDADE_MEDIDA, CUSTO, LUCRO_ESPERADO
+                                , PERC_LUCRO, PRECO_VENDA, CONTROLA_ESTOQUE, ESTOQUE_MININO, ESTOQUE_ATUAL, STATUS, SIS_USUARIO_INSERT, SIS_DATA_INSERT)
+                                VALUES (@CODIGO, @TIPO, @NOME, @GRUPO, @MARCA, @UNIDADE_MEDIDA, @CUSTO, @LUCRO_ESPERADO
+                                , @PERC_LUCRO, @PRECO_VENDA, @CONTROLA_ESTOQUE, @ESTOQUE_MININO, @ESTOQUE_ATUAL, @STATUS, @SIS_USUARIO_INSERT, @SIS_DATA_INSERT)";
 
                 SqlCommand cmd = new SqlCommand(query, connection);
                 SqlParameter[] parms = GetSqlParameterArray(produto);
@@ -127,15 +127,6 @@ namespace Alcastock.Repositorios
                 {
                     cmd.Parameters.Add(parms[i]);
                 }
-
-                //string sqlDebug = query;
-                //foreach (SqlParameter param in cmd.Parameters)
-                //{
-                //    sqlDebug = sqlDebug.Replace(param.ParameterName, param.Value.ToString());
-                //}
-
-                //// Registrar ou exibir a string SQL final para depuração
-                //System.Diagnostics.Debug.WriteLine(sqlDebug);
 
                 connection.Open();
                 cmd.ExecuteNonQuery();

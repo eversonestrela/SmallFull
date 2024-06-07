@@ -238,6 +238,15 @@ public class Utilitarios
 
     #region Metodos
 
+    public static decimal FormataValorDecimal(string valor)
+    {
+        if (valor == string.Empty)
+            valor = "0,00";
+        valor = valor.Replace(".", "").Replace(",", ".").Replace("%", "");
+
+        return Convert.ToDecimal(valor);
+    }
+
     /// <summary>
     /// Método responsável por verificar se a data é valida
     /// SqlDateTime. Deve estar entre 1/1/1753 12:00:00 AM e 31/12/9999 11:59:59 PM.
