@@ -4,8 +4,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
-using ICSharpCode.SharpZipLib.Zip.Compression;
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
 /// <summary>
 /// Summary description for AppBasePage
@@ -186,11 +184,11 @@ public class AppBasePage : Page
         }
     }
 
-    protected override void OnInit(EventArgs e)
-    {
-        ViewStateCompression = Deflater.BEST_COMPRESSION;
-        base.OnInit(e);
-    }
+    //protected override void OnInit(EventArgs e)
+    //{
+    //  //  ViewStateCompression = Deflater.BEST_COMPRESSION;
+    //    //base.OnInit(e);
+    //}
 
     //protected override void SavePageStateToPersistenceMedium(Object state)
     //{
@@ -233,13 +231,13 @@ public class AppBasePage : Page
     //}
 
     private const int BUFFER_SIZE = 65536;
-    private int viewStateCompression = Deflater.NO_COMPRESSION;
+   // private int viewStateCompression = Deflater.NO_COMPRESSION;
 
-    private int ViewStateCompression
-    {
-        get { return viewStateCompression; }
-        set { viewStateCompression = value; }
-    }
+    //private int ViewStateCompression
+    //{
+    //    get { return viewStateCompression; }
+    //    set { viewStateCompression = value; }
+    //}
 
     //private byte[] Compress(byte[] bytes)
     //{

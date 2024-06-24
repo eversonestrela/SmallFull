@@ -84,10 +84,10 @@ namespace ALCASTOCK.Geral
         {
             txt1.Attributes.Add("onkeydown", "javascript:mascara_Data();");
         }
-        public static void MascaraData(eWorld.UI.CalendarPopup txt1)
-        {
-            txt1.Attributes.Add("onkeydown", "javascript:mascara_Data();");
-        }
+        //public static void MascaraData(eWorld.UI.CalendarPopup txt1)
+        //{
+        //    txt1.Attributes.Add("onkeydown", "javascript:mascara_Data();");
+        //}
         #endregion
     }
 }

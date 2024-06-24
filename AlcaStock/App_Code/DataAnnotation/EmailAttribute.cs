@@ -38,7 +38,7 @@ namespace AlcaStock.Attributes
         {
             foreach (var result in validationResults)
             {
-                Console.WriteLine($"{result.Key}: {(result.Value ? "Válido" : "Inválido")}");
+                Console.WriteLine(string.Format("{0}: {1}", result.Key, result.Value ? "Válido" : "Inválido"));
             }
         }
 

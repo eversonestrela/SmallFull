@@ -1,5 +1,4 @@
 using ALCASTOCK.Geral;
-using eWorld.UI;
 using System;
 using System.Collections;
 using System.Configuration;
@@ -9,6 +8,8 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
+
 
 public class Utilitarios
 {
@@ -1085,11 +1086,11 @@ public class Utilitarios
             {
                 if (Pagina.FindControl("clp_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
                 {
-                    if (Convert.ToString(((CalendarPopup)Pagina.FindControl("clp_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedDate) != string.Empty)
-                    {
-                        if (((CalendarPopup)Pagina.FindControl("clp_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedDate.ToString().Substring(0, 8) != "1/1/0001")
-                            Linha[i] = ((CalendarPopup)Pagina.FindControl("clp_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedDate;
-                    }
+                    //if (Convert.ToString(((CalendarPopup)Pagina.FindControl("clp_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedDate) != string.Empty)
+                    //{
+                    //    if (((CalendarPopup)Pagina.FindControl("clp_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedDate.ToString().Substring(0, 8) != "1/1/0001")
+                    //        Linha[i] = ((CalendarPopup)Pagina.FindControl("clp_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).SelectedDate;
+                    //}
                 }
                 else if (Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName) != null)
                     if (Convert.ToString(((TextBox)Pagina.FindControl("txt_" + NomTabela + "_" + ds2.Tables[NomTabela].Columns[i].ColumnName)).Text) != string.Empty)
@@ -1195,6 +1196,69 @@ public class Utilitarios
         Containers(Pagina);
     }
 
+    public static void geraExcel(DataSet ds, string nomeArq, string Table)
+    {
+        Guid g = new Guid();
+        HttpResponse stream = System.Web.HttpContext.Current.Response;
+        stream.AddHeader("Content-Disposition", "attachment; filename =" + nomeArq + "_" + DateTime.Now.Date.ToString() + ".xls");
+        stream.ContentType = "application/vnd.ms-excel";
+        stream.ContentEncoding = System.Text.UTF8Encoding.Default;
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter ht = new HtmlTextWriter(sw);
+        DataGrid grd = new DataGrid();
+        grd.DataSource = ds;
+        grd.DataMember = Table;
+        grd.HeaderStyle.Font.Bold = true;
+        grd.DataBind();
+        grd.RenderControl(ht);
+        stream.Write(sw.ToString());
+        stream.End();
+    }
+
+    /// <summary>
+    /// Método responsável pela Geração de Relatórios Excel
+    /// </summary>
+    /// <param name="ds">DataSet que armazena conteúdo da DataTable</param>
+    /// <param name="nomeArq">Nome da planilha</param>
+    /// <param name="Table">Tabela que será relacionada a Grid</param>
+    public static void geraExcel(DataTable dt, string nomeArq, string nomeTable)
+    {
+        Guid g = new Guid();
+        HttpResponse stream = System.Web.HttpContext.Current.Response;
+        stream.AddHeader("Content-Disposition", "attachment; filename =" + nomeArq + "_" + DateTime.Now.Date.ToString() + ".xls");
+        stream.ContentType = "application/vnd.ms-excel";
+        stream.ContentEncoding = System.Text.UTF8Encoding.Default;
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter ht = new HtmlTextWriter(sw);
+        DataGrid grd = new DataGrid();
+        grd.DataSource = dt;
+        grd.DataMember = nomeTable;
+        grd.HeaderStyle.Font.Bold = true;
+        grd.DataBind();
+        grd.RenderControl(ht);
+        stream.Write(sw.ToString());
+        stream.End();
+    }
+
+    public static void geraExcel(DataTable dt, string nomeArq, string nomeTable, bool Guid)
+    {
+        HttpResponse stream = System.Web.HttpContext.Current.Response;
+        stream.AddHeader("Content-Disposition", "attachment; filename =" + nomeArq + ".csv");
+        stream.ContentType = "application/vnd.ms-excel";
+        stream.ContentEncoding = System.Text.UTF8Encoding.Default;
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter ht = new HtmlTextWriter(sw);
+        DataGrid grd = new DataGrid();
+        grd.DataSource = dt;
+        grd.DataMember = nomeTable;
+        grd.HeaderStyle.Font.Bold = true;
+        grd.DataBind();
+        grd.RenderControl(ht);
+        stream.Write(sw.ToString());
+        stream.End();
+    }
+
+
     private static void Containers(Control controle)
     {
         for (int cont = 0; cont < controle.Controls.Count; cont++)
@@ -1277,14 +1341,14 @@ public class Utilitarios
         {
 
         }
-        else if (controle.ToString() == "eWorld.UI.CalendarPopup")
-        {
-            TratarEntradadeDados.MascaraData((eWorld.UI.CalendarPopup)controle);
-        }
-        else if (controle.ToString() == "eWorld.UI.TimePicker")
-        {
+        //else if (controle.ToString() == "eWorld.UI.CalendarPopup")
+        //{
+        //    TratarEntradadeDados.MascaraData((eWorld.UI.CalendarPopup)controle);
+        //}
+        //else if (controle.ToString() == "eWorld.UI.TimePicker")
+        //{
 
-        }
+        //}
         else if (controle.ToString() == "System.Web.UI.WebControls.LinkButton")
         {
 
