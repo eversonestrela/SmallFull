@@ -22,7 +22,7 @@ public partial class Vendas : System.Web.UI.Page
             produtosVendidos.Columns.Add("Grade");
             produtosVendidos.Columns.Add("Quantidade");
             produtosVendidos.Columns.Add("Unidade");
-            produtosVendidos.Columns.Add("PrecoUnitario");
+            produtosVendidos.Columns.Add("QueroLucrar");
             produtosVendidos.Columns.Add("Total");
             ViewState["ProdutosVendidos"] = produtosVendidos;
 
@@ -83,21 +83,21 @@ public partial class Vendas : System.Web.UI.Page
         if (dt.Rows.Count > 0)
         {
             string descricao = dt.Rows[0]["Descricao"].ToString();
-            decimal precoUnitario = Convert.ToDecimal(dt.Rows[0]["PrecoUnitario"]);
+            decimal QueroLucrar = Convert.ToDecimal(dt.Rows[0]["QueroLucrar"]);
 
             DataRow existingRow = produtosVendidos.Select("Codigo = '" + codigo + "'").FirstOrDefault();
 
             if (existingRow != null)
             {
                 int novaQuantidade = Convert.ToInt32(existingRow["Quantidade"]) + quantidade;
-                decimal novoTotal = novaQuantidade * precoUnitario;
+                decimal novoTotal = novaQuantidade * QueroLucrar;
 
                 existingRow["Quantidade"] = novaQuantidade;
                 existingRow["Total"] = novoTotal;
             }
             else
             {
-                decimal total = quantidade * precoUnitario;
+                decimal total = quantidade * QueroLucrar;
 
                 DataRow row = produtosVendidos.NewRow();
                 row["Codigo"] = codigo;
@@ -105,7 +105,7 @@ public partial class Vendas : System.Web.UI.Page
                 row["Grade"] = ""; // Adicione a lógica para obter o valor correto
                 row["Quantidade"] = quantidade;
                 row["Unidade"] = "UN"; // Altere conforme necessário
-                row["PrecoUnitario"] = precoUnitario;
+                row["QueroLucrar"] = QueroLucrar;
                 row["Total"] = total;
 
                 produtosVendidos.Rows.Add(row);
@@ -227,7 +227,7 @@ public partial class Vendas : System.Web.UI.Page
         produtosVendidos.Columns.Add("Grade");
         produtosVendidos.Columns.Add("Quantidade");
         produtosVendidos.Columns.Add("Unidade");
-        produtosVendidos.Columns.Add("PrecoUnitario");
+        produtosVendidos.Columns.Add("QueroLucrar");
         produtosVendidos.Columns.Add("Total");
         ViewState["ProdutosVendidos"] = produtosVendidos;
 

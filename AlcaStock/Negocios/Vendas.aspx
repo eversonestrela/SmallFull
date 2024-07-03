@@ -110,7 +110,7 @@
                     <asp:BoundField DataField="Grade" HeaderText="Grade" />
                     <asp:BoundField DataField="Quantidade" HeaderText="Quantidade" />
                     <asp:BoundField DataField="Unidade" HeaderText="UN" />
-                    <asp:BoundField DataField="PrecoUnitario" HeaderText="Preço Unit." />
+                    <asp:BoundField DataField="QueroLucrar" HeaderText="Preço Unit." />
                     <asp:BoundField DataField="Total" HeaderText="Total" />
                 </Columns>
             </asp:GridView>

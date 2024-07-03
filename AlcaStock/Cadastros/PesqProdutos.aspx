@@ -65,7 +65,7 @@
                 <Columns>
                     <asp:BoundField DataField="N" HeaderText="" />
                     <asp:BoundField DataField="Nome" HeaderText="Produto:" />
-                    <asp:BoundField DataField="PrecoVenda" HeaderText="Preço:" />
+                    <asp:BoundField DataField="QueroLucrar" HeaderText="Preço:" />
                 </Columns>
             </asp:GridView>
         </div>
