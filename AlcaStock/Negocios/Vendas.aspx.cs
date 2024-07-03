@@ -78,7 +78,7 @@ public partial class Vendas : System.Web.UI.Page
 
     private void AdicionarProduto(string codigo, int quantidade)
     {
-        DataTable dt = Utilitarios.Pesquisar("SELECT * FROM PRODUTOS WHERE CODIGO LIKE '%" + codigo + "%' OR DESCRICAO LIKE '%" + codigo + "%'");
+        DataTable dt = Utilitarios.Pesquisar("SELECT * FROM PRODUTOS WHERE CODIGO LIKE '%" + codigo + "%' OR NOME LIKE '%" + codigo + "%'");
 
         if (dt.Rows.Count > 0)
         {

@@ -1,83 +1,71 @@
 using System;
-using System.Web;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web.UI;
-using System.IO;
-using System.Net;
 
-public partial class Funcionarios : System.Web.UI.Page
+public partial class Clientes : System.Web.UI.Page
 {
-
     protected void Page_Load(object sender, EventArgs e)
     {
-
-
-
-    }
-
-
-    protected void btnAgendar_Click(object sender, EventArgs e)
-    {
-        Response.Redirect(ResolveUrl("~/Agendamento/Agendar.aspx"));
-    }
-
-    protected void btnParametro_Click(object sender, EventArgs e)
-    {
-        Response.Redirect(ResolveUrl("~/Cadastros/Pesquisa.aspx"));
-    }
-
-
-    protected void btnInicio_Click(object sender, EventArgs e)
-    {
-        Response.Redirect(ResolveUrl("~/Index/Inicial.aspx"));
-    }
-
-
-
-    protected void btnCadastrar_Click(object sender, EventArgs e)
-    {
-        string caminhoArquivo = null;
-        if (fuFoto.HasFile)
+        if (!IsPostBack)
         {
-            try
-            {
-                // Obtém o nome do arquivo e salva-o no servidor
-                string nomeArquivo = Path.GetFileName(fuFoto.FileName);
-                 caminhoArquivo = Server.MapPath("~/Imagens/") + nomeArquivo;
-                fuFoto.SaveAs(caminhoArquivo);
-
-                // Aqui você pode inserir os dados do funcionário no banco de dados, incluindo o caminho da foto
-                // Exemplo: Utilitarios.InserirFuncionario(nome, cpf, cidade, telefone, celular, email, caminhoArquivo);
-
-                // Exibe uma mensagem de sucesso
-                Response.Write("Funcionário cadastrado com sucesso!");
-            }
-            catch (Exception ex)
-            {
-                // Em caso de erro ao salvar a foto, exibe uma mensagem de erro
-                Response.Write("Erro ao salvar a foto: " + ex.Message);
-            }
+            Cidades();
         }
-
-        // Coletar dados do formulário
-        string nome = txtNome.Text;
-        string cpf = txtCPF.Text;
-        string celular = txtCelular.Text;
-        string cidade = txtCidade.Text;
-        string telefone = txtTelefone.Text;
-        string email = txtEmail.Text;
-        string SQL = string.Empty;
-        // Inserir no banco de dados
-        try
-        {
-     
-        }
-        catch (Exception ex)
-        {
-            Response.Write("Erro ao inserir os dados do cliente: " + ex.Message);
-        }
-
-
     }
 
+    protected void Cidades()
+    {
+        DataTable dt = Utilitarios.Pesquisar("SELECT * FROM UF");
+        DataTable dt2 = Utilitarios.Pesquisar("SELECT * FROM CIDADES");
+        Utilitarios.AtualizaDropDown(ddlUF, dt, "Sigla", "Sigla");
+        Utilitarios.AtualizaDropDown(ddlCidade, dt2, "Nome", "UFID");
+    }
+    protected void btnSalvar_Click(object sender, EventArgs e)
+    {
+        string CPF = txtCPF.Text;
+        string Nome = txtNome.Text;
+        string DataNasc = txtDataNasc.Text;
+        string Rua = txtEndRua.Text;
+        string NumeroCasa = txtEndNumero.Text;
+        string Bairro = txtEndBairro.Text;
+        string UF = ddlUF.SelectedValue;
+        string Cidade = ddlCidade.SelectedValue;
+        string Status = ddlStatus.SelectedValue;
+
+        string query = @" SET DATEFORMAT DMY INSERT INTO PESSOAS
+            (
+            NOME,
+            DATA_NASC,
+            CPF,
+            EndRua,
+            EndNumero,
+            EndBairro,
+            UF,
+            Cidade,
+            Status
+            )
+            VALUES
+            ('" + Nome + "', '" + DataNasc + "', '" + CPF + "', '" + Rua + "',  '" + NumeroCasa + "', '" + Bairro + "', '" + UF + "', '" + Cidade + "', '" + Status + "')";
+
+        Utilitarios.Exec_StringSql(query);
+        ScriptManager.RegisterClientScriptBlock(this, GetType(), "RPT", "<script>alert('Pessoa Cadastrada com Sucesso!');</script>", false);
+        LimpaCampos();
+    }
+
+
+    protected void LimpaCampos()
+    {
+        txtCPF.Text = string.Empty;
+        txtNome.Text = string.Empty;
+        txtDataNasc.Text = string.Empty;
+        txtEndRua.Text = string.Empty;
+        txtEndNumero.Text = string.Empty;
+        txtEndBairro.Text = string.Empty;
+        ddlUF.SelectedIndex = 0; 
+        ddlCidade.SelectedIndex = 0; 
+        ddlStatus.SelectedIndex = 0; 
+    }
 
 }

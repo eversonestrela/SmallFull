@@ -1,62 +1,52 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Vendas.aspx.cs" Inherits="Vendas" EnableEventValidation="false" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Vendas.aspx.cs" Inherits="Vendas" MasterPageFile="/MasterPages/Site.master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <form id="form2" runat="server">
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Venda de Produtos</title>
-    <!-- Adicionando Bootstrap e jQuery -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
+    .container {
+        margin-top: 50px;
+    }
 
-        .container {
-            margin-top: 50px;
-        }
+    .header {
+        margin-bottom: 20px;
+    }
 
-        .header {
-            margin-bottom: 20px;
-        }
+    .grid th, .grid td {
+        text-align: center;
+    }
 
-        .grid th, .grid td {
-            text-align: center;
-        }
+    .totals {
+        text-align: right;
+        font-size: 18px;
+    }
 
-        .totals {
-            text-align: right;
-            font-size: 18px;
-        }
+    .total {
+        font-weight: bold;
+        color: red;
+    }
 
-        .total {
-            font-weight: bold;
-            color: red;
-        }
-
-        .quantity {
-            font-weight: bold;
-            color: red;
-            text-align: center;
-        }
-    </style>
-    <script type="text/javascript">
-        function PermiteSomenteNumeros(event) {
-            var charCode = (event.which) ? event.which : event.keyCode
-            if (charCode > 31 && (charCode < 48 || charCode > 57))
-                return false;
-            return true;
-        }
-
-    </script>
-    <script>
-        $(document).ready(function () {
-            $("#btnAdicionar").click(function (e) {
-                var codigo = $("#<%= txtCodigo.ClientID %>").val();
+    .quantity {
+        font-weight: bold;
+        color: red;
+        text-align: center;
+    }
+</style>
+<script type="text/javascript">
+    function PermiteSomenteNumeros(event) {
+        var charCode = (event.which) ? event.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $("#btnAdicionar").click(function (e) {
+            var codigo = $("#<%= txtCodigo.ClientID %>").val();
                 var quantidade = $("#<%= txtQuantidade.ClientID %>").val();
-
             });
 
             $("#txtCpfCnpj").on("change", function () {
@@ -69,21 +59,16 @@
                 }
             });
         });
-    </script>
-
-</head>
-<body>
-    <form id="form1" runat="server">   
+</script>
         <div class="container">
             <h2 class="header text-center">Venda de Produtos</h2>
-    <table style="text-align:left">
-     <tr>
-         <td colspan="2" style="text-align-last:center";>
-             <strong>Códigos:</strong></td>
-         <td>Gás: 4  - </td>
-         <td>Água: 5  </td>
-     </tr>
-    </table>
+            <table style="text-align: left">
+                <tr>
+                    <td colspan="2" style="text-align-last: center;"><strong>Códigos:</strong></td>
+                    <td>Gás: 4  - </td>
+                    <td>Água: 5  </td>
+                </tr>
+            </table>
             <div class="form-group row">
                 <div class="col-md-4">
                     <label>Cliente:</label>
@@ -134,17 +119,19 @@
                 <asp:Label ID="lblDesconto" runat="server" Text="Desconto: "></asp:Label><br />
                 <asp:Label ID="lblTotal" runat="server" Text="TOTAL: " CssClass="total"></asp:Label><br />
                 <asp:Label ID="lblQuantidadeItens" runat="server" Text="Quantidade Itens: "></asp:Label>
+                <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Placeholder="Aplicar Desconto" onkeypress="return PermiteSomenteNumeros(event)"></asp:TextBox>
             </div>
         </div>
-<table style="width: 100%; text-align: center;">
-    <tr>
-        <td style="text-align: ri;"> 
-            <asp:Button ID="btnConsultarVendas" runat="server" CssClass="btn btn-primary" Text="Consultar Vendas Realizadas" OnClick="btnConsultarVendas_Click" />
-            <asp:Button ID="Button1" runat="server" CssClass="btn btn-success" Text="Registrar Venda" OnClick="RegistrarVenda_Click" style="margin: auto;" />
-        </td>
-    </tr>
-</table>     
+        <table style="width: 100%; text-align: center;">
+            <tr>
+                <td style="text-align: center;">
+                    <asp:Button ID="btnConsultarVendas" runat="server" CssClass="btn btn-primary" Text="Consultar Vendas Realizadas" OnClick="btnConsultarVendas_Click" />
+                    <asp:Button ID="Button1" runat="server" CssClass="btn btn-success" Text="Registrar Venda" OnClick="RegistrarVenda_Click" Style="margin: auto;" />
+                </td>
+            </tr>
+        </table>
     </form>
-</body>
-</html>
+    </asp:Content>
+
+<%--<td align="center" background="../Library/Images/meio_580.gif">--%>
 

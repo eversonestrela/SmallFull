@@ -1,108 +1,101 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Clientes.aspx.cs" Inherits="Funcionarios" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Clientes.aspx.cs" Inherits="Clientes" MasterPageFile="~/MasterPages/Site.master" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc3" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
-<!DOCTYPE html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<asp:Content ID="Content" ContentPlaceHolderID="MainContent" runat="server">
 
-<script>
-    $(document).ready(function () {
-        $('#<%= txtCelular.ClientID %>').mask('(00) 00000-0000');
-});
-</script>
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
 
+    <title>Cadastro de Produto</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Cadastro de Funcionários</title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div id="menu" style="text-align: center;">
+        .container {
+            margin-top: 50px;
+        }
 
-            <asp:Button ID="Inicio" runat="server" Text="Página Inicial" Style="background-color: black; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;" OnClick="btnInicio_Click" />
-            <asp:Button ID="Agendar" runat="server" Text="Agende AQUI!" Style="background-color: black; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;" OnClick="btnAgendar_Click" />
-            <asp:Button ID="Contato" runat="server" Text="Fale Conosco" Style="background-color: black; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;" />
-            <asp:Button ID="Cadastro" runat="server" Text="Cadastros" Style="background-color: black; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;" OnClick="btnParametro_Click" />
+        .form-group {
+            margin-bottom: 1rem;
+        }
+    </style>
 
-        </div>
-
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <fieldset>
-            <legend class="rotulo"><b>Cadastro de Clientes:</b></legend>
-            <br />
-            <table>
-                <tr>
-
-                    <tr>
-                        <td>
-                            <label for="txtNome">Nome</label></td>
-                        <td>
-                            <label for="txtCPF">CPF</label></td>
-                        <td>
-                            <label for="txtCPF">Celular </label>
-                        </td>
-                    </tr>
-                    <td>
-                        <asp:TextBox ID="txtNome" runat="server" ></asp:TextBox>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtCPF" runat="server" ></asp:TextBox>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtCelular" runat="server" ></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <tr>
-                        <td>
-                            <label for="txtCidade">Telefone </label>
-                        </td>
-                        <td>
-                            <label for="txtTelefone">E-mail</label>
-                        </td>
-                        <td>
-                            <label for="txtEmail">Cidade </label>
-                        </td>
-                    </tr>
-                    <td>
-                        <asp:TextBox ID="txtCidade" runat="server" ></asp:TextBox>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtTelefone" runat="server" ></asp:TextBox>
-                    </td>
-
-                    <td>
-                        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-
-            </table>
-
-            <table style="float: right">
-
-                <tr>
-                    <td>
-                        <label  for="fuFoto">Foto:  </label>
-                        <asp:FileUpload ID="fuFoto" runat="server" style="cursor:pointer;" />                
-                    </td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                <tr>
-                    <td>
-                    <asp:Button ID="btnCadastrar" runat="server" Text="Cadastrar" style="cursor:pointer;" OnClick="btnCadastrar_Click" />
-        </tr>
-                    </tr>
-                </table>
-                </fieldset>
-
-    </form>
-</body>
-</html>
+    <body>
+        <form id="form1" runat="server">
+            <asp:ScriptManager ID="ScriptManager1" runat="server" />
+            <div class="container">
+                <h2 class="header text-center">Cadastro de Pessoas</h2>
+                <br />
+                <br />
+                <br />
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="txtCPF">CPF:</label>
+                        <asp:TextBox ID="txtCPF" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtNome">Nome:</label>
+                        <asp:TextBox ID="txtNome" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtDataNasc">Data de Nascimento:</label>
+                        <asp:TextBox ID="txtDataNasc" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:MaskedEditExtender
+                            ID="txtDataNasc_MaskedEditExtender"
+                            runat="server"
+                            TargetControlID="txtDataNasc"
+                            Mask="99/99/9999"
+                            MaskType="Date"
+                            InputDirection="RightToLeft"
+                            DisplayMoney="None"
+                            AutoComplete="true"></asp:MaskedEditExtender>
+                        <asp:CalendarExtender
+                            ID="txtDataNasc_CalendarExtender"
+                            runat="server"
+                            TargetControlID="txtDataNasc"
+                            Format="dd/MM/yyyy"></asp:CalendarExtender>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="txtEndRua">Rua:</label>
+                        <asp:TextBox ID="txtEndRua" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtEndNumero">Numero Residência:</label>
+                        <asp:TextBox ID="txtEndNumero" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtEndBairro">Bairro:</label>
+                        <asp:TextBox ID="txtEndBairro" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="ddlUF">UF:</label>
+                        <asp:DropDownList ID="ddlUF" runat="server" CssClass="form-control" Width="100px">
+                        </asp:DropDownList>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ddlCidade">Cidade:</label>
+                        <asp:DropDownList ID="ddlCidade" runat="server" CssClass="form-control" Width="100%">
+                        </asp:DropDownList>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ddlStatus">Status</label>
+                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control" Width="100%">
+                            <asp:ListItem Text="ATIVO" Value="ATIVO"></asp:ListItem>
+                            <asp:ListItem Text="INATIVO" Value="INATIVO"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div class="form-group text-right">
+                    <asp:Button ID="btnSalvar" runat="server" CssClass="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />
+                </div>
+            </div>
+        </form>
+    </body>
+    </html>
+</asp:Content>

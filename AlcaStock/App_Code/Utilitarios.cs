@@ -247,6 +247,10 @@ public class Utilitarios
 
         return Convert.ToDecimal(valor);
     }
+    public static void GravaLog(string tabela, string nome_campo_id, string id, string tela_sistema, string operacao)
+    {
+        Utilitarios.Exec_ProcSql("EXEC dbo.PROC_GRAVA_LOG @TABELA='" + tabela + "', @DSC_TABELA_ID='" + nome_campo_id + "', @TABELA_ID='" + id + "', @TELA_SISTEMA='" + tela_sistema + "', @OPERACAO='" + operacao + "', @USR_LOGIN='" + UtilsLogin.DadosUsuarioLogado.USR_LOGIN_ID.ToString() + "'");
+    }
 
     /// <summary>
     /// Método responsável por verificar se a data é valida
@@ -1008,6 +1012,20 @@ public class Utilitarios
             TextBox txt = (TextBox)controle;
             txt.Attributes.Remove(atributo);
         }
+    }
+
+    public static void AtualizaDropDown(DropDownList ddl, DataTable dt, string text, string value)
+    {
+        ddl.DataSource = dt;
+        ddl.DataTextField = text;
+        ddl.DataValueField = value;
+        ddl.DataBind();
+        //-> Cria o ListItem que será inserido na posição Zero
+        ListItem lst = new ListItem();
+        lst.Text = "Todos";
+        lst.Value = "0";
+        //-> Insere o ListItem na posição Zero
+        ddl.Items.Insert(0, lst);
     }
 
     /// <summary>
